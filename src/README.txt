@@ -1,0 +1,24 @@
+A Photo Tool (Libre)
+
+Copyright © 2021-2022 Jari Ahola
+Lisence GPLv3
+
+A Photo Tool (Libre version) is free image editor published under GNU Public Lisence version 3 (GPLv3).
+
+You are free to use it, free to download source code and use it in accordance of the GPLv3 and basically
+you are free to do what you like. If you publish modified app you need to publish the source code also
+(as dictated by GPLv3). Original author Jari Ahola will remain as the copyright holder of A Photo Tool
+(Libre).
+
+See LICENSE.txt for GPLv3.
+
+BUILD INSTRUCTIONS:
+
+Prerequisites
+ - Basic knowledge of C++, Qt, GitHub and Linux development
+ - Advanced knowledge of Debian tools for building Debian deb package
+
+Steps to build Debian deb package
+- Get source
+- Use Debian development tools (see https://www.debian.org/doc/manuals/maint-guide/)
+

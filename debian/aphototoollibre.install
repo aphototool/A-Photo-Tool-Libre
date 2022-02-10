@@ -1,0 +1,4 @@
+bin/APhotoToolLibre usr/bin
+desktop/me.ahola.aphototoollibre.desktop usr/share/applications
+desktop/me.ahola.APhotoToolLibre.svg usr/share/icons/hicolor/scalable/apps
+desktop/me.ahola.aphototoollibre.metainfo.xml usr/share/metainfo

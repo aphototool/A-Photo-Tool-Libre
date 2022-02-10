@@ -1,0 +1,17 @@
+[Desktop Entry]
+Version=1.5
+Type=Application
+Name=A Photo Tool (Libre)
+Comment=Photo editing tool for Linux
+Categories=Graphics;Qt;
+Icon=me.ahola.APhotoToolLibre
+Exec=/usr/bin/APhotoToolLibre %f
+TryExec=/usr/bin/APhotoToolLibre
+MimeType=image/jpeg;image/png;
+Actions=NewWindow;
+Terminal=false
+
+[Desktop Action NewWindow]
+Name=Open New Window
+Exec=/usr/bin/APhotoToolLibre
+

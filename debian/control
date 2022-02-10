@@ -1,0 +1,28 @@
+Source: aphototoollibre
+Section: graphics
+Priority: optional
+Maintainer: Jari Ahola <aphototool@ahola.me>
+Build-Depends: debhelper (>= 9), qtbase5-dev (>= 5.15.2), qtbase5-dev-tools (>= 5.15.2), qt5-qmake (>= 5.15.2)
+Standards-Version: 4.6.0
+Homepage: https://www.github.com/aphototool/A-Photo-Tool-Libre
+
+Package: aphototoollibre
+Architecture: amd64
+Section: graphics
+Priority: optional
+Depends: libqt5gui5 (>= 5.15.2), libqt5widgets5 (>= 5.15.2), libqt5core5a (>= 5.15.2), ${misc:Depends}, ${shlibs:Depends}
+Description: A Photo Tool (Libre)
+ Photo editing tool for Linux
+ .
+ Easy to use photo editing software for JPEG images.
+ .
+ Change exposure, contrast and color. Turn color
+ phototos in to black and white images with contor
+ how color is handled. Rotate, crop, straighten and
+ resize photos.
+ .
+ Copyright (C) 2022 Jari Ahola
+ .
+ Lisensed under GNU GPLv3. Full source code available
+ at github.com/aphototool/A-Photo-Tool-Libre
+
