@@ -60,7 +60,7 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public 
 
 ### How to Run
 
-<img align="left" src="https://github.com/aphototool/APhotoToolLibre/blob/main/pics/APhotoToolLibreIcon.png?raw=true">
+<img align="left" src="https://github.com/aphototool/A-Photo-Tool-Libre/blob/main/pics/APhotoToolLibreIcon.png?raw=true">
 
 **A Photo Tool (Libre)** is shown on your applications menu. Depending on your environment it may be under category **Graphics** or you may search it by entering **A Photo Tool** on your app search.
 
