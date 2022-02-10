@@ -25,7 +25,7 @@ See LICENSE file or https://www.gnu.org/licenses/gpl-3.0.txt for GPLv3.
 
 ### How to Install (.deb for 64 bit Intel / AMD)
 
-1. Download aphototoollibre_1.0-1.deb (see releases)
+1. Download aphototoollibre_1.0-1.deb (see [Releases](../../releases))
 
 2. You may check the file integrity (*this step is not required but is good for your safety*). 
 - Enter command
@@ -74,7 +74,7 @@ sudo apt remove aphototoollibre
 
 ### BUILD INSTRUCTIONS
 
-*If you just want to use A Photo Tool (Libre) app you can ignore build instructions and just follow instructions at **How to Install**. These build instructions are here only to comply with GPLv3 source code requirements.*
+*If you just want to use A Photo Tool (Libre) app you can ignore build instructions and just follow instructions at [**How to Install**](#how-to-install-deb-for-64-bit-intel--amd). These build instructions are here only to comply with GPLv3 source code requirements.*
 
 #### Technical
 - Programming language C++
