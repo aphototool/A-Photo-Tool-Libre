@@ -46,10 +46,8 @@ sudo apt install ./aphototoollibre_1.0-1_amd64.deb
    - Package managers may show license as "proprietary". The license is actually GPLv3.
 
 #### Tested environments
-- Debian 11.2 (Gnome)
-- Ubuntu Desktop 20.04 LTS
+- Debian 11.2 (Gnome / KDE Plasma)
 - Ubuntu Desktop 21.10
-- Ubuntu MATE 20.04 LTS
 - Kubuntu 21.10 
 
 Absolutely **no** quarantee is given that this app will work on any tested or untested environment.
