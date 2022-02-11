@@ -25,7 +25,7 @@ See LICENSE file or https://www.gnu.org/licenses/gpl-3.0.txt for GPLv3.
 
 ### How to Install (.deb for 64 bit Intel / AMD)
 
-1. Download aphototoollibre_1.0-1.deb (see [Releases](../../releases))
+1. Download aphototoollibre_1.0-1_amd64.deb (see [Releases](../../releases))
 
 2. You may check the file integrity (*this step is not required but is good for your safety*). 
 - Enter command
