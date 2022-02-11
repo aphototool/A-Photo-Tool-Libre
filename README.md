@@ -7,12 +7,12 @@ Easy to use photo editing software.
 ![A Photo Tool Libre on Debian desktop](/pics/APhotoTool(Libre)Debian.png)
    
 Change exposure, contrast and color of your jpeg photos.
-Turn color phototos in to black and white images with control how color is handled.
+Turn color photos in to black and white images with control how color is handled.
 Rotate, crop, straighten and resize photos.
 
 Copyright © 2021-2022 Jari Ahola
 
-A Photo Tool (Libre[^1] version) is free image editor published under GNU Public Lisence version 3 (GPLv3).
+A Photo Tool (Libre[^1] version) is free image editor published under GNU Public License version 3 (GPLv3).
 
 [^1]: See explanation of Libre in https://en.wikipedia.org/wiki/Free_software
 
@@ -42,15 +42,18 @@ sha256sum aphototoollibre_1.0-1_amd64.deb
 ```
 sudo apt install ./aphototoollibre_1.0-1_amd64.deb
 ```
-   - You may see error message at the end of otherwise succesfull installation about permission denied and performin as root. That is ok.
+   - You may see error message at the end of otherwise successful installation about permission denied and performing as root. That is ok.
    - Package managers may show license as "proprietary". The license is actually GPLv3.
 
 #### Tested environments
 - Debian 11.2 (Gnome / KDE Plasma)
 - Ubuntu Desktop 21.10
-- Kubuntu 21.10 
+- Kubuntu 21.10
 
-Absolutely **no** quarantee is given that this app will work on any tested or untested environment.
+Does **not** work on
+- Ubuntu 20.04.3 LTS (too old libraries)
+
+Absolutely **no** guarantee is given that this app will work on any tested or untested environment.
 
 **This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.**
@@ -112,7 +115,7 @@ pdebuild --debbuildopts -sa
 
 #### Special note
 
-Prebuild .deb file was built on Debian 11.2 with Qt 5.15.2
+Pre-build .deb file was built on Debian 11.2 with Qt 5.15.2
 
 
 
