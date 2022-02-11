@@ -49,6 +49,7 @@ sudo apt install ./aphototoollibre_1.0-1_amd64.deb
 - Debian 11.2 (Gnome / KDE Plasma)
 - Ubuntu Desktop 21.10
 - Kubuntu 21.10
+- Ubuntu MATE 21.10
 
 Does **not** work on
 - Ubuntu 20.04.3 LTS (too old libraries)
