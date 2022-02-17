@@ -64,7 +64,6 @@ private:
     Values *values = nullptr;
     QImage imageToRotate;
     int angle = 0;
-    bool useCrop = true;
 
     CropValues *newCropValues = nullptr;
     CropCorner cropCorner = CropCorner::None;

@@ -34,6 +34,7 @@ APhotoToolLibre::APhotoToolLibre(QWidget *parent)
     QObject::connect(ui->actionOpen, &QAction::triggered, this, &APhotoToolLibre::onLoadImageButtonClicked);
     QObject::connect(ui->saveButton, &QPushButton::clicked, this, &APhotoToolLibre::onSaveButtonClicked);
     QObject::connect(ui->actionSave, &QAction::triggered, this, &APhotoToolLibre::onSaveButtonClicked);
+    QObject::connect(ui->actionPrint, &QAction::triggered, this, &APhotoToolLibre::onPrintClicked);
     QObject::connect(ui->actionCloseWindow, &QAction::triggered, this, &APhotoToolLibre::onCloseWindowClicked);
     QObject::connect(ui->showFullResolutionButton, &QPushButton::clicked, this, &APhotoToolLibre::onShowFullResolutionClicked);
     QObject::connect(ui->resetExposureButton, &QPushButton::clicked, this, &APhotoToolLibre::onResetExposureClicked);
@@ -54,6 +55,13 @@ APhotoToolLibre::APhotoToolLibre(QWidget *parent)
     helpMenu->addAction(tr("&About"), this, &APhotoToolLibre::about);
     helpMenu->addAction(tr("About &Qt"), this, &QApplication::aboutQt);
 
+#if defined(QT_PRINTSUPPORT_LIB) && QT_CONFIG(printdialog)
+    ui->actionPrint->setEnabled(true);
+#else
+    ui->actionPrint->setEnabled(false);
+#endif
+
+    qDebug() << ui->actionPrint->isEnabled();
     rotateToolUi = new RotateToolUi(this, ui, &values);
     cropToolUi = new CropToolUi(this, ui, &values);
     resizeToolUi = new ResizeToolUi(this, ui, &values);
@@ -122,6 +130,7 @@ void APhotoToolLibre::resizeEvent(QResizeEvent* event)
     } else {
         showPreviewImage();
     }
+    qDebug() << ui->actionPrint->isEnabled();
 }
 
 void APhotoToolLibre::mousePressEvent(QMouseEvent *event)
@@ -380,6 +389,11 @@ bool APhotoToolLibre::event(QEvent *event)
         return true;
     }
     return QWidget::event(event);
+}
+
+void APhotoToolLibre::onPrintClicked() {
+    Print print;
+    print.print(values.image);
 }
 
 void APhotoToolLibre::about()

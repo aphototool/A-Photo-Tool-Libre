@@ -1,5 +1,7 @@
 QT       += core gui
 
+qtHaveModule(printsupport): QT += printsupport
+
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 # For use with Qt 6
@@ -44,6 +46,7 @@ SOURCES += \
     rotatetoolui.cpp \
     showimageevent.cpp \
     utils/graphics.cpp \
+    utils/print.cpp \
     values.cpp
 
 HEADERS += \
@@ -71,6 +74,7 @@ HEADERS += \
     rotatetoolui.h \
     showimageevent.h \
     utils/graphics.h \
+    utils/print.h \
     values.h
 
 FORMS += \

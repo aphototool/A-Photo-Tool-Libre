@@ -1040,6 +1040,8 @@
     <addaction name="actionOpen"/>
     <addaction name="actionSave"/>
     <addaction name="separator"/>
+    <addaction name="actionPrint"/>
+    <addaction name="separator"/>
     <addaction name="actionCloseWindow"/>
    </widget>
    <addaction name="menuFile"/>
@@ -1068,6 +1070,11 @@
   <action name="actionCloseWindow">
    <property name="text">
     <string>Close Window</string>
+   </property>
+  </action>
+  <action name="actionPrint">
+   <property name="text">
+    <string>Print...</string>
    </property>
   </action>
  </widget>
