@@ -106,6 +106,7 @@ DEBBUILDOPTS="-sa"
 pbuilder --create
 ```
 - Get project from GitHub into aphototoollibre-x.x.x folder (x.x.x is current version number)
+  - Use released source package (see [Releases](../../releases)), main branch may contain untested new features
 - Compress aphototoollibre-x.x.x folder to aphototoollibre_x.x.x.tar.xz (filemanager Compress... works usually)
 - Go to aphototoollibre-x.x.x folder and run
 ```
