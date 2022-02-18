@@ -61,7 +61,6 @@ APhotoToolLibre::APhotoToolLibre(QWidget *parent)
     ui->actionPrint->setEnabled(false);
 #endif
 
-    qDebug() << ui->actionPrint->isEnabled();
     rotateToolUi = new RotateToolUi(this, ui, &values);
     cropToolUi = new CropToolUi(this, ui, &values);
     resizeToolUi = new ResizeToolUi(this, ui, &values);
@@ -130,7 +129,6 @@ void APhotoToolLibre::resizeEvent(QResizeEvent* event)
     } else {
         showPreviewImage();
     }
-    qDebug() << ui->actionPrint->isEnabled();
 }
 
 void APhotoToolLibre::mousePressEvent(QMouseEvent *event)
