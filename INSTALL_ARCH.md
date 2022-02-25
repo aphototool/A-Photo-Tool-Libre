@@ -8,7 +8,7 @@ Also see what is instructed in the **Prerequisites** to be ready for installing 
 
 Installation from AUR is multi step procedure but instructions below are easy to follow.
 Arch Linux does not recommend use of helpper utilities that simplify installation 
-as they usually skip manual verification of the application (like something that is done in step 3 below).
+as they usually skip manual verification of the application (like something that is done in step 4 below).
 
 Steps to install A Photo Tool (Libre) from AUR.
 
