@@ -23,98 +23,15 @@ you are free to do what you like. If you publish modified app you need to publis
 
 See LICENSE file or https://www.gnu.org/licenses/gpl-3.0.txt for GPLv3.
 
+
 ### How to Install
 
 A Photo Tool (Libre) supports **Debian** based systems (Debian, Ubuntu etc.) and **Arch Linux** based systems.
 
-Follow correct instructions below (.deb file for Debian and Arch AUR for Arch Linux). 
+Follow correct instructions below:
 
-### How to Install (.deb for 64 bit Intel / AMD)
-
-1. Download aphototoollibre_1.0.1-2_amd64.deb (see [Releases](../../releases))
-
-2. You may check the file integrity (*this step is not required but is good for your safety*). 
-- Enter command
-```
-sha256sum aphototoollibre_1.0.1-2_amd64.deb
-```
-- The result should be (*if not, do not install*)
-```
-3920116322319aa7671496446ff35eb6e81d4489fa6e53d19900a787fc8a1c19  aphototoollibre_1.0.1-2_amd64.deb
-```
-- You can compare the SHA256 message digest checksum at https://www.ahola.me/aphototoollibre.html to get additional confirmation.
-
-3. Use your favorite graphical package manager to install. For command line use
-```
-sudo apt install ./aphototoollibre_1.0.1-2_amd64.deb
-```
-   - You may see error message at the end of otherwise successful installation about permission denied and performing as root. That is ok.
-   - Package managers may show license as "proprietary". The license is actually GPLv3.
-
-#### Tested environments
-- Debian 11.2 (Gnome / KDE Plasma)
-- Ubuntu Desktop 21.10
-- Kubuntu 21.10
-- Ubuntu MATE 21.10
-
-Does **not** work on
-- Ubuntu 20.04.3 LTS (too old libraries)
-
-Absolutely **no** guarantee is given that this app will work on any tested or untested environment.
-
-**This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.**
-
-
-### How to Install (Arch User Repository (AUR) for 64 bit Intel / AMD)
-
-A Photo Tool (Libre) is in the AUR repository https://aur.archlinux.org/packages/aphototoollibre.
-
-Instructions for AUR are here https://wiki.archlinux.org/title/Arch_User_Repository#Installing_and_upgrading_packages. 
-You should be familiar with the instructions and security advice. AUR packages are not verified by Arch Linux.
-Also see what is instructed in the **Prerequisites** to be ready for installing AUR packages if this is your first use of AUR.
-
-Installation from AUR is multi step procedure but instructions below are easy to follow.
-Arch Linux does not recommend use of helpper utilities that simplify installation 
-as they usually skip manual verification of the application (like something that is done in step 3 below).
-
-Steps to install A Photo Tool (Libre) from AUR.
-
-1. Go to a folder where you process AUR installations. Make one if you don't have one ready.
-2. Enter commands
-```
-git clone https://aur.archlinux.org/aphototoollibre.git
-cd aphototoollibre
-```
-
-3. This step may be skipped but to always follow security guidelines inspect PKGBUILD file carefully. For example you may enter
-```
-less PKGBUILD
-```
-
-4. Build package
-```
-makepkg
-```
-
-- if build fails with **ERROR: One or more PGP signatures could not be verified!** then install public GPG signature for "aphototool". You can search for key with command `gpg --search-keys aphototool` but to install use
-```
-gpg --recv-keys A970F7E40CB64F0D5B9FC516AFE56C2DF614820C
-```
-- then enter `makepkg` again to rebuild.
-
-5. Install build application. Use sudo as needed.
-```
-pacman -U aphototoollibre-1.0.1-2-x86_64.pkg.tar.zst
-```
-
-#### Tested environment
-- Arch Linux (KDE Plasma)
-
-Absolutely **no** guarantee is given that this app will work on any tested or untested environment.
-
-**This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.**
+- [How to Install (.deb for 64 bit Intel / AMD)](INSTALL_DEBIAN.md).
+- [How to Install (Arch User Repository (AUR) for 64 bit Intel / AMD)](INSTALL_ARCH.md).
 
 
 
@@ -140,7 +57,7 @@ sudo pacman -R aphototoollibre
 
 ### BUILD INSTRUCTIONS
 
-*If you just want to use A Photo Tool (Libre) app you can ignore build instructions and just follow instructions at [**How to Install**](#how-to-install-deb-for-64-bit-intel--amd). These build instructions are here only to comply with GPLv3 source code requirements.*
+*If you just want to use A Photo Tool (Libre) app you can ignore build instructions and just follow instructions at [**How to Install**](#how-to-install). These build instructions are here only to comply with GPLv3 source code requirements.*
 
 #### Technical
 - Programming language C++
