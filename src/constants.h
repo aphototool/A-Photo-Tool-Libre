@@ -22,13 +22,13 @@
 #ifndef CONSTANTS_H
 #define CONSTANTS_H
 
-#define APTL_VERSION "1.0.1-2"
+#define APTL_VERSION "1.0.2-1"
 
 // Set max length of longer side of image to make
 // preview image processing faster
 #define PREVIEW_IMAGE_SIZE_LIMIT 1000
 
-// Set to true on Ubuntu to disable case sensitive
+// Set to true on Linux to disable case sensitive
 // native open dialog
 #define DONT_USE_NATIVE_DIALOG true
 

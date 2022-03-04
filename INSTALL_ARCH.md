@@ -18,7 +18,7 @@ Steps to install A Photo Tool (Libre) from AUR.
 git clone https://aur.archlinux.org/aphototoollibre.git
 ```
 
-- If git command fails with **git: command not found** you need to install it with `sudo pacman -S git` comand.
+- If git command fails with **git: command not found** you need to install it with `sudo pacman -S git` command.
 
 3. Enter command
 ```
@@ -40,7 +40,8 @@ makepkg -src
 ```
 gpg --recv-keys A970F7E40CB64F0D5B9FC516AFE56C2DF614820C
 ```
-- then enter `makepkg` again to rebuild.
+- then enter `makepkg -src` again to rebuild.
+- if you have trouble to find reason for build failure try `makepkg -s` for less crowded console log.
 
 6. Install build application.
 ```
