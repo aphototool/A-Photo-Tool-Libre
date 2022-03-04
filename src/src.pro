@@ -47,6 +47,7 @@ SOURCES += \
     showimageevent.cpp \
     utils/graphics.cpp \
     utils/print.cpp \
+    validators/cropareavalidator.cpp \
     values.cpp
 
 HEADERS += \
@@ -75,6 +76,7 @@ HEADERS += \
     showimageevent.h \
     utils/graphics.h \
     utils/print.h \
+    validators/cropareavalidator.h \
     values.h
 
 FORMS += \

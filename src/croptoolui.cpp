@@ -67,9 +67,11 @@ void CropToolUi::showCropTool() {
     }
     ui->imageLabel->cropValues = newCropValues;
     ui->useCropCheckBox->setCheckState(newCropValues->useCrop ? Qt::Checked : Qt::Unchecked);
+    ui->cropFormatGroupBox->setEnabled(newCropValues->useCrop);
     ui->cropFree->setChecked(true);
+    cropAreaValidator = new CropAreaValidator(ui->imageLabel, ui->cropLocked, newCropValues);
     useCropFormat();
-    calculateCropFormatMultiplier();
+    cropAreaValidator->calculateCropFormatMultiplier();
 
     FilterValues* tempValues = values->filterValues.copy();
     tempValues->straightenAngle = 0; // Omit saved straihgten value
@@ -197,134 +199,8 @@ void CropToolUi::mouseMoveEvent(QMouseEvent *event)
         case CropCorner::None:
             break;
     }
-    validateCropArea();
+    cropAreaValidator->validateCropArea(cropFormat, cropCorner);
     ui->imageLabel->update();
-}
-
-void CropToolUi::validateCropArea()
-{
-    double imageLabelHeight = (double)ui->imageLabel->height();
-    double imageLabelWidth = (double)ui->imageLabel->width();
-    double marginH = 40.0 / imageLabelHeight;
-    double marginW = 40.0 / imageLabelWidth;
-
-    if (newCropValues->x1 < 0.0) newCropValues->x1 = 0.0;
-    if (newCropValues->x1 > 1.0 - marginW) newCropValues->x1 = 1.0 - marginW;
-    if (newCropValues->y1 < 0.0) newCropValues->y1 = 0.0;
-    if (newCropValues->y1 > 1.0 - marginH) newCropValues->y1 = 1.0 - marginH;
-    if (newCropValues->x1 > newCropValues->x2 - marginW) newCropValues->x2 = newCropValues->x1 + marginW;
-    if (newCropValues->y1 > newCropValues->y2 - marginH) newCropValues->y2 = newCropValues->y1 + marginH;
-    if (newCropValues->x2 < marginW) newCropValues->x2 = marginW;
-    if (newCropValues->x2 > 1.0) newCropValues->x2 = 1.0;
-    if (newCropValues->y2 < marginH) newCropValues->y2 = marginH;
-    if (newCropValues->y2 > 1.0) newCropValues->y2 = 1.0;
-    if (cropFormat != CropFormat::_Free) {
-        switch (cropCorner) {
-            case CropCorner::TopLeft:
-                calculateWidthAndHeightCropDragging();
-                break;
-            case CropCorner::TopRight:
-                calculateWidthAndHeightCropDragging();
-                break;
-            case CropCorner::BottomLeft:
-                calculateLowerCropDragging();
-                break;
-            case CropCorner::BottomRight:
-                calculateLowerCropDragging();
-                break;
-            case CropCorner::Top:
-                calculateHeightCropDragging();
-                break;
-            case CropCorner::Bottom:
-                calculateHeightCropDragging();
-                break;
-            case CropCorner::Left:
-                calculateWidthAndHeightCropDragging();
-                break;
-            case CropCorner::Right:
-                calculateWidthAndHeightCropDragging();
-                break;
-            case CropCorner::InsideMove:
-                break;
-            default:
-                calculateWidthAndHeightCropDragging();
-                break;
-
-        }
-    }
-    calculateCropFormatMultiplier();
-}
-
-void CropToolUi::calculateHeightCropDragging() {
-    double imageHeight = (double)ui->imageLabel->pixmap().height();
-    double imageWidth = (double)ui->imageLabel->pixmap().width();
-    double w;
-    double h = newCropValues->y2 - newCropValues->y1;
-    if (imageWidth >= imageHeight) {
-        w = h * imageHeight / imageWidth * getCropFormatMultiplier();
-        newCropValues->x1 = newCropValues->x2 - w;
-        if (newCropValues->x1 < 0.0) {
-            newCropValues->x1 = 0.0;
-            w = newCropValues->x2 - newCropValues->x1;
-            newCropValues->y2 = newCropValues->y1 + w * imageWidth / imageHeight / getCropFormatMultiplier();
-        }
-    } else {
-        w = h * imageHeight / imageWidth / getCropFormatMultiplier();
-        newCropValues->x1 = newCropValues->x2 - w;
-        if (newCropValues->x1 < 0.0) {
-            newCropValues->x1 = 0.0;
-            w = newCropValues->x2 - newCropValues->x1;
-            newCropValues->y2 = newCropValues->y1 + w * imageWidth / imageHeight * getCropFormatMultiplier();
-        }
-    }
-}
-
-void CropToolUi::calculateWidthAndHeightCropDragging() {
-    double imageHeight = (double)ui->imageLabel->pixmap().height();
-    double imageWidth = (double)ui->imageLabel->pixmap().width();
-    double w = newCropValues->x2 - newCropValues->x1;
-    double h;
-    if (imageWidth >= imageHeight) {
-        h = w * imageWidth / imageHeight / getCropFormatMultiplier();
-        newCropValues->y1 = newCropValues->y2 - h;
-        if (newCropValues->y1 < 0.0) {
-            newCropValues->y1 = 0.0;
-            h = newCropValues->y2 - newCropValues->y1;
-            newCropValues->x2 = newCropValues->x1 + h * imageHeight / imageWidth * getCropFormatMultiplier();
-        }
-    } else {
-        h = w * imageWidth / imageHeight * getCropFormatMultiplier();
-        newCropValues->y1 = newCropValues->y2 - h;
-        if (newCropValues->y1 < 0.0) {
-            newCropValues->y1 = 0.0;
-            h = newCropValues->y2 - newCropValues->y1;
-            newCropValues->x2 = newCropValues->x1 + h * imageHeight / imageWidth / getCropFormatMultiplier();
-        }
-    }
-}
-
-void CropToolUi::calculateLowerCropDragging() {
-    double imageHeight = (double)ui->imageLabel->pixmap().height();
-    double imageWidth = (double)ui->imageLabel->pixmap().width();
-    double w = newCropValues->x2 - newCropValues->x1;
-    double h;
-    if (imageWidth >= imageHeight) {
-        h = w * imageWidth / imageHeight / getCropFormatMultiplier();
-        newCropValues->y2 = newCropValues->y1 + h;
-        if (newCropValues->y2 > 1.0) {
-            newCropValues->y2 = 1.0;
-            h = newCropValues->y2 - newCropValues->y1;
-            newCropValues->x2 = newCropValues->x1 + h * imageHeight / imageWidth * getCropFormatMultiplier();
-        }
-    } else {
-        h = w * imageWidth / imageHeight * getCropFormatMultiplier();
-        newCropValues->y2 = newCropValues->y1 + h;
-        if (newCropValues->y2 > 1.0) {
-            newCropValues->y2 = 1.0;
-            h = newCropValues->y2 - newCropValues->y1;
-            newCropValues->x2 = newCropValues->x1 + h * imageWidth / imageHeight / getCropFormatMultiplier();
-        }
-    }
 }
 
 void CropToolUi::mouseReleaseEvent(QMouseEvent *event)
@@ -357,6 +233,7 @@ void CropToolUi::onCropOkButtonClicked()
 void CropToolUi::onUseCropCheckBoxClicked(int state)
 {
     newCropValues->useCrop = (bool)state;
+    ui->cropFormatGroupBox->setEnabled(newCropValues->useCrop);
     ui->imageLabel->update();
 }
 
@@ -364,42 +241,10 @@ void CropToolUi::useCropFormat()
 {
     cropFormat = static_cast<CropFormat>(ui->cropFormatButtonGroup->checkedId());
     if (cropFormat == CropFormat::_Locked) {
-        calculateCropFormatMultiplier();
+        cropAreaValidator->calculateCropFormatMultiplier();
     }
-    validateCropArea();
+    cropAreaValidator->validateCropArea(cropFormat, cropCorner);
     ui->imageLabel->update();
-}
-
-void CropToolUi::calculateCropFormatMultiplier() {
-    double imageHeight = (double)ui->imageLabel->pixmap().height();
-    double imageWidth = (double)ui->imageLabel->pixmap().width();
-    double w = newCropValues->x2 - newCropValues->x1;
-    double h = newCropValues->y2 - newCropValues->y1;
-    w = w * imageWidth;
-    h = h * imageHeight;
-    cropFormatMultiplier = std::max(w / h, h / w);
-    if (w >= h) {
-        ui->cropLocked->setText(QString("Locked %1 : 1").arg(cropFormatMultiplier, 6, 'f', 3));
-    } else {
-        ui->cropLocked->setText(QString("Locked 1 : %1").arg(cropFormatMultiplier, 6, 'f', 3));
-    }
-}
-
-double CropToolUi::getCropFormatMultiplier() {
-    switch (cropFormat) {
-        case CropFormat::_1x1:
-            return 1.0;
-        case CropFormat::_4x3:
-            return 4.0 / 3.0;
-        case CropFormat::_3x2:
-            return 3.0 / 2.0;
-        case CropFormat::_16x9:
-            return 16.0 / 9.0;
-        case CropFormat::_Locked:
-            return cropFormatMultiplier;
-        default:
-            return 0.0;
-    }
 }
 
 

@@ -33,11 +33,9 @@
 #include "showimageevent.h"
 #include "filters/filters.h"
 #include "utils/graphics.h"
+#include "validators/cropareavalidator.h"
 
 namespace Ui { class MainWindow; }
-
-enum class CropCorner {None, TopLeft, TopRight, BottomLeft, BottomRight, Top, Bottom, Left, Right, InsideMove};
-enum class CropFormat {_Free, _1x1, _4x3, _3x2, _16x9, _Locked};
 
 class CropToolUi : public QWidget
 {
@@ -68,6 +66,8 @@ private:
     void calculateWidthAndHeightCropDragging();
     void calculateUpperCropDragging();
     void calculateLowerCropDragging();
+
+    CropAreaValidator *cropAreaValidator = nullptr;
 
     Ui::MainWindow *ui = nullptr;
     QMainWindow *mainWin = nullptr;
