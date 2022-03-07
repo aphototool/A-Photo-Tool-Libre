@@ -1,3 +1,24 @@
+/*
+ * A Photo Tool (Libre)
+ *
+ * Copyright © 2021-2022 Jari Ahola
+ * GNU General Public License (GPLv3)
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ *
+ */
+
 #include "cropareavalidator.h"
 
 CropAreaValidator::CropAreaValidator(QLabel *imageLabel, QRadioButton *cropLocked, CropValues *newCropValues)
@@ -9,8 +30,7 @@ CropAreaValidator::CropAreaValidator(QLabel *imageLabel, QRadioButton *cropLocke
 
 void CropAreaValidator::validateCropArea(CropFormat cropFormat, CropCorner cropCorner)
 {
-    if (imageLabel == nullptr || newCropValues == nullptr) return;
-
+    refreshImagePixmapSize();
     double imageLabelHeight = (double)imageLabel->height();
     double imageLabelWidth = (double)imageLabel->width();
     double marginH = 40.0 / imageLabelHeight;
@@ -57,93 +77,86 @@ void CropAreaValidator::validateCropArea(CropFormat cropFormat, CropCorner cropC
             default:
                 calculateWidthAndHeightCropDragging(cropFormat);
                 break;
-
         }
     }
+    if (newCropValues->x1 > newCropValues->x2) std::swap(newCropValues->x1, newCropValues->x2);
+    if (newCropValues->y1 > newCropValues->y2) std::swap(newCropValues->y1, newCropValues->y2);
     calculateCropFormatMultiplier();
 }
 
 void CropAreaValidator::calculateHeightCropDragging(CropFormat cropFormat) {
-    double imageHeight = (double)imageLabel->pixmap().height();
-    double imageWidth = (double)imageLabel->pixmap().width();
     double w;
     double h = newCropValues->y2 - newCropValues->y1;
-    if (imageWidth >= imageHeight) {
-        w = h * imageHeight / imageWidth * getCropFormatMultiplier(cropFormat);
+    if (imagePixmapWidth >= imagePixmapHeight) {
+        w = h * imagePixmapHeight / imagePixmapWidth * getCropFormatMultiplier(cropFormat);
         newCropValues->x1 = newCropValues->x2 - w;
         if (newCropValues->x1 < 0.0) {
             newCropValues->x1 = 0.0;
             w = newCropValues->x2 - newCropValues->x1;
-            newCropValues->y2 = newCropValues->y1 + w * imageWidth / imageHeight / getCropFormatMultiplier(cropFormat);
+            newCropValues->y2 = newCropValues->y1 + w * imagePixmapWidth / imagePixmapHeight / getCropFormatMultiplier(cropFormat);
         }
     } else {
-        w = h * imageHeight / imageWidth / getCropFormatMultiplier(cropFormat);
+        w = h * imagePixmapHeight / imagePixmapWidth / getCropFormatMultiplier(cropFormat);
         newCropValues->x1 = newCropValues->x2 - w;
         if (newCropValues->x1 < 0.0) {
             newCropValues->x1 = 0.0;
             w = newCropValues->x2 - newCropValues->x1;
-            newCropValues->y2 = newCropValues->y1 + w * imageWidth / imageHeight * getCropFormatMultiplier(cropFormat);
+            newCropValues->y2 = newCropValues->y1 + w * imagePixmapWidth / imagePixmapHeight * getCropFormatMultiplier(cropFormat);
         }
     }
 }
 
 void CropAreaValidator::calculateWidthAndHeightCropDragging(CropFormat cropFormat) {
-    double imageHeight = (double)imageLabel->pixmap().height();
-    double imageWidth = (double)imageLabel->pixmap().width();
     double w = newCropValues->x2 - newCropValues->x1;
     double h;
-    if (imageWidth >= imageHeight) {
-        h = w * imageWidth / imageHeight / getCropFormatMultiplier(cropFormat);
+    if (imagePixmapWidth >= imagePixmapHeight) {
+        h = w * imagePixmapWidth / imagePixmapHeight / getCropFormatMultiplier(cropFormat);
         newCropValues->y1 = newCropValues->y2 - h;
         if (newCropValues->y1 < 0.0) {
             newCropValues->y1 = 0.0;
             h = newCropValues->y2 - newCropValues->y1;
-            newCropValues->x2 = newCropValues->x1 + h * imageHeight / imageWidth * getCropFormatMultiplier(cropFormat);
+            newCropValues->x2 = newCropValues->x1 + h * imagePixmapHeight / imagePixmapWidth * getCropFormatMultiplier(cropFormat);
         }
     } else {
-        h = w * imageWidth / imageHeight * getCropFormatMultiplier(cropFormat);
+        h = w * imagePixmapWidth / imagePixmapHeight * getCropFormatMultiplier(cropFormat);
         newCropValues->y1 = newCropValues->y2 - h;
         if (newCropValues->y1 < 0.0) {
             newCropValues->y1 = 0.0;
             h = newCropValues->y2 - newCropValues->y1;
-            newCropValues->x2 = newCropValues->x1 + h * imageHeight / imageWidth / getCropFormatMultiplier(cropFormat);
+            newCropValues->x2 = newCropValues->x1 + h * imagePixmapHeight / imagePixmapWidth / getCropFormatMultiplier(cropFormat);
         }
     }
 }
 
 void CropAreaValidator::calculateLowerCropDragging(CropFormat cropFormat) {
-    double imageHeight = (double)imageLabel->pixmap().height();
-    double imageWidth = (double)imageLabel->pixmap().width();
     double w = newCropValues->x2 - newCropValues->x1;
     double h;
-    if (imageWidth >= imageHeight) {
-        h = w * imageWidth / imageHeight / getCropFormatMultiplier(cropFormat);
+    if (imagePixmapWidth >= imagePixmapHeight) {
+        h = w * imagePixmapWidth / imagePixmapHeight / getCropFormatMultiplier(cropFormat);
         newCropValues->y2 = newCropValues->y1 + h;
         if (newCropValues->y2 > 1.0) {
             newCropValues->y2 = 1.0;
             h = newCropValues->y2 - newCropValues->y1;
-            newCropValues->x2 = newCropValues->x1 + h * imageHeight / imageWidth * getCropFormatMultiplier(cropFormat);
+            newCropValues->x2 = newCropValues->x1 + h * imagePixmapHeight / imagePixmapWidth * getCropFormatMultiplier(cropFormat);
         }
     } else {
-        h = w * imageWidth / imageHeight * getCropFormatMultiplier(cropFormat);
+        h = w * imagePixmapWidth / imagePixmapHeight * getCropFormatMultiplier(cropFormat);
         newCropValues->y2 = newCropValues->y1 + h;
         if (newCropValues->y2 > 1.0) {
             newCropValues->y2 = 1.0;
             h = newCropValues->y2 - newCropValues->y1;
-            newCropValues->x2 = newCropValues->x1 + h * imageWidth / imageHeight / getCropFormatMultiplier(cropFormat);
+            newCropValues->x2 = newCropValues->x1 + h * imagePixmapWidth / imagePixmapHeight / getCropFormatMultiplier(cropFormat);
         }
     }
 }
 
-
 void CropAreaValidator::calculateCropFormatMultiplier() {
-    double imageHeight = (double)imageLabel->pixmap().height();
-    double imageWidth = (double)imageLabel->pixmap().width();
+    refreshImagePixmapSize();
     double w = newCropValues->x2 - newCropValues->x1;
     double h = newCropValues->y2 - newCropValues->y1;
-    w = w * imageWidth;
-    h = h * imageHeight;
-    if (imageWidth >= imageHeight) {
+    w = w * imagePixmapWidth;
+    h = h * imagePixmapHeight;
+    if (imagePixmapWidth >= imagePixmapHeight) {
         cropFormatMultiplier = w / h;
     } else {
         cropFormatMultiplier = h / w;
@@ -173,3 +186,7 @@ double CropAreaValidator::getCropFormatMultiplier(CropFormat cropFormat) {
     }
 }
 
+void CropAreaValidator::refreshImagePixmapSize() {
+    imagePixmapHeight = (double)imageLabel->pixmap().height();
+    imagePixmapWidth = (double)imageLabel->pixmap().width();
+}

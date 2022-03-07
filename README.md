@@ -41,7 +41,7 @@ Follow correct instructions below:
 
 **A Photo Tool (Libre)** is shown on your applications menu. Depending on your environment it may be under category **Graphics** or you may search it by entering **A Photo Tool** on your app search.
 
-On command line you can enter **APhotoToolLibre** to launch A Photo Tool (Libre) application.
+On command line you can enter **aphototoollibre** to launch A Photo Tool (Libre) application.
 
 ### How to Uninstall
 

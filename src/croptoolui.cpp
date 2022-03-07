@@ -247,7 +247,6 @@ void CropToolUi::useCropFormat()
     ui->imageLabel->update();
 }
 
-
 bool CropToolUi::eventFilter(QObject *obj, QEvent *event)
 {
     if (obj == ui->cropFrame && event->type() == QEvent::Hide) {
@@ -270,4 +269,3 @@ void CropToolUi::hideCropTool()
     ui->imageLabel->imageLabelPainter = nullptr;
     // ui->imageLabel->update();
 }
-

@@ -75,19 +75,6 @@ void OpenFile::setImage(const QImage &newImage)
     image = newImage;
     if (image.colorSpace().isValid())
         image.convertToColorSpace(QColorSpace::SRgb);
-    /*
-    imageLabel->setPixmap(QPixmap::fromImage(image));
-//! [4]
-    scaleFactor = 1.0;
-
-    scrollArea->setVisible(true);
-    printAct->setEnabled(true);
-    fitToWindowAct->setEnabled(true);
-    updateActions();
-
-    if (!fitToWindowAct->isChecked())
-        imageLabel->adjustSize();
-     */
 }
 
 QString OpenFile::getFileName() {

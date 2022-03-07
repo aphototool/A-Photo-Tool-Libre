@@ -7,9 +7,11 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 # For use with Qt 6
 #CONFIG += c++11
 
-TARGET = APhotoToolLibre
+TARGET = aphototoollibre
 TEMPLATE = app
 CONFIG += warn_on
+
+# TRANSLATIONS = aphototoollibre_en_US.ts
 
 DESTDIR = ../bin
 MOC_DIR = ../build/moc
@@ -22,7 +24,7 @@ UI_DIR = ../build/ui
 DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x051500
 
 SOURCES += \
-    APhotoToolLibre.cpp \
+    aphototoollibre.cpp \
     croptoolui.cpp \
     fileio/basefile.cpp \
     fileio/openfile.cpp \

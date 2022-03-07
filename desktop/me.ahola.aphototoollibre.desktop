@@ -4,14 +4,14 @@ Type=Application
 Name=A Photo Tool (Libre)
 Comment=Photo editing tool for Linux
 Categories=Graphics;Qt;
-Icon=me.ahola.APhotoToolLibre
-Exec=/usr/bin/APhotoToolLibre %f
-TryExec=/usr/bin/APhotoToolLibre
+Icon=me.ahola.aphototoollibre
+Exec=/usr/bin/aphototoollibre %f
+TryExec=/usr/bin/aphototoollibre
 MimeType=image/jpeg;image/png;
 Actions=NewWindow;
 Terminal=false
 
 [Desktop Action NewWindow]
 Name=Open New Window
-Exec=/usr/bin/APhotoToolLibre
+Exec=/usr/bin/aphototoollibre
 

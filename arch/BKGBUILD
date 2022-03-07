@@ -25,8 +25,8 @@ package() {
 	mkdir -p "$pkgdir/usr/share/applications"
 	mkdir -p "$pkgdir/usr/share/icons/hicolor/scalable/apps"
 	mkdir -p "$pkgdir/usr/share/metainfo"
-	cp "$srcdir/A-Photo-Tool-Libre-$pkgver-$pkgrel/bin/APhotoToolLibre" "$pkgdir/usr/bin/"
+	cp "$srcdir/A-Photo-Tool-Libre-$pkgver-$pkgrel/bin/aphototoollibre" "$pkgdir/usr/bin/"
 	cp "$srcdir/A-Photo-Tool-Libre-$pkgver-$pkgrel/desktop/me.ahola.aphototoollibre.desktop" "$pkgdir/usr/share/applications/"
-	cp "$srcdir/A-Photo-Tool-Libre-$pkgver-$pkgrel/desktop/me.ahola.APhotoToolLibre.svg" "$pkgdir/usr/share/icons/hicolor/scalable/apps/"
+	cp "$srcdir/A-Photo-Tool-Libre-$pkgver-$pkgrel/desktop/me.ahola.aphototoollibre.svg" "$pkgdir/usr/share/icons/hicolor/scalable/apps/"
 	cp "$srcdir/A-Photo-Tool-Libre-$pkgver-$pkgrel/desktop/me.ahola.aphototoollibre.metainfo.xml" "$pkgdir/usr/share/metainfo/"
 }
