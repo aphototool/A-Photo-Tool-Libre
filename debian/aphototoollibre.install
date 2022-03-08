@@ -1,4 +1,5 @@
 bin/aphototoollibre usr/bin
+debian/aphototoollibre.1.gz usr/share/man
 desktop/me.ahola.aphototoollibre.desktop usr/share/applications
 desktop/me.ahola.aphototoollibre.svg usr/share/icons/hicolor/scalable/apps
 desktop/me.ahola.aphototoollibre.metainfo.xml usr/share/metainfo
