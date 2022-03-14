@@ -27,8 +27,17 @@ See LICENSE file or https://www.gnu.org/licenses/gpl-3.0.txt for GPLv3.
 ### How to Install
 
 A Photo Tool (Libre) supports **Debian** based systems (Debian, Ubuntu etc.) and **Arch Linux** based systems.
+If you like Snapcraft (Ubuntu likes) then really easy installation is from **Snap Store**:
 
-Follow correct instructions below:
+&nbsp;&nbsp; [![Get it from the Snap Store](https://snapcraft.io/static/images/badges/en/snap-store-white.svg)](https://snapcraft.io/aphototoollibre)
+
+or with command
+
+```
+sudo snap install aphototoollibre
+```
+
+Otherwise follow correct instructions below:
 
 - [How to Install (.deb for 64 bit Intel / AMD)](INSTALL_DEBIAN.md).
 - [How to Install (Arch User Repository (AUR) for 64 bit Intel / AMD)](INSTALL_ARCH.md).
