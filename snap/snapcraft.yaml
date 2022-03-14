@@ -1,0 +1,35 @@
+name: aphototoollibre
+base: core20
+version: '1.0.2-1'
+summary: Photo editor for Linux
+description: |
+  A Photo Tool (Libre) is an easy to use basic photo editor.
+  Fix and modify your jpeg photos to look even greater.
+  Supports several other imageformats also.
+
+grade: stable
+confinement: strict
+
+apps:
+  aphototoollibre:
+    common-id: me.ahola.aphototoollibre.desktop
+    command: usr/bin/aphototoollibre
+    extensions:
+      - kde-neon
+    plugs:
+      - home
+      - cups-control
+
+parts:
+  aphototoollibre:
+    # source: https://github.com/aphototool/A-Photo-Tool-Libre/archive/refs/tags/v1.0.2-1.tar.gz
+    source: src/A-Photo-Tool-Libre-1.0.2-1
+    plugin: qmake
+    build-packages:
+      - qtbase5-dev
+    stage-packages:
+      - libqt5gui5
+      - libqt5widgets5 
+      - libqt5core5a
+      - libqt5printsupport5
+
