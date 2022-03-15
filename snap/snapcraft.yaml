@@ -12,7 +12,7 @@ confinement: strict
 
 apps:
   aphototoollibre:
-    common-id: me.ahola.aphototoollibre.desktop
+    common-id: aphototoollibre.desktop
     command: usr/bin/aphototoollibre
     extensions:
       - kde-neon
