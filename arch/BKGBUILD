@@ -21,9 +21,6 @@ build() {
 
 package() {
 	cd "$srcdir/A-Photo-Tool-Libre-$pkgver-$pkgrel"
-	install -Dm755 "$srcdir/A-Photo-Tool-Libre-$pkgver-$pkgrel/bin/aphototoollibre" "$pkgdir/usr/bin/"
-	install -Dm644 "$srcdir/A-Photo-Tool-Libre-$pkgver-$pkgrel/desktop/me.ahola.aphototoollibre.desktop" "$pkgdir/usr/share/applications/"
-	install -Dm644 "$srcdir/A-Photo-Tool-Libre-$pkgver-$pkgrel/desktop/me.ahola.aphototoollibre.svg" "$pkgdir/usr/share/icons/hicolor/scalable/apps/"
-	install -Dm644 "$srcdir/A-Photo-Tool-Libre-$pkgver-$pkgrel/desktop/me.ahola.aphototoollibre.metainfo.xml" "$pkgdir/usr/share/metainfo/"
+        make INSTALL_ROOT="$pkgdir/" install
 }
 
