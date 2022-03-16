@@ -1,0 +1,12 @@
+[Desktop Entry]
+Version=1.1
+Type=Application
+Name=A Photo Tool (Libre)
+Comment=Photo editing tool for Linux
+Categories=Graphics;Qt;
+Icon=${SNAP}/meta/gui/aphototoollibre.svg
+Exec=aphototoollibre %f
+TryExec=aphototoollibre
+MimeType=image/jpeg;image/png;
+Terminal=false
+

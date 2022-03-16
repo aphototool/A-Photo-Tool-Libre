@@ -29,8 +29,7 @@
     <category>Graphics</category>
   </categories>
   
-  <icon type="stock">me.ahola.APhotoToolLibre</icon>
-  <icon type="local">/usr/share/icons/hicolor/scalable/apps/me.ahola.APhotoToolLibre.svg</icon>
+  <icon type="local">/usr/share/icons/hicolor/scalable/apps/me.ahola.aphototoollibre.svg</icon>
   
   <keywords>
     <keyword>photography</keyword>

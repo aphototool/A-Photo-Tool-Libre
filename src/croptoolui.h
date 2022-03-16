@@ -25,16 +25,17 @@
 #include <QMainWindow>
 #include <QWidget>
 #include <QPushButton>
+#include <QRadioButton>
+#include <QButtonGroup>
 #include <QMouseEvent>
 #include <QTimer>
 #include "values.h"
 #include "showimageevent.h"
 #include "filters/filters.h"
 #include "utils/graphics.h"
+#include "validators/cropareavalidator.h"
 
 namespace Ui { class MainWindow; }
-
-enum class CropCorner {None, TopLeft, TopRight, BottomLeft, BottomRight, Top, Bottom, Left, Right, InsideMove};
 
 class CropToolUi : public QWidget
 {
@@ -52,20 +53,30 @@ protected:
     bool eventFilter(QObject *obj, QEvent *event);
 
 private:
+    void useCropFormat();
     void onCropButtonClicked();
     void onStraightenSliderValueChanged(int value);
     void rotatePreview(int angle);
     void showCropTool();
     void hideCropTool();
     void validateCropArea();
+    double getCropFormatMultiplier();
+    void calculateCropFormatMultiplier();
+    void calculateHeightCropDragging();
+    void calculateWidthAndHeightCropDragging();
+    void calculateUpperCropDragging();
+    void calculateLowerCropDragging();
+
+    CropAreaValidator *cropAreaValidator = nullptr;
 
     Ui::MainWindow *ui = nullptr;
     QMainWindow *mainWin = nullptr;
     Values *values = nullptr;
     QImage imageToRotate;
     int angle = 0;
-    bool useCrop = true;
 
+    CropFormat cropFormat = CropFormat::_Free;
+    double cropFormatMultiplier = 1.0;
     CropValues *newCropValues = nullptr;
     CropCorner cropCorner = CropCorner::None;
     const int clickTolerance = 10;

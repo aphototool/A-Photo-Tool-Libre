@@ -23,41 +23,25 @@ you are free to do what you like. If you publish modified app you need to publis
 
 See LICENSE file or https://www.gnu.org/licenses/gpl-3.0.txt for GPLv3.
 
-### How to Install (.deb for 64 bit Intel / AMD)
 
-1. Download aphototoollibre_1.0-1_amd64.deb (see [Releases](../../releases))
+### How to Install
 
-2. You may check the file integrity (*this step is not required but is good for your safety*). 
-- Enter command
+A Photo Tool (Libre) supports **Debian** based systems (Debian, Ubuntu etc.) and **Arch Linux** based systems.
+If you like Snapcraft (Ubuntu likes) then really easy installation is from **Snap Store**:
+
+&nbsp;&nbsp; [![Get it from the Snap Store](https://snapcraft.io/static/images/badges/en/snap-store-white.svg)](https://snapcraft.io/aphototoollibre)
+
+or with command
+
 ```
-sha256sum aphototoollibre_1.0-1_amd64.deb
+sudo snap install aphototoollibre
 ```
-- The result should be (*if not, do not install*)
-```
-6ed978c43b6b82a01702d83cb5583a3e47a21f6c91a6fbaddc10cf08c7c57a2e  aphototoollibre_1.0-1_amd64.deb
-```
-- You can compare the SHA256 message digest checksum at https://www.ahola.me/aphototoollibre.html to get additional confirmation.
 
-3. Use your favorite graphical package manager to install. For command line use
-```
-sudo apt install ./aphototoollibre_1.0-1_amd64.deb
-```
-   - You may see error message at the end of otherwise successful installation about permission denied and performing as root. That is ok.
-   - Package managers may show license as "proprietary". The license is actually GPLv3.
+Otherwise follow correct instructions below:
 
-#### Tested environments
-- Debian 11.2 (Gnome / KDE Plasma)
-- Ubuntu Desktop 21.10
-- Kubuntu 21.10
-- Ubuntu MATE 21.10
+- [How to Install (.deb for 64 bit Intel / AMD)](INSTALL_DEBIAN.md).
+- [How to Install (Arch User Repository (AUR) for 64 bit Intel / AMD)](INSTALL_ARCH.md).
 
-Does **not** work on
-- Ubuntu 20.04.3 LTS (too old libraries)
-
-Absolutely **no** guarantee is given that this app will work on any tested or untested environment.
-
-**This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.**
 
 
 ### How to Run
@@ -66,19 +50,23 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public 
 
 **A Photo Tool (Libre)** is shown on your applications menu. Depending on your environment it may be under category **Graphics** or you may search it by entering **A Photo Tool** on your app search.
 
-On command line you can enter **APhotoToolLibre** to launch A Photo Tool (Libre) application.
+On command line you can enter **aphototoollibre** to launch A Photo Tool (Libre) application.
 
 ### How to Uninstall
 
-Use your favorite graphical package manager. For command line use
+Use your favorite graphical package manager. For command line (Debian) use
 ```
 sudo apt remove aphototoollibre
+```
+If you use pacman (Arch Linux) enter
+```
+sudo pacman -R aphototoollibre
 ```
 
 
 ### BUILD INSTRUCTIONS
 
-*If you just want to use A Photo Tool (Libre) app you can ignore build instructions and just follow instructions at [**How to Install**](#how-to-install-deb-for-64-bit-intel--amd). These build instructions are here only to comply with GPLv3 source code requirements.*
+*If you just want to use A Photo Tool (Libre) app you can ignore build instructions and just follow instructions at [**How to Install**](#how-to-install). These build instructions are here only to comply with GPLv3 source code requirements.*
 
 #### Technical
 - Programming language C++
@@ -106,6 +94,7 @@ DEBBUILDOPTS="-sa"
 pbuilder --create
 ```
 - Get project from GitHub into aphototoollibre-x.x.x folder (x.x.x is current version number)
+  - Use released source package (see [Releases](../../releases)), main branch may contain untested new features
 - Compress aphototoollibre-x.x.x folder to aphototoollibre_x.x.x.tar.xz (filemanager Compress... works usually)
 - Go to aphototoollibre-x.x.x folder and run
 ```

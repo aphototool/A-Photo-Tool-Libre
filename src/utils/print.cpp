@@ -19,17 +19,28 @@
  *
  */
 
-#ifndef CONSTANTS_H
-#define CONSTANTS_H
+#include "print.h"
 
-#define APTL_VERSION "1.0.2-1"
+Print::Print()
+{
 
-// Set max length of longer side of image to make
-// preview image processing faster
-#define PREVIEW_IMAGE_SIZE_LIMIT 1000
+}
 
-// Set to true on Linux to disable case sensitive
-// native open dialog
-#define DONT_USE_NATIVE_DIALOG true
+void Print::print(const QImage &image)
+{
+    if (image.width() <= 0) return;
 
-#endif // CONSTANTS_H
+#if defined(QT_PRINTSUPPORT_LIB) && QT_CONFIG(printdialog)
+    QPrintDialog dialog(&printer, nullptr);
+    if (dialog.exec()) {
+        QPainter painter(&printer);
+        QPixmap pixmap = QPixmap::fromImage(image);   // imageLabel->pixmap(Qt::ReturnByValue);
+        QRect rect = painter.viewport();
+        QSize size = pixmap.size();
+        size.scale(rect.size(), Qt::KeepAspectRatio);
+        painter.setViewport(rect.x(), rect.y(), size.width(), size.height());
+        painter.setWindow(pixmap.rect());
+        painter.drawPixmap(0, 0, pixmap);
+    }
+#endif
+}

@@ -19,17 +19,36 @@
  *
  */
 
-#ifndef CONSTANTS_H
-#define CONSTANTS_H
+#ifndef PRINT_H
+#define PRINT_H
 
-#define APTL_VERSION "1.0.2-1"
+#if defined(QT_PRINTSUPPORT_LIB)
+#  include <QtPrintSupport/qtprintsupportglobal.h>
 
-// Set max length of longer side of image to make
-// preview image processing faster
-#define PREVIEW_IMAGE_SIZE_LIMIT 1000
+#  if QT_CONFIG(printer)
+#    include <QPrinter>
+#  endif
+#  if QT_CONFIG(printdialog)
+#    include <QPrintDialog>
+#    include <QPainter>
+#  endif
+#endif
 
-// Set to true on Linux to disable case sensitive
-// native open dialog
-#define DONT_USE_NATIVE_DIALOG true
+#include <QImage>
 
-#endif // CONSTANTS_H
+class Print // : public QWidget
+{
+public:
+    Print();
+    void print(const QImage &image);
+
+
+private:
+
+#if defined(QT_PRINTSUPPORT_LIB) && QT_CONFIG(printer)
+    QPrinter printer;
+#endif
+
+};
+
+#endif // PRINT_H

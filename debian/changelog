@@ -1,5 +1,28 @@
+aphototoollibre (1.0.2-1) UNRELEASED; urgency=low
+
+  [ Jari Ahola ]
+  * Improved Crop tool with presets for aspect ratio
+
+ -- aphototool <aphototool@ahola.me>  Tue, 8 Feb 2022 1:02:01 +0200
+
+aphototoollibre (1.0.1-2) UNRELEASED; urgency=low
+
+  [ Jari Ahola ]
+  * Arch Linux AUR build
+  * Code cleaning
+
+ -- aphototool <aphototool@ahola.me>  Fri, 18 Feb 2022 1:01:02 +0200
+
+aphototoollibre (1.0.1-1) UNRELEASED; urgency=low
+
+  [ Jari Ahola ]
+  * Print image feature added
+
+ -- aphototool <aphototool@ahola.me>  Thu, 17 Feb 2022 1:01:01 +0200
+
 aphototoollibre (1.0-1) UNRELEASED; urgency=low
 
+  [ Jari Ahola ]
   * Initial Release
 
- -- Jari Ahola <aphototool@ahola.me>  Tue, 08 Feb 2022 10:15:05 +0200
+ -- aphototool <aphototool@ahola.me>  Tue, 08 Feb 2022 1:01:00 +0200

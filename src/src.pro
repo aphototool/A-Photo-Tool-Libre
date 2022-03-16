@@ -1,13 +1,17 @@
 QT       += core gui
 
+qtHaveModule(printsupport): QT += printsupport
+
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 # For use with Qt 6
 #CONFIG += c++11
 
-TARGET = APhotoToolLibre
+TARGET = aphototoollibre
 TEMPLATE = app
 CONFIG += warn_on
+
+# TRANSLATIONS = aphototoollibre_en_US.ts
 
 DESTDIR = ../bin
 MOC_DIR = ../build/moc
@@ -20,7 +24,7 @@ UI_DIR = ../build/ui
 DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x051500
 
 SOURCES += \
-    APhotoToolLibre.cpp \
+    aphototoollibre.cpp \
     croptoolui.cpp \
     fileio/basefile.cpp \
     fileio/openfile.cpp \
@@ -44,6 +48,8 @@ SOURCES += \
     rotatetoolui.cpp \
     showimageevent.cpp \
     utils/graphics.cpp \
+    utils/print.cpp \
+    validators/cropareavalidator.cpp \
     values.cpp
 
 HEADERS += \
@@ -71,9 +77,34 @@ HEADERS += \
     rotatetoolui.h \
     showimageevent.h \
     utils/graphics.h \
+    utils/print.h \
+    validators/cropareavalidator.h \
     values.h
 
 FORMS += \
     aphototoollibre.ui
+
+unix: {
+
+target.path = /usr/bin/
+INSTALLS += target
+
+unix_man.path = /usr/share/man/man1
+unix_man.files = ../debian/aphototoollibre.1.gz
+INSTALLS += unix_man
+
+unix_desktop.path = /usr/share/applications
+unix_desktop.files = ../desktop/me.ahola.aphototoollibre.desktop
+INSTALLS += unix_desktop
+
+unix_icons.path = /usr/share/icons/hicolor/scalable/apps
+unix_icons.files = ../desktop/me.ahola.aphototoollibre.svg
+INSTALLS += unix_icons
+
+unix_metainfo.path = /usr/share/metainfo
+unix_metainfo.files = ../desktop/me.ahola.aphototoollibre.metainfo.xml
+INSTALLS += unix_metainfo
+
+}
 
 # END

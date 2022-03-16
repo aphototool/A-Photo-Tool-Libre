@@ -29,6 +29,7 @@
 #include "fileio/openfile.h"
 #include "fileio/savefile.h"
 #include "filters/filters.h"
+#include "utils/print.h"
 #include "values.h"
 #include "rotatetoolui.h"
 #include "croptoolui.h"
@@ -66,6 +67,7 @@ private:
     void onLoadImageButtonClicked();
     void onSaveButtonClicked();
     void onShowFullResolutionClicked();
+    void onPrintClicked();
     void onCloseWindowClicked();
 
     void onResetExposureClicked();

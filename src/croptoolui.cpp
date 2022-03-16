@@ -35,6 +35,14 @@ CropToolUi::CropToolUi(QMainWindow *mainWin, Ui::MainWindow *ui, Values *values)
     QObject::connect(ui->straightenSlider, &QSlider::valueChanged, this, &CropToolUi::onStraightenSliderValueChanged);
     QObject::connect(ui->useCropCheckBox, &QCheckBox::stateChanged, this, &CropToolUi::onUseCropCheckBoxClicked);
     ui->cropFrame->installEventFilter(this);
+    QObject::connect(ui->cropFormatButtonGroup, &QButtonGroup::buttonClicked, this, &CropToolUi::useCropFormat);
+    ui->cropFree->setChecked(true);
+    ui->cropFormatButtonGroup->setId(ui->cropFree, (int)CropFormat::_Free);
+    ui->cropFormatButtonGroup->setId(ui->crop1to1, (int)CropFormat::_1x1);
+    ui->cropFormatButtonGroup->setId(ui->crop4to3, (int)CropFormat::_4x3);
+    ui->cropFormatButtonGroup->setId(ui->crop3to2, (int)CropFormat::_3x2);
+    ui->cropFormatButtonGroup->setId(ui->crop16to9, (int)CropFormat::_16x9);
+    ui->cropFormatButtonGroup->setId(ui->cropLocked, (int)CropFormat::_Locked);
 }
 
 void CropToolUi::onCropButtonClicked()
@@ -59,6 +67,11 @@ void CropToolUi::showCropTool() {
     }
     ui->imageLabel->cropValues = newCropValues;
     ui->useCropCheckBox->setCheckState(newCropValues->useCrop ? Qt::Checked : Qt::Unchecked);
+    ui->cropFormatGroupBox->setEnabled(newCropValues->useCrop);
+    ui->cropFree->setChecked(true);
+    cropAreaValidator = new CropAreaValidator(ui->imageLabel, ui->cropLocked, newCropValues);
+    useCropFormat();
+    cropAreaValidator->calculateCropFormatMultiplier();
 
     FilterValues* tempValues = values->filterValues.copy();
     tempValues->straightenAngle = 0; // Omit saved straihgten value
@@ -145,67 +158,49 @@ void CropToolUi::mouseMoveEvent(QMouseEvent *event)
     double height = (double)ui->imageLabel->pixmap().height();
 
     switch (cropCorner) {
-    case CropCorner::TopLeft:
-        newCropValues->x1 = (xMouse - imageXStart) / width;
-        newCropValues->y1 = (yMouse - imageYStart) / height;
-        break;
-    case CropCorner::TopRight:
-        newCropValues->x2 = (xMouse - imageXStart) / width;
-        newCropValues->y1 = (yMouse - imageYStart) / height;
-        break;
-    case CropCorner::BottomLeft:
-        newCropValues->x1 = (xMouse - imageXStart) / width;
-        newCropValues->y2 = (yMouse - imageYStart) / height;
-        break;
-    case CropCorner::BottomRight:
-        newCropValues->x2 = (xMouse - imageXStart) / width;
-        newCropValues->y2 = (yMouse - imageYStart) / height;
-        break;
-    case CropCorner::Left:
-        newCropValues->x1 = (xMouse - imageXStart) / width;
-        break;
-    case CropCorner::Right:
-        newCropValues->x2 = (xMouse - imageXStart) / width;
-        break;
-    case CropCorner::Top:
-        newCropValues->y1 = (yMouse - imageYStart) / height;
-        break;
-    case CropCorner::Bottom:
-        newCropValues->y2 = (yMouse - imageYStart) / height;
-        break;
-    case CropCorner::InsideMove:
-    {
-        int dx = event->pos().x() - mousePresPos.x();
-        newCropValues->x1 = (cropXStart - imageXStart + dx) / width;
-        newCropValues->x2 = (cropXEnd - imageXStart + dx) / width;
-        int dy = event->pos().y() - mousePresPos.y();
-        newCropValues->y1 = (cropYStart - imageYStart + dy) / height;
-        newCropValues->y2 = (cropYEnd - imageYStart + dy) / height;
-        break;
+        case CropCorner::TopLeft:
+            newCropValues->x1 = (xMouse - imageXStart) / width;
+            newCropValues->y1 = (yMouse - imageYStart) / height;
+            break;
+        case CropCorner::TopRight:
+            newCropValues->x2 = (xMouse - imageXStart) / width;
+            newCropValues->y1 = (yMouse - imageYStart) / height;
+            break;
+        case CropCorner::BottomLeft:
+            newCropValues->x1 = (xMouse - imageXStart) / width;
+            newCropValues->y2 = (yMouse - imageYStart) / height;
+            break;
+        case CropCorner::BottomRight:
+            newCropValues->x2 = (xMouse - imageXStart) / width;
+            newCropValues->y2 = (yMouse - imageYStart) / height;
+            break;
+        case CropCorner::Left:
+            newCropValues->x1 = (xMouse - imageXStart) / width;
+            break;
+        case CropCorner::Right:
+            newCropValues->x2 = (xMouse - imageXStart) / width;
+            break;
+        case CropCorner::Top:
+            newCropValues->y1 = (yMouse - imageYStart) / height;
+            break;
+        case CropCorner::Bottom:
+            newCropValues->y2 = (yMouse - imageYStart) / height;
+            break;
+        case CropCorner::InsideMove:
+            {
+                int dx = event->pos().x() - mousePresPos.x();
+                newCropValues->x1 = (cropXStart - imageXStart + dx) / width;
+                newCropValues->x2 = (cropXEnd - imageXStart + dx) / width;
+                int dy = event->pos().y() - mousePresPos.y();
+                newCropValues->y1 = (cropYStart - imageYStart + dy) / height;
+                newCropValues->y2 = (cropYEnd - imageYStart + dy) / height;
+                break;
+            }
+        case CropCorner::None:
+            break;
     }
-    case CropCorner::None:
-        break;
-    }
-    validateCropArea();
-
+    cropAreaValidator->validateCropArea(cropFormat, cropCorner);
     ui->imageLabel->update();
-}
-
-void CropToolUi::validateCropArea()
-{
-    double marginH = 40.0 / (double)ui->imageLabel->height();
-    double marginW = 40.0 / (double)ui->imageLabel->width();
-
-    if (newCropValues->x1 < 0.0) newCropValues->x1 = 0.0;
-    if (newCropValues->x1 > 1.0 - marginW) newCropValues->x1 = 1.0 - marginW;
-    if (newCropValues->y1 < 0.0) newCropValues->y1 = 0.0;
-    if (newCropValues->y1 > 1.0 - marginH) newCropValues->y1 = 1.0 - marginH;
-    if (newCropValues->x1 > newCropValues->x2 - marginW) newCropValues->x2 = newCropValues->x1 + marginW;
-    if (newCropValues->y1 > newCropValues->y2 - marginH) newCropValues->y2 = newCropValues->y1 + marginH;
-    if (newCropValues->x2 < marginW) newCropValues->x2 = marginW;
-    if (newCropValues->x2 > 1.0) newCropValues->x2 = 1.0;
-    if (newCropValues->y2 < marginH) newCropValues->y2 = marginH;
-    if (newCropValues->y2 > 1.0) newCropValues->y2 = 1.0;
 }
 
 void CropToolUi::mouseReleaseEvent(QMouseEvent *event)
@@ -213,6 +208,7 @@ void CropToolUi::mouseReleaseEvent(QMouseEvent *event)
     Q_UNUSED(event)
     if (!ui->cropFrame->isVisible()) return;
     if (cropCorner == CropCorner::None) return;
+    cropCorner = CropCorner::None;
 }
 
 void CropToolUi::resizeEvent(QResizeEvent *event)
@@ -237,6 +233,17 @@ void CropToolUi::onCropOkButtonClicked()
 void CropToolUi::onUseCropCheckBoxClicked(int state)
 {
     newCropValues->useCrop = (bool)state;
+    ui->cropFormatGroupBox->setEnabled(newCropValues->useCrop);
+    ui->imageLabel->update();
+}
+
+void CropToolUi::useCropFormat()
+{
+    cropFormat = static_cast<CropFormat>(ui->cropFormatButtonGroup->checkedId());
+    if (cropFormat == CropFormat::_Locked) {
+        cropAreaValidator->calculateCropFormatMultiplier();
+    }
+    cropAreaValidator->validateCropArea(cropFormat, cropCorner);
     ui->imageLabel->update();
 }
 
@@ -262,4 +269,3 @@ void CropToolUi::hideCropTool()
     ui->imageLabel->imageLabelPainter = nullptr;
     // ui->imageLabel->update();
 }
-
