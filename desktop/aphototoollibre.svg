@@ -8,7 +8,7 @@
    version="1.1"
    id="svg5"
    inkscape:version="1.1.1 (3bf5ae0d25, 2021-09-20)"
-   sodipodi:docname="me.ahola.APhotoToolLibre.svg"
+   sodipodi:docname="aphototoollibre.svg"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -21,12 +21,12 @@
      borderopacity="1.0"
      inkscape:pageshadow="2"
      inkscape:pageopacity="0.0"
-     inkscape:pagecheckerboard="0"
+     inkscape:pagecheckerboard="true"
      inkscape:document-units="mm"
      showgrid="false"
      inkscape:zoom="6.0150392"
-     inkscape:cx="72.401856"
-     inkscape:cy="64.504983"
+     inkscape:cx="51.869986"
+     inkscape:cy="57.522485"
      inkscape:window-width="1920"
      inkscape:window-height="1043"
      inkscape:window-x="1920"
@@ -38,9 +38,28 @@
      fit-margin-right="0"
      fit-margin-bottom="0"
      units="px"
-     width="128px" />
+     width="128px"
+     inkscape:showpageshadow="false"
+     showborder="false" />
   <defs
      id="defs2">
+    <inkscape:path-effect
+       effect="fillet_chamfer"
+       id="path-effect948"
+       is_visible="true"
+       lpeversion="1"
+       satellites_param="F,0,0,1,0,2.6458333,0,1 @ F,0,0,1,0,2.6458333,0,1 @ F,0,0,1,0,2.6458333,0,1 @ F,0,0,1,0,2.6458333,0,1"
+       unit="px"
+       method="auto"
+       mode="F"
+       radius="10"
+       chamfer_steps="1"
+       flexible="false"
+       use_knot_distance="true"
+       apply_no_radius="true"
+       apply_with_radius="true"
+       only_selected="false"
+       hide_knots="false" />
     <linearGradient
        inkscape:collect="always"
        id="linearGradient33300-3">
@@ -72,14 +91,18 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(-30,-30)">
-    <rect
-       style="fill:url(#linearGradient33302);fill-opacity:1;fill-rule:evenodd;stroke-width:0.0853438;stroke-miterlimit:4;stroke-dasharray:none;stroke:#000000;stroke-opacity:1"
+     transform="translate(-30,-30)"
+     style="display:inline">
+    <path
+       style="fill:url(#linearGradient33302);fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        id="rect31"
        width="33.866665"
        height="33.866665"
        x="30"
-       y="30" />
+       y="30"
+       inkscape:path-effect="#path-effect948"
+       d="m 32.645833,30 h 28.574999 a 2.6458333,2.6458333 45 0 1 2.645833,2.645833 v 28.574999 a 2.6458333,2.6458333 135 0 1 -2.645833,2.645833 H 32.645833 A 2.6458333,2.6458333 45 0 1 30,61.220832 V 32.645833 A 2.6458333,2.6458333 135 0 1 32.645833,30 Z"
+       sodipodi:type="rect" />
     <path
        style="fill:none;fill-opacity:1;stroke:#ffffff;stroke-width:1.83187;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        d="m 35.918224,40.125533 0.0083,-3.428773 24.995748,-0.191167 -0.04242,20.925328 -24.935269,0.08311 -0.01326,-2.751318"
@@ -87,12 +110,14 @@
        sodipodi:nodetypes="cccccc" />
     <text
        xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:10.5833px;line-height:1.25;font-family:'DejaVu Sans';fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583;-inkscape-font-specification:'DejaVu Sans, Normal';font-stretch:normal;font-variant:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.5833px;line-height:1.25;font-family:'DejaVu Sans';-inkscape-font-specification:'DejaVu Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
        x="34.892551"
        y="45.869305"
        id="text3817"><tspan
          sodipodi:role="line"
-         id="tspan7875"></tspan></text>
+         id="tspan7875"
+         x="34.892551"
+         y="45.869305" /></text>
     <g
        aria-label="A"
        id="text17845"
