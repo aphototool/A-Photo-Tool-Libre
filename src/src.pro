@@ -94,15 +94,15 @@ unix_man.files = ../debian/aphototoollibre.1.gz
 INSTALLS += unix_man
 
 unix_desktop.path = /usr/share/applications
-unix_desktop.files = ../desktop/me.ahola.aphototoollibre.desktop
+unix_desktop.files = ../desktop/aphototoollibre.desktop
 INSTALLS += unix_desktop
 
 unix_icons.path = /usr/share/icons/hicolor/scalable/apps
-unix_icons.files = ../desktop/me.ahola.aphototoollibre.svg
+unix_icons.files = ../desktop/aphototoollibre.svg
 INSTALLS += unix_icons
 
 unix_metainfo.path = /usr/share/metainfo
-unix_metainfo.files = ../desktop/me.ahola.aphototoollibre.metainfo.xml
+unix_metainfo.files = ../desktop/aphototoollibre.metainfo.xml
 INSTALLS += unix_metainfo
 
 }

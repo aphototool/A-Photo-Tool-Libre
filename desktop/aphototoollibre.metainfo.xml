@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component type="desktop-application">
-  <id>me.ahola.aphototoollibre</id>
+  <id>aphototoollibre</id>
   
   <name>A Photo Tool (Libre)</name>
   <summary>Photo editing tool for Linux</summary>
@@ -29,7 +29,7 @@
     <category>Graphics</category>
   </categories>
   
-  <icon type="local">/usr/share/icons/hicolor/scalable/apps/me.ahola.aphototoollibre.svg</icon>
+  <icon type="local">/usr/share/icons/hicolor/scalable/apps/aphototoollibre.svg</icon>
   
   <keywords>
     <keyword>photography</keyword>
@@ -44,5 +44,5 @@
     <mediatype>image/png</mediatype>
  </provides>
   
-  <launchable type="desktop-id">me.ahola.aphototoollibre.desktop</launchable>
+  <launchable type="desktop-id">aphototoollibre.desktop</launchable>
 </component>
