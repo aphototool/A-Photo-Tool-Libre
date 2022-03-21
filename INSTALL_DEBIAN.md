@@ -27,7 +27,7 @@ sudo apt install ./aphototoollibre_1.0.2-1_amd64.deb
 - Ubuntu MATE 21.10
 
 Does **not** work on
-- Ubuntu 20.04.3 LTS (too old libraries)
+- Ubuntu 20.04.3 LTS (too old libraries, get Snap instead at https://snapcraft.io/install/aphototoollibre/ubuntu)
 
 Absolutely **no** guarantee is given that this app will work on any tested or untested environment.
 
