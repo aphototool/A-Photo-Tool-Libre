@@ -62,7 +62,10 @@ If you use pacman (Arch Linux) enter
 ```
 sudo pacman -R aphototoollibre
 ```
-
+If you use Snap enter
+```
+sudo snap remove aphototoollibre
+```
 
 ### BUILD INSTRUCTIONS
 
