@@ -25,6 +25,7 @@
 #include <QMainWindow>
 #include <QMouseEvent>
 #include <QtDebug>
+#include <QSettings>
 #include "constants.h"
 #include "fileio/openfile.h"
 #include "fileio/savefile.h"
@@ -35,6 +36,9 @@
 #include "croptoolui.h"
 #include "resizetoolui.h"
 #include "showimageevent.h"
+#include "utils/stylemode.h"
+#include "optionsdialog.h"
+#include "values/usersettings.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -62,6 +66,10 @@ public:
     void closeEvent(QCloseEvent *event);
 
     bool event(QEvent *event);
+
+    UserSettings* getAppSettings();
+
+    Ui::MainWindow *getUi() const;
 
 private:
     void onLoadImageButtonClicked();
@@ -105,7 +113,12 @@ private:
 
     void about();
 
+    void writeSettings();
+    void readSettings();
+    void showSettings();
+
     Ui::MainWindow *ui;
+    UserSettings appSettings;
     RotateToolUi *rotateToolUi;
     CropToolUi *cropToolUi;
     ResizeToolUi *resizeToolUi;

@@ -44,13 +44,16 @@ SOURCES += \
     imagelabel.cpp \
     imagelabelpainter.cpp \
     main.cpp \
+    optionsdialog.cpp \
     resizetoolui.cpp \
     rotatetoolui.cpp \
     showimageevent.cpp \
     utils/graphics.cpp \
     utils/print.cpp \
+    utils/stylemode.cpp \
     validators/cropareavalidator.cpp \
-    values.cpp
+    values.cpp \
+    values/usersettings.cpp
 
 HEADERS += \
     aphototoollibre.h \
@@ -73,16 +76,20 @@ HEADERS += \
     filters/saturationfilter.h \
     imagelabel.h \
     imagelabelpainter.h \
+    optionsdialog.h \
     resizetoolui.h \
     rotatetoolui.h \
     showimageevent.h \
     utils/graphics.h \
     utils/print.h \
+    utils/stylemode.h \
     validators/cropareavalidator.h \
-    values.h
+    values.h \
+    values/usersettings.h
 
 FORMS += \
-    aphototoollibre.ui
+    aphototoollibre.ui \
+    optionsdialog.ui
 
 unix: {
 

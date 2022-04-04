@@ -50,6 +50,7 @@ APhotoToolLibre::APhotoToolLibre(QWidget *parent)
     QObject::connect(ui->redSlider, &QSlider::valueChanged, this, &APhotoToolLibre::onRedSliderValueChanged);
     QObject::connect(ui->greenSlider, &QSlider::valueChanged, this, &APhotoToolLibre::onGreenSliderValueChanged);
     QObject::connect(ui->blueSlider, &QSlider::valueChanged, this, &APhotoToolLibre::onBlueSliderValueChanged);
+    QObject::connect(ui->actionOptions, &QAction::triggered, this, &APhotoToolLibre::showSettings);
 
     QMenu *helpMenu = menuBar()->addMenu(tr("&Help"));
     helpMenu->addAction(tr("&About"), this, &APhotoToolLibre::about);
@@ -75,9 +76,12 @@ APhotoToolLibre::APhotoToolLibre(QWidget *parent)
 
     resetValues();
 
-    ui->redSlider->setStyleSheet(getStyleSheetForColorSlider("red"));
-    ui->greenSlider->setStyleSheet(getStyleSheetForColorSlider("green"));
-    ui->blueSlider->setStyleSheet(getStyleSheetForColorSlider("blue"));
+    readSettings();
+    if (appSettings.getDarkMode()) {
+        StyleMode::darkMode(qApp, ui);
+    } else {
+        StyleMode::lightMode(qApp, ui);
+    }
 
     QStringList args = qApp->arguments();
     for (int i = 0; i < args.size(); i++) {
@@ -101,6 +105,7 @@ void APhotoToolLibre::closeEvent(QCloseEvent *event)
             return;
         }
     }
+    writeSettings();
     event->accept();
 }
 
@@ -356,6 +361,12 @@ void APhotoToolLibre::showFileInfo()
         infoLine.append(QString(" - new size %1 X %2").arg(width).arg(height));
     }
     ui->infoLabel->setText(infoLine);
+    if (values.originaFileName.length() > 0) {
+        QString fileName = values.originaFileName.split("/").last();
+        setWindowTitle("A Photo Tool (Libre) - " + fileName);
+    } else {
+        setWindowTitle("A Photo Tool (Libre)");
+    }
 }
 
 void APhotoToolLibre::showPreviewImage()
@@ -394,6 +405,52 @@ void APhotoToolLibre::onPrintClicked() {
     print.print(values.image);
 }
 
+void APhotoToolLibre::showSettings() {
+    OptionsDialog dialog;
+    dialog.prepareSettingsDialog(this);
+    dialog.setModal(true);
+    dialog.exec();
+}
+
+void APhotoToolLibre::writeSettings()
+{
+    QSettings settings("aphototoollibre", "config");
+
+    settings.beginGroup("Window");
+    settings.setValue("darkMode", appSettings.getDarkMode());
+    settings.endGroup();
+
+    settings.beginGroup("MainWindow");
+    settings.setValue("size", size());
+    settings.setValue("pos", pos());
+    settings.endGroup();
+}
+
+void APhotoToolLibre::readSettings()
+{
+    QSettings settings("aphototoollibre", "config");
+
+    settings.beginGroup("Window");
+    appSettings.setDarkMode(settings.value("darkMode").toBool());
+    settings.endGroup();
+
+    settings.beginGroup("MainWindow");
+    resize(settings.value("size", QSize(1200, 600)).toSize());
+    move(settings.value("pos", QPoint(200, 200)).toPoint());
+    settings.endGroup();
+}
+
+UserSettings* APhotoToolLibre::getAppSettings()
+{
+    return &appSettings;
+}
+
+
+Ui::MainWindow *APhotoToolLibre::getUi() const
+{
+    return ui;
+}
+
 void APhotoToolLibre::about()
 {
     QMessageBox::about(this, tr("About A Photo Tool (Libre) version ") + APTL_VERSION,
@@ -404,13 +461,6 @@ void APhotoToolLibre::about()
                           "<p>The program is provided AS IS with NO WARRANTY OF ANY KIND, "
                           "INCLUDING THE WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS "
                           "FOR A PARTICULAR PURPOSE.</p>"));
-}
-
-QString APhotoToolLibre::getStyleSheetForColorSlider(const QString color) {
-    return QString("QSlider::groove:vertical { background: black; position: absolute; left: 6px; right: 6px; width: 4px } "
-                   "QSlider::handle:vertical { height: 14px; background: %1; margin: 0 -6px; border: 1px solid gray; border-radius: 8px;} "
-                   "QSlider::add-page:vertical { background: %1; } "
-                   "QSlider::sub-page:vertical { background: white; }").arg(color);
 }
 
 
