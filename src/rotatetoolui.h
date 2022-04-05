@@ -26,7 +26,7 @@
 #include <QWidget>
 #include <QPushButton>
 #include <QTimer>
-#include "values.h"
+#include "values/imagevalues.h"
 #include "showimageevent.h"
 #include "utils/graphics.h"
 

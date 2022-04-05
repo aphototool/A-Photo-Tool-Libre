@@ -26,19 +26,24 @@
 #include <QMouseEvent>
 #include <QtDebug>
 #include <QSettings>
+#include <QFuture>
+#include <QtConcurrent/QtConcurrentRun>
+#include <QFutureWatcher>
+#include <QMutex>
 #include "constants.h"
 #include "fileio/openfile.h"
 #include "fileio/savefile.h"
 #include "filters/filters.h"
 #include "utils/print.h"
-#include "values.h"
+#include "values/imagevalues.h"
 #include "rotatetoolui.h"
 #include "croptoolui.h"
 #include "resizetoolui.h"
 #include "showimageevent.h"
 #include "utils/stylemode.h"
 #include "optionsdialog.h"
-#include "values/usersettings.h"
+#include "values/usersettingvalues.h"
+#include <utils/timeutil.h>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -67,14 +72,14 @@ public:
 
     bool event(QEvent *event);
 
-    UserSettings* getAppSettings();
+    UserSettingValues* getAppSettings();
 
     Ui::MainWindow *getUi() const;
 
 private:
     void onLoadImageButtonClicked();
     void onSaveButtonClicked();
-    void onShowFullResolutionClicked();
+    // void onShowFullResolutionClicked();
     void onPrintClicked();
     void onCloseWindowClicked();
 
@@ -118,12 +123,20 @@ private:
     void showSettings();
 
     Ui::MainWindow *ui;
-    UserSettings appSettings;
+    UserSettingValues appSettings;
     RotateToolUi *rotateToolUi;
     CropToolUi *cropToolUi;
     ResizeToolUi *resizeToolUi;
     QSlider *redBWSlider;
     Values values;
     QString argFileName = nullptr;
+
+    void createFullResolutionInBackground();
+    QImage backgroundApplyFilter(QImage fullOriginal, FilterValues *filterValues);
+    void backgroundFilterReady();
+    QFutureWatcher<QImage> filterWatcher;
+    QMutex filterMutex;
+    long lastFullResTimestamp = 0;
+    bool backgroundWorking = false;
 };
 #endif // APHOTOTOOLLIBRE_H

@@ -19,9 +19,25 @@
  *
  */
 
-#include "values.h"
+#ifndef IMAGEVALUES_H
+#define IMAGEVALUES_H
 
-Values::Values()
+#include <QImage>
+#include "../filters/filtervalues.h"
+
+class Values
 {
+public:
+    Values();
+    QString originaFileName;
+    QImage imageOriginal;
+    QImage imageOriginalScaled;
+    QImage image;
+    int filteredImageWidth = 0;
+    int filteredImageHeight = 0;
+    FilterValues filterValues;
+    bool imageModified = false;
+    long filteredTime = 0;
+};
 
-}
+#endif // IMAGEVALUES_H

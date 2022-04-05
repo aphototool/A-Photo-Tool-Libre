@@ -29,7 +29,7 @@
 #include <QButtonGroup>
 #include <QMouseEvent>
 #include <QTimer>
-#include "values.h"
+#include "values/imagevalues.h"
 #include "showimageevent.h"
 #include "filters/filters.h"
 #include "utils/graphics.h"

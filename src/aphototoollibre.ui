@@ -60,9 +60,14 @@
           </spacer>
          </item>
          <item>
-          <widget class="QPushButton" name="showFullResolutionButton">
+          <widget class="QLabel" name="previewLabel">
+           <property name="font">
+            <font>
+             <pointsize>9</pointsize>
+            </font>
+           </property>
            <property name="text">
-            <string>Show Full Res</string>
+            <string>Preview</string>
            </property>
           </widget>
          </item>
