@@ -127,6 +127,12 @@ void APhotoToolLibre::resetValues() {
     values.filterValues = FilterValues();
     values.imageModified = false;
     setBWSliders();
+    ui->enableBWCheckBox->setChecked(values.filterValues.enableBW);
+    setExposureSliders();
+    setColorSliders();
+    ui->rotateFrame->setVisible(false);
+    ui->cropFrame->setVisible(false);
+    ui->resizeFrame->setVisible(false);
 }
 
 void APhotoToolLibre::resizeEvent(QResizeEvent* event)
