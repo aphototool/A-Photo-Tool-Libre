@@ -22,11 +22,12 @@
 #include "croptoolui.h"
 #include "./ui_aphototoollibre.h"
 
-CropToolUi::CropToolUi(QMainWindow *mainWin, Ui::MainWindow *ui, Values *values)
+CropToolUi::CropToolUi(QMainWindow *mainWin, Ui::MainWindow *ui, Values *values, WorkValues *workValues)
 {
     this->mainWin = mainWin;
     this->ui = ui;
     this->values = values;
+    this->workValues = workValues;
 
     ui->cropFrame->setVisible(false);
     QObject::connect(ui->cropButton, &QPushButton::clicked, this, &CropToolUi::onCropButtonClicked);
@@ -53,6 +54,8 @@ void CropToolUi::onCropButtonClicked()
 }
 
 void CropToolUi::showCropTool() {
+    BackgroundControl::haltBackgroundWork(values, workValues);
+
     imageToRotate = values->imageOriginalScaled.copy();
 
     if (values->filterValues.cropValues != nullptr) {
@@ -76,6 +79,7 @@ void CropToolUi::showCropTool() {
     FilterValues* tempValues = values->filterValues.copy();
     tempValues->straightenAngle = 0; // Omit saved straihgten value
     tempValues->cropValues = nullptr; // Omit saved crop
+    tempValues->resizeType = ResizeCalcType::None; // Omit resize
     imageToRotate = Filters::applyFilters(imageToRotate, *tempValues);
     angle = values->filterValues.straightenAngle;
     if (angle >= -45 && angle <= 45) {
@@ -87,11 +91,13 @@ void CropToolUi::showCropTool() {
     ui->imageLabel->imageLabelPainter = new ImageLabelPainter();
     ui->imageLabel->update();
     needsPostShowImageEvent = true;
+    delete tempValues;
 }
 
 void CropToolUi::onStraightenSliderValueChanged(int value)
 {
     rotatePreview(value);
+    useCropFormat();
 }
 
 void CropToolUi::rotatePreview(int angle)
@@ -267,5 +273,5 @@ void CropToolUi::hideCropTool()
     newCropValues = nullptr;
     delete ui->imageLabel->imageLabelPainter;
     ui->imageLabel->imageLabelPainter = nullptr;
-    // ui->imageLabel->update();
+    BackgroundControl::resumeBackgroundWork(values, workValues);
 }

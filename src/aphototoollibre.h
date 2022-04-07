@@ -28,8 +28,6 @@
 #include <QSettings>
 #include <QFuture>
 #include <QtConcurrent/QtConcurrentRun>
-#include <QFutureWatcher>
-#include <QMutex>
 #include "constants.h"
 #include "fileio/openfile.h"
 #include "fileio/savefile.h"
@@ -43,7 +41,8 @@
 #include "utils/stylemode.h"
 #include "optionsdialog.h"
 #include "values/usersettingvalues.h"
-#include <utils/timeutil.h>
+#include "utils/timeutil.h"
+#include "values/workvalues.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -79,7 +78,6 @@ public:
 private:
     void onLoadImageButtonClicked();
     void onSaveButtonClicked();
-    // void onShowFullResolutionClicked();
     void onPrintClicked();
     void onCloseWindowClicked();
 
@@ -101,6 +99,7 @@ private:
 
     void loadImage(const QString filename);
     void loadImage(QString fileName, QImage tempImage);
+    void saveFullResImage();
     bool isLoadNewPhtoOk();
     void resetValues();
     void createPreviewImage(const QImage &tempImage);
@@ -112,6 +111,7 @@ private:
     void setBWSliders();
     void setBWValueLabels();
 
+    void applySizingFiltersToGetNewSize();
     void showFileInfo();
 
     QString getStyleSheetForColorSlider(const QString color);
@@ -134,9 +134,6 @@ private:
     void createFullResolutionInBackground();
     QImage backgroundApplyFilter(QImage fullOriginal, FilterValues *filterValues);
     void backgroundFilterReady();
-    QFutureWatcher<QImage> filterWatcher;
-    QMutex filterMutex;
-    long lastFullResTimestamp = 0;
-    bool backgroundWorking = false;
+    WorkValues workValues;
 };
 #endif // APHOTOTOOLLIBRE_H

@@ -31,6 +31,7 @@
 #include <QDir>
 #include <QTranslator>
 #include "basefile.h"
+#include "constants.h"
 #include "../values/imagevalues.h"
 
 class SaveFile : public QWidget

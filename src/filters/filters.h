@@ -40,6 +40,7 @@ class Filters
 public:
     Filters();
     static QImage applyFilters(const QImage &imageToFilter, const FilterValues &filterValues);
+    static QImage applySizingFilters(const QImage &imageToFilter, const FilterValues &filterValues);
 };
 
 #endif // FILTERS_H

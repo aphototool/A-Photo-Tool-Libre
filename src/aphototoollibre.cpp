@@ -36,7 +36,6 @@ APhotoToolLibre::APhotoToolLibre(QWidget *parent)
     QObject::connect(ui->actionSave, &QAction::triggered, this, &APhotoToolLibre::onSaveButtonClicked);
     QObject::connect(ui->actionPrint, &QAction::triggered, this, &APhotoToolLibre::onPrintClicked);
     QObject::connect(ui->actionCloseWindow, &QAction::triggered, this, &APhotoToolLibre::onCloseWindowClicked);
-    // QObject::connect(ui->showFullResolutionButton, &QPushButton::clicked, this, &APhotoToolLibre::onShowFullResolutionClicked);
     QObject::connect(ui->resetExposureButton, &QPushButton::clicked, this, &APhotoToolLibre::onResetExposureClicked);
     QObject::connect(ui->resetColorsButton, &QPushButton::clicked, this, &APhotoToolLibre::onResetColorsClicked);
     QObject::connect(ui->lightnessSlider, &QSlider::valueChanged, this, &APhotoToolLibre::onLightnessSliderValueChanged);
@@ -51,7 +50,7 @@ APhotoToolLibre::APhotoToolLibre(QWidget *parent)
     QObject::connect(ui->greenSlider, &QSlider::valueChanged, this, &APhotoToolLibre::onGreenSliderValueChanged);
     QObject::connect(ui->blueSlider, &QSlider::valueChanged, this, &APhotoToolLibre::onBlueSliderValueChanged);
     QObject::connect(ui->actionOptions, &QAction::triggered, this, &APhotoToolLibre::showSettings);
-    QObject::connect(&filterWatcher, &QFutureWatcherBase::finished, this, &APhotoToolLibre::backgroundFilterReady);
+    QObject::connect(&workValues.filterWatcher, &QFutureWatcherBase::finished, this, &APhotoToolLibre::backgroundFilterReady);
 
     QMenu *helpMenu = menuBar()->addMenu(tr("&Help"));
     helpMenu->addAction(tr("&About"), this, &APhotoToolLibre::about);
@@ -63,8 +62,8 @@ APhotoToolLibre::APhotoToolLibre(QWidget *parent)
     ui->actionPrint->setEnabled(false);
 #endif
 
-    rotateToolUi = new RotateToolUi(this, ui, &values);
-    cropToolUi = new CropToolUi(this, ui, &values);
+    rotateToolUi = new RotateToolUi(this, ui, &values, &workValues);
+    cropToolUi = new CropToolUi(this, ui, &values, &workValues);
     resizeToolUi = new ResizeToolUi(this, ui, &values);
 
     ui->mainToolsWidget->setCurrentIndex(0);
@@ -222,17 +221,18 @@ void APhotoToolLibre::createPreviewImage(const QImage &tempImage) {
 
 void APhotoToolLibre::onSaveButtonClicked()
 {
+    QApplication::setOverrideCursor(Qt::WaitCursor);
+    ui->previewLabel->setText("Working...");
+    QTimer::singleShot(100, this, [this]() { saveFullResImage(); } );
+}
+
+void APhotoToolLibre::saveFullResImage()
+{
     showFullResolutionImage();
+    QApplication::restoreOverrideCursor();
     SaveFile file;
     file.saveAs(&values);
 }
-
-/*
-void APhotoToolLibre::onShowFullResolutionClicked()
-{
-    showFullResolutionImage();
-}
-*/
 
 void APhotoToolLibre::onResetExposureClicked()
 {
@@ -385,10 +385,14 @@ void APhotoToolLibre::showFileInfo()
 void APhotoToolLibre::showPreviewImage()
 {
     QImage tempImage = values.imageOriginalScaled;
+    ResizeCalcType resizeCalcTypeSaved = values.filterValues.resizeType;
+    // No resizing for preview image
+    values.filterValues.resizeType = ResizeCalcType::None;
     showImage(tempImage);
-    filterMutex.lock();
+    values.filterValues.resizeType = resizeCalcTypeSaved;
+    workValues.filterMutex.lock();
     values.filteredTime = TimeUtil::getTimestamp();
-    filterMutex.unlock();
+    workValues.filterMutex.unlock();
     ui->previewLabel->setText(tr("View: Low Res"));
 }
 
@@ -399,10 +403,20 @@ void APhotoToolLibre::showFullResolutionImage()
     values.filteredImageWidth = values.image.width();
     values.filteredImageHeight = values.image.height();
     showFileInfo();
-    filterMutex.lock();
-    lastFullResTimestamp = TimeUtil::getTimestamp();
-    filterMutex.unlock();
+    workValues.filterMutex.lock();
+    workValues.lastFullResTimestamp = TimeUtil::getTimestamp();
+    workValues.filterMutex.unlock();
     ui->previewLabel->setText(tr("View: Full Res"));
+}
+
+
+void APhotoToolLibre::applySizingFiltersToGetNewSize()
+{
+    QImage tempImage = values.imageOriginal;
+    tempImage = Filters::applySizingFilters(tempImage, values.filterValues);
+    values.filteredImageWidth = tempImage.width();
+    values.filteredImageHeight = tempImage.height();
+    showFileInfo();
 }
 
 void APhotoToolLibre::showImage(const QImage &imageToShow) {
@@ -415,41 +429,43 @@ void APhotoToolLibre::createFullResolutionInBackground() {
 
     if (values.imageOriginal.height() == 0) return;
 
-    filterMutex.lock();
-    bool needsToDoWork = values.filteredTime > lastFullResTimestamp;
+    workValues.filterMutex.lock();
+    bool needsToDoWork = values.filteredTime > workValues.lastFullResTimestamp;
 
-    if (needsToDoWork && !backgroundWorking) {
+    if (needsToDoWork && !workValues.backgroundWorking && values.filteredTime < BackgroundControl::backgroundWorkStopped) {
         FilterValues* tempFilterValues = values.filterValues.copy();
         QFuture<QImage> future = QtConcurrent::run(this, &APhotoToolLibre::backgroundApplyFilter, values.imageOriginal, tempFilterValues);
-        filterWatcher.setFuture(future);
-        lastFullResTimestamp = TimeUtil::getTimestamp();
-        backgroundWorking = true;
+        workValues.filterWatcher.setFuture(future);
+        workValues.lastFullResTimestamp = TimeUtil::getTimestamp();
+        workValues.backgroundWorking = true;
     }
-    filterMutex.unlock();
+    workValues.filterMutex.unlock();
 }
 
 QImage APhotoToolLibre::backgroundApplyFilter(QImage fullOriginal, FilterValues* filterValues) {
+    QThread::currentThread()->setPriority(QThread::NormalPriority);
     QImage result = Filters::applyFilters(fullOriginal, *filterValues);
     return result;
 }
 
 void APhotoToolLibre::backgroundFilterReady() {
-    filterMutex.lock();
-    backgroundWorking = false;
-    if (lastFullResTimestamp >= values.filteredTime) {
-        QImage tempImage = filterWatcher.future().result();
+    workValues.filterMutex.lock();
+    workValues.backgroundWorking = false;
+    if (workValues.lastFullResTimestamp >= values.filteredTime) {
+        QImage tempImage = workValues.filterWatcher.future().result();
         values.image = tempImage;
         ui->scrollArea->setWidgetResizable(true);
         Graphics::fitImage(values.image, *ui->imageLabel);
         ui->previewLabel->setText(tr("View: Full Res"));
     }
-    filterMutex.unlock();
+    workValues.filterMutex.unlock();
 }
 
 bool APhotoToolLibre::event(QEvent *event)
 {
     if (QEvent::None != ShowImageEvent::eventType && event->type() == ShowImageEvent::eventType) {
-        showFullResolutionImage();
+        applySizingFiltersToGetNewSize();
+        showPreviewImage();
         ui->imageLabel->update();
         return true;
     }

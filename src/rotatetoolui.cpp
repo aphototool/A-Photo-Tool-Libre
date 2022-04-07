@@ -22,11 +22,12 @@
 #include "rotatetoolui.h"
 #include "./ui_aphototoollibre.h"
 
-RotateToolUi::RotateToolUi(QMainWindow *mainWin, Ui::MainWindow *ui, Values *values)
+RotateToolUi::RotateToolUi(QMainWindow *mainWin, Ui::MainWindow *ui, Values *values, WorkValues *workValues)
 {
     this->mainWin = mainWin;
     this->ui = ui;
     this->values = values;
+    this->workValues = workValues;
 
     ui->rotateFrame->setVisible(false);
     QObject::connect(ui->rotateButton, &QPushButton::clicked, this, &RotateToolUi::onRotateButtonClicked);
@@ -52,6 +53,8 @@ void RotateToolUi::onRotateButtonClicked()
 
 void RotateToolUi::showRotateTool()
 {
+    BackgroundControl::haltBackgroundWork(values, workValues);
+
     imageToRotate = values->image.copy();
     newCropValues = values->filterValues.cropValues == nullptr ? nullptr : values->filterValues.cropValues->copy();
     angle = values->filterValues.rotateAngle;
@@ -109,6 +112,7 @@ void RotateToolUi::rotatePreview(int angle)
 bool RotateToolUi::eventFilter(QObject *obj, QEvent *event)
 {
     if (obj == ui->rotateFrame && event->type() == QEvent::Hide) {
+        BackgroundControl::resumeBackgroundWork(values, workValues);
         qGuiApp->postEvent(mainWin, ShowImageEvent::getEvent());
     } else if (obj == ui->rotateFrame && event->type() == QEvent::Show) {
         showRotateTool();

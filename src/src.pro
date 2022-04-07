@@ -43,6 +43,7 @@ SOURCES += \
     filters/saturationfilter.cpp \
     imagelabel.cpp \
     imagelabelpainter.cpp \
+    utils/backgroundcontrol.cpp \
     utils/timeutil.cpp \
     values/imagevalues.cpp \
     main.cpp \
@@ -54,7 +55,8 @@ SOURCES += \
     utils/print.cpp \
     utils/stylemode.cpp \
     validators/cropareavalidator.cpp \
-    values/usersettingvalues.cpp
+    values/usersettingvalues.cpp \
+    values/workvalues.cpp
 
 HEADERS += \
     aphototoollibre.h \
@@ -77,6 +79,7 @@ HEADERS += \
     filters/saturationfilter.h \
     imagelabel.h \
     imagelabelpainter.h \
+    utils/backgroundcontrol.h \
     utils/timeutil.h \
     values/imagevalues.h \
     optionsdialog.h \
@@ -87,7 +90,8 @@ HEADERS += \
     utils/print.h \
     utils/stylemode.h \
     validators/cropareavalidator.h \
-    values/usersettingvalues.h
+    values/usersettingvalues.h \
+    values/workvalues.h
 
 FORMS += \
     aphototoollibre.ui \

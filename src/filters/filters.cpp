@@ -29,18 +29,7 @@ Filters::Filters()
 QImage Filters::applyFilters(const QImage &imageToFilter, const FilterValues &filterValues)
 {
     QImage tempImage = imageToFilter;
-    if (filterValues.rotateAngle != 0 || filterValues.straightenAngle != 0) {
-        tempImage = RotateAnyAngleFilter().rotateImage(tempImage, filterValues.rotateAngle, filterValues.straightenAngle);
-    }
-    if (filterValues.cropValues != nullptr && filterValues.cropValues->useCrop) {
-        tempImage = CropFilter().cropImage(tempImage, *filterValues.cropValues);
-    }
-    if (filterValues.resizeValue > 0.0 && filterValues.resizeType != ResizeCalcType::None) {
-        tempImage = ResizeFilter().resizeImage(tempImage,
-                                               filterValues.resizeValue,
-                                               filterValues.resizePercentageValue,
-                                               filterValues.resizeType);
-    }
+    tempImage = applySizingFilters(tempImage, filterValues);
     if (filterValues.lightness != 0.0) {
         tempImage = LightnessFilter().adjustLightness(tempImage, filterValues.lightness);
     }
@@ -58,6 +47,25 @@ QImage Filters::applyFilters(const QImage &imageToFilter, const FilterValues &fi
     }
     if (filterValues.enableBW && (filterValues.redDelta > 0.0 || filterValues.greenDelta > 0.0 || filterValues.blueDelta > 0.0)) {
         tempImage = BWFilter().toBAndW(tempImage, filterValues.redDelta, filterValues.greenDelta, filterValues.blueDelta);
+    }
+    return tempImage;
+}
+
+
+QImage Filters::applySizingFilters(const QImage &imageToFilter, const FilterValues &filterValues)
+{
+    QImage tempImage = imageToFilter;
+    if (filterValues.rotateAngle != 0 || filterValues.straightenAngle != 0) {
+        tempImage = RotateAnyAngleFilter().rotateImage(tempImage, filterValues.rotateAngle, filterValues.straightenAngle);
+    }
+    if (filterValues.cropValues != nullptr && filterValues.cropValues->useCrop) {
+        tempImage = CropFilter().cropImage(tempImage, *filterValues.cropValues);
+    }
+    if (filterValues.resizeValue > 0.0 && filterValues.resizeType != ResizeCalcType::None) {
+        tempImage = ResizeFilter().resizeImage(tempImage,
+                                               filterValues.resizeValue,
+                                               filterValues.resizePercentageValue,
+                                               filterValues.resizeType);
     }
     return tempImage;
 }

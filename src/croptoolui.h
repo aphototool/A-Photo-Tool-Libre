@@ -30,17 +30,19 @@
 #include <QMouseEvent>
 #include <QTimer>
 #include "values/imagevalues.h"
+#include "values/workvalues.h"
 #include "showimageevent.h"
 #include "filters/filters.h"
 #include "utils/graphics.h"
 #include "validators/cropareavalidator.h"
+#include "utils/backgroundcontrol.h"
 
 namespace Ui { class MainWindow; }
 
 class CropToolUi : public QWidget
 {
 public:
-    CropToolUi(QMainWindow *mainWin, Ui::MainWindow *ui = nullptr, Values *values = nullptr);
+    CropToolUi(QMainWindow *mainWin, Ui::MainWindow *ui, Values *values, WorkValues *workValues);
     void mousePressEvent(QMouseEvent *event);
     void mouseMoveEvent(QMouseEvent *event);
     void mouseReleaseEvent(QMouseEvent *event);
@@ -72,6 +74,7 @@ private:
     Ui::MainWindow *ui = nullptr;
     QMainWindow *mainWin = nullptr;
     Values *values = nullptr;
+    WorkValues *workValues = nullptr;
     QImage imageToRotate;
     int angle = 0;
 

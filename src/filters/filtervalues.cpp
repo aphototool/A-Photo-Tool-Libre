@@ -44,7 +44,13 @@ FilterValues* FilterValues::copy()
     c->rotateAngle = rotateAngle;
     c->straightenAngle = straightenAngle;
 
+    c->resizeType = resizeType;
+    c->resizeValue = resizeValue;
+    c->resizePercentageValue = resizePercentageValue;
+
     c->cropValues = cropValues == nullptr ? nullptr : cropValues->copy();
+
+    c->imageChanged = imageChanged;
 
     return c;
 }

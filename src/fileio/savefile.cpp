@@ -30,6 +30,7 @@ void SaveFile::saveAs(Values *values)
 {
     QFileDialog dialog(this, tr("Save File As"));
     BaseFile::initializeImageFileDialog(dialog, QFileDialog::AcceptSave);
+    dialog.setOption(QFileDialog::DontUseNativeDialog, DONT_USE_NATIVE_DIALOG);
     dialog.selectFile(values->originaFileName);
 
     while (dialog.exec() == QDialog::Accepted && !saveFile(dialog.selectedFiles().constFirst(), values)) {}

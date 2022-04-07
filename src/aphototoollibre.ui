@@ -832,10 +832,10 @@
                    <item>
                     <widget class="QSlider" name="straightenSlider">
                      <property name="minimum">
-                      <number>-45</number>
+                      <number>-44</number>
                      </property>
                      <property name="maximum">
-                      <number>45</number>
+                      <number>44</number>
                      </property>
                      <property name="orientation">
                       <enum>Qt::Horizontal</enum>

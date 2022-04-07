@@ -27,15 +27,17 @@
 #include <QPushButton>
 #include <QTimer>
 #include "values/imagevalues.h"
+#include "values/workvalues.h"
 #include "showimageevent.h"
 #include "utils/graphics.h"
+#include "utils/backgroundcontrol.h"
 
 namespace Ui { class MainWindow; }
 
 class RotateToolUi : public QWidget
 {
 public:
-    RotateToolUi(QMainWindow *mainWin, Ui::MainWindow *ui = nullptr, Values *values = nullptr);
+    RotateToolUi(QMainWindow *mainWin, Ui::MainWindow *ui, Values *values, WorkValues *workValues);
     void resizeEvent(QResizeEvent *event);
     void onRotateButtonClicked();
     void onRotateLeftButtonClicked();
@@ -53,6 +55,7 @@ private:
     Ui::MainWindow *ui = nullptr;
     QMainWindow *mainWin = nullptr;
     Values *values = nullptr;
+    WorkValues *workValues = nullptr;
     QImage imageToRotate;
     int angle = 0;
     CropValues *newCropValues = nullptr;
