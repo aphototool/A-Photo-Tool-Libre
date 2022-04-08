@@ -32,8 +32,10 @@ public:
     FilterValues();
     FilterValues* copy();
 
-    float lightness = 0.0;
+    float brightness = 0.0;
     float contrast = 0.0;
+    float lights = 0.0;
+    float darks = 0.0;
     float saturation = 0.0;
     float hue = 0.0;
     float colorTemperature = 0.0;

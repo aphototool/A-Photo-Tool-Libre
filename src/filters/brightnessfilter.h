@@ -19,17 +19,17 @@
  *
  */
 
-#ifndef LIGHTNESSFILTER_H
-#define LIGHTNESSFILTER_H
+#ifndef BRIGHTNESSFILTER_H
+#define BRIGHTNESSFILTER_H
 
 #include <QImage>
 #include "filtervalues.h"
 
-class LightnessFilter
+class BrightnessFilter
 {
 public:
-    LightnessFilter();
-    QImage adjustLightness(const QImage &image, float lightnessDelta);
+    BrightnessFilter();
+    QImage adjustBrightness(const QImage &image, float brightnessDelta);
 };
 
-#endif // LIGHTNESSFILTER_H
+#endif // BRIGHTNESSFILTER_H

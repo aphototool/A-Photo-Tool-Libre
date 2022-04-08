@@ -19,27 +19,17 @@
  *
  */
 
-#include "lightnessfilter.h"
+#ifndef LIGHTDARKFILTER_H
+#define LIGHTDARKFILTER_H
 
-LightnessFilter::LightnessFilter()
+#include <QImage>
+#include "filtervalues.h"
+
+class LightDarkFilter
 {
+public:
+    LightDarkFilter();
+    QImage adjustLighsDarks(const QImage &image, float lightsDelta, float darksDelta);
+};
 
-}
-
-QImage LightnessFilter::adjustLightness(const QImage &image, float lightnessDelta) {
-    QImage newImage = image.copy();
-    float red = 0.0;
-    float green = 0.0;
-    float blue = 0.0;
-    for(int y = 0; y<newImage.height(); y++){
-        QRgb * line = (QRgb *)image.scanLine(y);
-        for(int x = 0; x<newImage.width(); x++){
-            red = qRed(line[x]) + lightnessDelta;
-            green = qGreen(line[x]) + lightnessDelta;
-            blue = qBlue(line[x]) + lightnessDelta;
-            newImage.setPixel(x,y, qRgb(FilterValues::toValidValue(red), FilterValues::toValidValue(green), FilterValues::toValidValue(blue)));
-        }
-    }
-    return newImage;
-}
-
+#endif // LIGHTDARKFILTER_H

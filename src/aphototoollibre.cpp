@@ -38,8 +38,10 @@ APhotoToolLibre::APhotoToolLibre(QWidget *parent)
     QObject::connect(ui->actionCloseWindow, &QAction::triggered, this, &APhotoToolLibre::onCloseWindowClicked);
     QObject::connect(ui->resetExposureButton, &QPushButton::clicked, this, &APhotoToolLibre::onResetExposureClicked);
     QObject::connect(ui->resetColorsButton, &QPushButton::clicked, this, &APhotoToolLibre::onResetColorsClicked);
-    QObject::connect(ui->lightnessSlider, &QSlider::valueChanged, this, &APhotoToolLibre::onLightnessSliderValueChanged);
+    QObject::connect(ui->brightnessSlider, &QSlider::valueChanged, this, &APhotoToolLibre::onBrightnessSliderValueChanged);
     QObject::connect(ui->contrastSlider, &QSlider::valueChanged, this, &APhotoToolLibre::onContrastSliderValueChanged);
+    QObject::connect(ui->lightsSlider, &QSlider::valueChanged, this, &APhotoToolLibre::onLightsSliderValueChanged);
+    QObject::connect(ui->darksSlider, &QSlider::valueChanged, this, &APhotoToolLibre::onDarksSliderValueChanged);
     QObject::connect(ui->saturationSlider, &QSlider::valueChanged, this, &APhotoToolLibre::onSaturationSliderValueChanged);
     QObject::connect(ui->hueSlider, &QSlider::valueChanged, this, &APhotoToolLibre::onHueSliderValueChanged);
     QObject::connect(ui->colorTemperatureSlider, &QSlider::valueChanged, this, &APhotoToolLibre::onColorTemperatureSliderValueChanged);
@@ -236,8 +238,10 @@ void APhotoToolLibre::saveFullResImage()
 
 void APhotoToolLibre::onResetExposureClicked()
 {
-    values.filterValues.lightness = 0.0;
+    values.filterValues.brightness = 0.0;
     values.filterValues.contrast = 0.0;
+    values.filterValues.lights = 0.0;
+    values.filterValues.darks = 0.0;
     setExposureSliders();
     showPreviewImage();
 }
@@ -300,9 +304,9 @@ void APhotoToolLibre::onPanchromaticButtonClicked() {
     showPreviewImage();
 }
 
-void APhotoToolLibre::onLightnessSliderValueChanged(int value)
+void APhotoToolLibre::onBrightnessSliderValueChanged(int value)
 {
-    values.filterValues.lightness = float(value);
+    values.filterValues.brightness = float(value);
     values.imageModified = true;
     showPreviewImage();
 }
@@ -310,6 +314,20 @@ void APhotoToolLibre::onLightnessSliderValueChanged(int value)
 void APhotoToolLibre::onContrastSliderValueChanged(int value)
 {
     values.filterValues.contrast = float(value);
+    values.imageModified = true;
+    showPreviewImage();
+}
+
+void APhotoToolLibre::onLightsSliderValueChanged(int value)
+{
+    values.filterValues.lights = float(value);
+    values.imageModified = true;
+    showPreviewImage();
+}
+
+void APhotoToolLibre::onDarksSliderValueChanged(int value)
+{
+    values.filterValues.darks = float(value);
     values.imageModified = true;
     showPreviewImage();
 }
@@ -337,8 +355,10 @@ void APhotoToolLibre::onColorTemperatureSliderValueChanged(int value)
 
 void APhotoToolLibre::setExposureSliders()
 {
-    ui->lightnessSlider->setValue(values.filterValues.lightness);
+    ui->brightnessSlider->setValue(values.filterValues.brightness);
     ui->contrastSlider->setValue(values.filterValues.contrast);
+    ui->lightsSlider->setValue(values.filterValues.lights);
+    ui->darksSlider->setValue(values.filterValues.darks);
 }
 
 void APhotoToolLibre::setColorSliders()

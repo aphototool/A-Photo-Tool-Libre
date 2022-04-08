@@ -26,8 +26,9 @@
 #include <QPainter>
 #include "filtervalues.h"
 #include "bwfilter.h"
-#include "lightnessfilter.h"
+#include "brightnessfilter.h"
 #include "contrastfilter.h"
+#include "lightdarkfilter.h"
 #include "saturationfilter.h"
 #include "huefilter.h"
 #include "colortemperaturefilter.h"

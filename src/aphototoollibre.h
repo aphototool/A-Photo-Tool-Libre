@@ -88,8 +88,10 @@ private:
     void onNaturalButtonClicked();
     void onPanchromaticButtonClicked();
 
-    void onLightnessSliderValueChanged(int value);
+    void onBrightnessSliderValueChanged(int value);
     void onContrastSliderValueChanged(int value);
+    void onLightsSliderValueChanged(int value);
+    void onDarksSliderValueChanged(int value);
     void onSaturationSliderValueChanged(int value);
     void onHueSliderValueChanged(int value);
     void onColorTemperatureSliderValueChanged(int value);

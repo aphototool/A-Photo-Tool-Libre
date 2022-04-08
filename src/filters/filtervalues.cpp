@@ -30,8 +30,10 @@ FilterValues* FilterValues::copy()
 {
     FilterValues* c = new FilterValues();
 
-    c->lightness = lightness;
+    c->brightness = brightness;
     c->contrast = contrast;
+    c->lights = lights;
+    c->darks = darks;
     c->saturation = saturation;
     c->hue = hue;
     c->colorTemperature = colorTemperature;

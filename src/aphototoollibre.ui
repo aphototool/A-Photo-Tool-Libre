@@ -187,7 +187,7 @@
          <item>
           <widget class="QTabWidget" name="mainToolsWidget">
            <property name="currentIndex">
-            <number>2</number>
+            <number>0</number>
            </property>
            <widget class="QWidget" name="tab">
             <attribute name="title">
@@ -206,12 +206,12 @@
                 <item>
                  <widget class="QLabel" name="label">
                   <property name="text">
-                   <string>Lightness</string>
+                   <string>Brightness</string>
                   </property>
                  </widget>
                 </item>
                 <item>
-                 <widget class="QSlider" name="lightnessSlider">
+                 <widget class="QSlider" name="brightnessSlider">
                   <property name="minimum">
                    <number>-99</number>
                   </property>
@@ -234,6 +234,40 @@
                   </property>
                   <property name="maximum">
                    <number>128</number>
+                  </property>
+                  <property name="orientation">
+                   <enum>Qt::Horizontal</enum>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QLabel" name="label_14">
+                  <property name="text">
+                   <string>Lights</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QSlider" name="lightsSlider">
+                  <property name="minimum">
+                   <number>-99</number>
+                  </property>
+                  <property name="orientation">
+                   <enum>Qt::Horizontal</enum>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QLabel" name="label_15">
+                  <property name="text">
+                   <string>Darks</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QSlider" name="darksSlider">
+                  <property name="minimum">
+                   <number>-99</number>
                   </property>
                   <property name="orientation">
                    <enum>Qt::Horizontal</enum>

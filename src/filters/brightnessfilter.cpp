@@ -19,23 +19,27 @@
  *
  */
 
-#ifndef STYLEMODE_H
-#define STYLEMODE_H
+#include "brightnessfilter.h"
 
-#include <QApplication>
-#include <QPalette>
-
-namespace Ui { class MainWindow; }
-
-class StyleMode
+BrightnessFilter::BrightnessFilter()
 {
-public:
-    StyleMode();
-    static void darkMode(QApplication *app, Ui::MainWindow *ui);
-    static void lightMode(QApplication *app, Ui::MainWindow *ui);
-private:
-    Ui::MainWindow *ui = nullptr;
-    static QString getStyleSheetForColorSlider(const QString fgColor, const QString bgColor);
-};
 
-#endif // STYLEMODE_H
+}
+
+QImage BrightnessFilter::adjustBrightness(const QImage &image, float brightnessDelta) {
+    QImage newImage = image.copy();
+    float red = 0.0;
+    float green = 0.0;
+    float blue = 0.0;
+    for(int y = 0; y<newImage.height(); y++){
+        QRgb * line = (QRgb *)image.scanLine(y);
+        for(int x = 0; x<newImage.width(); x++){
+            red = qRed(line[x]) + brightnessDelta;
+            green = qGreen(line[x]) + brightnessDelta;
+            blue = qBlue(line[x]) + brightnessDelta;
+            newImage.setPixel(x,y, qRgb(FilterValues::toValidValue(red), FilterValues::toValidValue(green), FilterValues::toValidValue(blue)));
+        }
+    }
+    return newImage;
+}
+

@@ -29,6 +29,7 @@ SOURCES += \
     fileio/basefile.cpp \
     fileio/openfile.cpp \
     fileio/savefile.cpp \
+    filters/brightnessfilter.cpp \
     filters/bwfilter.cpp \
     filters/colortemperaturefilter.cpp \
     filters/contrastfilter.cpp \
@@ -37,7 +38,7 @@ SOURCES += \
     filters/filters.cpp \
     filters/filtervalues.cpp \
     filters/huefilter.cpp \
-    filters/lightnessfilter.cpp \
+    filters/lightdarkfilter.cpp \
     filters/resizefilter.cpp \
     filters/rotateanyanglefilter.cpp \
     filters/saturationfilter.cpp \
@@ -65,6 +66,7 @@ HEADERS += \
     fileio/basefile.h \
     fileio/openfile.h \
     fileio/savefile.h \
+    filters/brightnessfilter.h \
     filters/bwfilter.h \
     filters/colortemperaturefilter.h \
     filters/contrastfilter.h \
@@ -73,7 +75,7 @@ HEADERS += \
     filters/filters.h \
     filters/filtervalues.h \
     filters/huefilter.h \
-    filters/lightnessfilter.h \
+    filters/lightdarkfilter.h \
     filters/resizefilter.h \
     filters/rotateanyanglefilter.h \
     filters/saturationfilter.h \

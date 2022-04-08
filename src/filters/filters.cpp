@@ -30,8 +30,11 @@ QImage Filters::applyFilters(const QImage &imageToFilter, const FilterValues &fi
 {
     QImage tempImage = imageToFilter;
     tempImage = applySizingFilters(tempImage, filterValues);
-    if (filterValues.lightness != 0.0) {
-        tempImage = LightnessFilter().adjustLightness(tempImage, filterValues.lightness);
+    if (filterValues.brightness != 0.0) {
+        tempImage = BrightnessFilter().adjustBrightness(tempImage, filterValues.brightness);
+    }
+    if (filterValues.lights != 0.0 || filterValues.darks != 0.0) {
+        tempImage = LightDarkFilter().adjustLighsDarks(tempImage, filterValues.lights, filterValues.darks);
     }
     if (filterValues.contrast != 0.0) {
         tempImage = ContrastFilter().adjustContrast(tempImage, filterValues.contrast);
