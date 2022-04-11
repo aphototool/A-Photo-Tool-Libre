@@ -40,6 +40,7 @@
 #include "showimageevent.h"
 #include "utils/stylemode.h"
 #include "utils/settingsutils.h"
+#include "utils/imagecreator.h"
 #include "optionsdialog.h"
 #include "values/usersettingvalues.h"
 #include "utils/timeutil.h"
@@ -105,7 +106,6 @@ private:
     void saveFullResImage();
     bool isLoadNewPhtoOk();
     void resetValues();
-    void createPreviewImage(const QImage &tempImage);
     void showImage(const QImage &imageToShow);
     void showPreviewImage();
     void showFullResolutionImage();
@@ -135,7 +135,6 @@ private:
     QString argFileName = nullptr;
 
     void createFullResolutionInBackground();
-    QImage backgroundApplyFilter(QImage fullOriginal, FilterValues *filterValues);
     void backgroundFilterReady();
     WorkValues workValues;
 };

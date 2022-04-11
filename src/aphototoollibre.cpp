@@ -105,7 +105,7 @@ APhotoToolLibre::APhotoToolLibre(QWidget *parent)
 void APhotoToolLibre::closeEvent(QCloseEvent *event)
 {
     if (values.image.height() > 0 && values.imageModified) {
-        if (QMessageBox::No == QMessageBox(QMessageBox::Information, "Close Window?", "Close window and discard unsaved edits.", QMessageBox::Yes|QMessageBox::No).exec())
+        if (QMessageBox::No == QMessageBox(QMessageBox::Information, "Close Window?", "Close window and discard unsaved edits.", QMessageBox::Yes|QMessageBox::No, this).exec())
         {
             event->ignore();
             return;
@@ -126,7 +126,6 @@ void APhotoToolLibre::onCloseWindowClicked() {
 
 void APhotoToolLibre::resetValues() {
     values.filterValues = FilterValues();
-    values.imageModified = false;
     setBWSliders();
     ui->enableBWCheckBox->setChecked(values.filterValues.enableBW);
     setExposureSliders();
@@ -134,6 +133,9 @@ void APhotoToolLibre::resetValues() {
     ui->rotateFrame->setVisible(false);
     ui->cropFrame->setVisible(false);
     ui->resizeFrame->setVisible(false);
+    // Set imageModified to false after other settings
+    // to avoid unwanted state changes by slider resets.
+    values.imageModified = false;
 }
 
 void APhotoToolLibre::resizeEvent(QResizeEvent* event)
@@ -188,7 +190,7 @@ void APhotoToolLibre::onLoadImageButtonClicked()
 
 bool APhotoToolLibre::isLoadNewPhtoOk() {
     if (values.image.height() > 0 && values.imageModified) {
-        if (QMessageBox::No == QMessageBox(QMessageBox::Information, "Replace Image?", "Load new photo and discard unsaved edits.", QMessageBox::Yes|QMessageBox::No).exec())
+        if (QMessageBox::No == QMessageBox(QMessageBox::Information, "Replace Image?", "Load new photo and discard unsaved edits.", QMessageBox::Yes|QMessageBox::No, this).exec())
         {
             return false;
         }
@@ -198,27 +200,10 @@ bool APhotoToolLibre::isLoadNewPhtoOk() {
 
 void APhotoToolLibre::loadImage(QString fileName, QImage tempImage) {
     resetValues();
-    createPreviewImage(tempImage);
+    ImageCreator::createPreviewImage(tempImage, values);
     showFullResolutionImage();
     values.originaFileName = fileName;
     showFileInfo();
-}
-
-void APhotoToolLibre::createPreviewImage(const QImage &tempImage) {
-    values.imageOriginal = tempImage;
-    if (values.imageOriginal.height() > PREVIEW_IMAGE_SIZE_LIMIT
-            || values.imageOriginal.width() > PREVIEW_IMAGE_SIZE_LIMIT) {
-        if (values.imageOriginal.height() > values.imageOriginal.width()) {
-            values.imageOriginalScaled = values.imageOriginal
-                    .scaledToHeight(PREVIEW_IMAGE_SIZE_LIMIT, Qt::SmoothTransformation);
-        } else {
-            values.imageOriginalScaled = values.imageOriginal
-                    .scaledToWidth(PREVIEW_IMAGE_SIZE_LIMIT, Qt::SmoothTransformation);
-        }
-    } else {
-        values.imageOriginalScaled = values.imageOriginal.copy();
-    }
-    values.image = values.imageOriginalScaled.copy();
 }
 
 void APhotoToolLibre::onSaveButtonClicked()
@@ -431,38 +416,15 @@ void APhotoToolLibre::showImage(const QImage &imageToShow) {
 }
 
 void APhotoToolLibre::createFullResolutionInBackground() {
-
     if (values.imageOriginal.height() == 0) return;
-
     workValues.filterMutex.lock();
-    bool needsToDoWork = values.filteredTime > workValues.lastFullResTimestamp;
-
-    if (needsToDoWork && !workValues.backgroundWorking && values.filteredTime < BackgroundControl::backgroundWorkStopped) {
-        FilterValues* tempFilterValues = values.filterValues.copy();
-        QFuture<QImage> future = QtConcurrent::run(this, &APhotoToolLibre::backgroundApplyFilter, values.imageOriginal, tempFilterValues);
-        workValues.filterWatcher.setFuture(future);
-        workValues.lastFullResTimestamp = TimeUtil::getTimestamp();
-        workValues.backgroundWorking = true;
-    }
+    ImageCreator::createFullResolutionInBackground(&workValues, &values);
     workValues.filterMutex.unlock();
-}
-
-QImage APhotoToolLibre::backgroundApplyFilter(QImage fullOriginal, FilterValues* filterValues) {
-    QThread::currentThread()->setPriority(QThread::NormalPriority);
-    QImage result = Filters::applyFilters(fullOriginal, *filterValues);
-    return result;
 }
 
 void APhotoToolLibre::backgroundFilterReady() {
     workValues.filterMutex.lock();
-    workValues.backgroundWorking = false;
-    if (workValues.lastFullResTimestamp >= values.filteredTime) {
-        QImage tempImage = workValues.filterWatcher.future().result();
-        values.image = tempImage;
-        ui->scrollArea->setWidgetResizable(true);
-        Graphics::fitImage(values.image, *ui->imageLabel);
-        ui->previewLabel->setText(tr("View: Full Res"));
-    }
+    ImageCreator::backgroundFilterReady(&workValues, &values, ui);
     workValues.filterMutex.unlock();
 }
 
