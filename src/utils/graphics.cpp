@@ -55,3 +55,24 @@ void Graphics::fitImage(const QImage &imageToFit, QLabel &imageLabel) {
     imageLabel.setPixmap(p.scaled(w,h,Qt::KeepAspectRatio));
     imageLabel.setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
 }
+
+void Graphics::showFileInfo(Values values, QLabel *infoLabel, QMainWindow *window)
+{
+    QString infoLine = QString("%1 %2 X %3")
+            .arg(values.originaFileName)
+            .arg(values.imageOriginal.width())
+            .arg(values.imageOriginal.height());
+    int width = values.filteredImageWidth;
+    int height = values.filteredImageHeight;
+    if (width != values.imageOriginal.width() || height != values.imageOriginal.height()) {
+        infoLine.append(QString(" - new size %1 X %2").arg(width).arg(height));
+    }
+    infoLabel->setText(infoLine);
+    if (values.originaFileName.length() > 0) {
+        QString fileName = values.originaFileName.split("/").last();
+        window->setWindowTitle("A Photo Tool (Libre) - " + fileName);
+    } else {
+        window->setWindowTitle("A Photo Tool (Libre)");
+    }
+}
+

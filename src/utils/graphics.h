@@ -22,9 +22,11 @@
 #ifndef GRAPHICS_H
 #define GRAPHICS_H
 
+#include <QMainWindow>
 #include <QImage>
 #include <QPainter>
 #include <QLabel>
+#include "../values/imagevalues.h"
 
 class Graphics
 {
@@ -32,6 +34,7 @@ public:
     Graphics();
     static QImage drawGrid(const QImage &imageToDrawOn, const int sectors);
     static void fitImage(const QImage &imageToFit, QLabel &imageLabel);
+    static void showFileInfo(Values values, QLabel *infoLabel, QMainWindow *window);
 };
 
 #endif // GRAPHICS_H

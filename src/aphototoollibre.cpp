@@ -384,22 +384,7 @@ void APhotoToolLibre::setBWValueLabels()
 
 void APhotoToolLibre::showFileInfo()
 {
-    QString infoLine = QString("%1 %2 X %3")
-            .arg(values.originaFileName)
-            .arg(values.imageOriginal.width())
-            .arg(values.imageOriginal.height());
-    int width = values.filteredImageWidth;
-    int height = values.filteredImageHeight;
-    if (width != values.imageOriginal.width() || height != values.imageOriginal.height()) {
-        infoLine.append(QString(" - new size %1 X %2").arg(width).arg(height));
-    }
-    ui->infoLabel->setText(infoLine);
-    if (values.originaFileName.length() > 0) {
-        QString fileName = values.originaFileName.split("/").last();
-        setWindowTitle("A Photo Tool (Libre) - " + fileName);
-    } else {
-        setWindowTitle("A Photo Tool (Libre)");
-    }
+    Graphics::showFileInfo(values, ui->infoLabel, this);
 }
 
 void APhotoToolLibre::showPreviewImage()
@@ -506,30 +491,12 @@ void APhotoToolLibre::showSettings() {
 
 void APhotoToolLibre::writeSettings()
 {
-    QSettings settings("aphototoollibre", "config");
-
-    settings.beginGroup("Window");
-    settings.setValue("darkMode", appSettings.getDarkMode());
-    settings.endGroup();
-
-    settings.beginGroup("MainWindow");
-    settings.setValue("size", size());
-    settings.setValue("pos", pos());
-    settings.endGroup();
+    SettingsUtils::writeSettings(&appSettings, this);
 }
 
 void APhotoToolLibre::readSettings()
 {
-    QSettings settings("aphototoollibre", "config");
-
-    settings.beginGroup("Window");
-    appSettings.setDarkMode(settings.value("darkMode").toBool());
-    settings.endGroup();
-
-    settings.beginGroup("MainWindow");
-    resize(settings.value("size", QSize(1200, 600)).toSize());
-    move(settings.value("pos", QPoint(200, 200)).toPoint());
-    settings.endGroup();
+    SettingsUtils::readSettings(&appSettings, this);
 }
 
 UserSettingValues* APhotoToolLibre::getAppSettings()

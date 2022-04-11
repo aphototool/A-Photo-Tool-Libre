@@ -45,6 +45,7 @@ SOURCES += \
     imagelabel.cpp \
     imagelabelpainter.cpp \
     utils/backgroundcontrol.cpp \
+    utils/settingsutils.cpp \
     utils/timeutil.cpp \
     values/imagevalues.cpp \
     main.cpp \
@@ -82,6 +83,7 @@ HEADERS += \
     imagelabel.h \
     imagelabelpainter.h \
     utils/backgroundcontrol.h \
+    utils/settingsutils.h \
     utils/timeutil.h \
     values/imagevalues.h \
     optionsdialog.h \

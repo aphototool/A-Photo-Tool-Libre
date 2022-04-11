@@ -39,6 +39,7 @@
 #include "resizetoolui.h"
 #include "showimageevent.h"
 #include "utils/stylemode.h"
+#include "utils/settingsutils.h"
 #include "optionsdialog.h"
 #include "values/usersettingvalues.h"
 #include "utils/timeutil.h"

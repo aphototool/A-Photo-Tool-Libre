@@ -22,7 +22,7 @@
 #ifndef CONSTANTS_H
 #define CONSTANTS_H
 
-#define APTL_VERSION "1.0.2-1"
+#define APTL_VERSION "1.0.3-1"
 
 // Set max length of longer side of image to make
 // preview image processing faster
