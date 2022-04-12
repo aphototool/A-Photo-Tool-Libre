@@ -5,13 +5,14 @@ qtHaveModule(printsupport): QT += printsupport
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 # For use with Qt 6
-#CONFIG += c++11
+# CONFIG += c++11
 
 TARGET = aphototoollibre
 TEMPLATE = app
 CONFIG += warn_on
 
-# TRANSLATIONS = aphototoollibre_en_US.ts
+# TRANSLATIONS = i18n/aphototoollibre_en_US.ts
+# RESOURCES = i18n/aphototoollibre_en_US.qm
 
 DESTDIR = ../bin
 MOC_DIR = ../build/moc
