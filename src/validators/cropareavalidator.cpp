@@ -163,9 +163,9 @@ void CropAreaValidator::calculateCropFormatMultiplier() {
     }
     double displayMultiplier = std::max(w / h, h / w);
     if (w >= h - 0.0000000001) {
-        cropLocked->setText(QString("Locked %1 : 1").arg(displayMultiplier, 6, 'f', 3));
+        cropLocked->setText(QString("%1 %2 : 1").arg(QCoreApplication::translate("APhotoToolLibre", "Locked")).arg(displayMultiplier, 6, 'f', 3));
     } else {
-        cropLocked->setText(QString("Locked 1 : %1").arg(displayMultiplier, 6, 'f', 3));
+        cropLocked->setText(QString("%1 1 : %2").arg(QCoreApplication::translate("APhotoToolLibre", "Locked")).arg(displayMultiplier, 6, 'f', 3));
     }
 }
 

@@ -16,8 +16,7 @@
 
 namespace Ui { class MainWindow; }
 
-class ImageCreator : QObject
-{
+class ImageCreator {
 
 public:
     ImageCreator();

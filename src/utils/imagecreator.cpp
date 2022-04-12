@@ -49,6 +49,6 @@ void ImageCreator::backgroundFilterReady(WorkValues *workValues, Values *values,
         values->image = tempImage;
         ui->scrollArea->setWidgetResizable(true);
         Graphics::fitImage(values->image, *ui->imageLabel);
-        ui->previewLabel->setText(tr("View: Full Res"));
+        ui->previewLabel->setText(QCoreApplication::translate("APhotoToolLibre", "View: Full Res"));
     }
 }

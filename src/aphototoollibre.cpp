@@ -105,7 +105,7 @@ APhotoToolLibre::APhotoToolLibre(QWidget *parent)
 void APhotoToolLibre::closeEvent(QCloseEvent *event)
 {
     if (values.image.height() > 0 && values.imageModified) {
-        if (QMessageBox::No == QMessageBox(QMessageBox::Information, "Close Window?", "Close window and discard unsaved edits.", QMessageBox::Yes|QMessageBox::No, this).exec())
+        if (QMessageBox::No == QMessageBox(QMessageBox::Information, tr("Close Window?"), tr("Close window and discard unsaved edits."), QMessageBox::Yes|QMessageBox::No, this).exec())
         {
             event->ignore();
             return;
@@ -190,7 +190,7 @@ void APhotoToolLibre::onLoadImageButtonClicked()
 
 bool APhotoToolLibre::isLoadNewPhtoOk() {
     if (values.image.height() > 0 && values.imageModified) {
-        if (QMessageBox::No == QMessageBox(QMessageBox::Information, "Replace Image?", "Load new photo and discard unsaved edits.", QMessageBox::Yes|QMessageBox::No, this).exec())
+        if (QMessageBox::No == QMessageBox(QMessageBox::Information, tr("Replace Image?"), tr("Load new photo and discard unsaved edits."), QMessageBox::Yes|QMessageBox::No, this).exec())
         {
             return false;
         }

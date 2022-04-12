@@ -24,13 +24,14 @@
 
 #include <qlabel.h>
 #include <qradiobutton.h>
+#include <QCoreApplication>
 #include "../values/imagevalues.h"
 
 enum class CropCorner {None, TopLeft, TopRight, BottomLeft, BottomRight, Top, Bottom, Left, Right, InsideMove};
 enum class CropFormat {_Free, _1x1, _4x3, _3x2, _16x9, _Locked};
 
-class CropAreaValidator
-{
+class CropAreaValidator {
+
 public:
     CropAreaValidator(QLabel *imageLabel, QRadioButton *cropLocked, CropValues *newCropValues);
     void validateCropArea(CropFormat cropFormat, CropCorner cropCorner);
