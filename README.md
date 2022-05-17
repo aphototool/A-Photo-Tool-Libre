@@ -66,6 +66,13 @@ If you use Snap enter
 ```
 sudo snap remove aphototoollibre
 ```
+A configuration file is saved on your home directorys .config folder. Use 
+```
+cd ~/.config
+rm -R aphototoollibre
+```
+to delete configurations.
+
 
 ### BUILD INSTRUCTIONS
 
