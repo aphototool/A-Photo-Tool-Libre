@@ -45,7 +45,7 @@ gpg --recv-keys A970F7E40CB64F0D5B9FC516AFE56C2DF614820C
 
 6. Install build application.
 ```
-sudo pacman -U aphototoollibre-1.0.2-1-x86_64.pkg.tar.zst
+sudo pacman -U aphototoollibre-1.0.3-1-x86_64.pkg.tar.zst
 ```
 
 #### Tested environments
