@@ -1,6 +1,6 @@
 # Maintainer: Jari Ahola <aphototool@ahola.me>
 pkgname=aphototoollibre
-pkgver=1.0.2
+pkgver=1.0.3
 pkgrel=1
 pkgdesc="Photo editor for Linux"
 arch=('x86_64')
@@ -10,7 +10,7 @@ depends=('qt5-base>=5.15.2' 'hicolor-icon-theme')
 makedepends=()
 source=("$pkgname-$pkgver-$pkgrel-src.tar.gz::https://github.com/aphototool/A-Photo-Tool-Libre/archive/refs/tags/v$pkgver-$pkgrel.tar.gz"
 	"$pkgname-$pkgver-$pkgrel-src.tar.gz.asc::https://github.com/aphototool/A-Photo-Tool-Libre/releases/download/v$pkgver-$pkgrel/v$pkgver-$pkgrel.tar.gz.asc")
-sha256sums=('42f22e1c294c89704cd564365b2519981ef02f3c9b95f176c6d243fd6c420d98' 'SKIP')
+sha256sums=('8b7f913f48ce3701c5a500c33050e84e50b90df97d141d723117cddf13d8d06a' 'SKIP')
 validpgpkeys=('A970F7E40CB64F0D5B9FC516AFE56C2DF614820C')
 
 build() {
@@ -21,6 +21,6 @@ build() {
 
 package() {
 	cd "$srcdir/A-Photo-Tool-Libre-$pkgver-$pkgrel"
-        make INSTALL_ROOT="$pkgdir/" install
+	make INSTALL_ROOT="$pkgdir/" install
 }
 
