@@ -1,27 +1,27 @@
 ### How to Install (.deb for 64 bit Intel / AMD)
 
-1. Download aphototoollibre_1.0.2-1_amd64.deb (see [Releases](../../releases))
+1. Download aphototoollibre_1.0.3-1_amd64.deb (see [Releases](../../releases))
 
 2. You may check the file integrity (*this step is not required but is good for your safety*). 
 - Enter command
 ```
-sha256sum aphototoollibre_1.0.2-1_amd64.deb
+sha256sum aphototoollibre_1.0.3-1_amd64.deb
 ```
 - The result should be (*if not, do not install*)
 ```
-5bd820dc0d7b4c8c6926a2ef5761f2d95febf1637ba9c05350203da87daa4540  aphototoollibre_1.0.2-1_amd64.deb
+0ed87df4f33a0cb5caf9b1979cd1814e8f3e3b1e5e25c066643469f1669a3039  aphototoollibre_1.0.3-1_amd64.deb
 ```
 - You can compare the SHA256 message digest checksum at https://www.ahola.me/aphototoollibre.html to get additional confirmation.
 
 3. Use your favorite graphical package manager to install. For command line use
 ```
-sudo apt install ./aphototoollibre_1.0.2-1_amd64.deb
+sudo apt install ./aphototoollibre_1.0.3-1_amd64.deb
 ```
    - You may see error message at the end of otherwise successful installation about permission denied and performing as root. That is ok.
    - Package managers may show license as "proprietary". The license is actually GPLv3.
 
 #### Tested environments
-- Debian 11.2 (Gnome / KDE Plasma)
+- Debian 11.3 (Gnome / KDE Plasma)
 - Ubuntu Desktop 21.10
 - Kubuntu 21.10
 - Ubuntu MATE 21.10
