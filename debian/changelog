@@ -1,3 +1,13 @@
+aphototoollibre (1.0.3-1) UNRELEASED; urgency=low
+
+  [ Jari Ahola ]
+  * Automatic full resolution generation
+  * New darks and lights controls
+  * Dark theme
+  * Several fixes
+
+ -- aphototool <aphototool@ahola.me>  Tue, 17 May 2022 1:03:01 +0200
+
 aphototoollibre (1.0.2-1) UNRELEASED; urgency=low
 
   [ Jari Ahola ]
