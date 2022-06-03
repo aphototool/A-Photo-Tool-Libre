@@ -119,7 +119,7 @@ Pre-build .deb file was built on Debian 11.3 with Qt 5.15.2
 
 Snap store (at snapcraft.io) version was built with Qt 5.12.8 and uses downgraded source src_snap_for_qt_5.12.8.tar.xz
 
-- To be upgraded when base core22 (Ubuntu 22.04 LTS) is released
+- To be upgraded when base core22 (Ubuntu 22.04 LTS) and dependencies like kde-neon extension are released
 
 
 
