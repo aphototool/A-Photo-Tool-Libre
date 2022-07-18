@@ -73,8 +73,11 @@ bool OpenFile::loadFile(const QString &fileName)
 void OpenFile::setImage(const QImage &newImage)
 {
     image = newImage;
+
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 14, 0))
     if (image.colorSpace().isValid())
         image.convertToColorSpace(QColorSpace::SRgb);
+#endif
 }
 
 QString OpenFile::getFileName() {

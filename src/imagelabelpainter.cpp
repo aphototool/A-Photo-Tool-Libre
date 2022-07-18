@@ -33,8 +33,8 @@ ImageLabelPainter::~ImageLabelPainter()
 
 void ImageLabelPainter::paintOnLabel(QLabel *label, CropValues *cropValues) {
 
-    int imageW = label->pixmap().width();
-    int imageH = label->pixmap().height();
+    int imageW = getPixmapWidth(label->pixmap());
+    int imageH = getPixmapHeight(label->pixmap());
     int w = label->width();
     int h = label->height();
     int sectors = 5;

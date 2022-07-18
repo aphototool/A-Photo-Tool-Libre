@@ -56,6 +56,7 @@ protected:
 
 private:
     void useCropFormat();
+    void useCropFormat(int);
     void onCropButtonClicked();
     void onStraightenSliderValueChanged(int value);
     void rotatePreview(int angle);

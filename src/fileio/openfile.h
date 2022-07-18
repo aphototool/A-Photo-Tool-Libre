@@ -33,7 +33,10 @@
 #include <QStandardPaths>
 #include <QImageWriter>
 #include <QImage>
+
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 14, 0))
 #include <QColorSpace>
+#endif
 
 #include "basefile.h"
 #include "constants.h"

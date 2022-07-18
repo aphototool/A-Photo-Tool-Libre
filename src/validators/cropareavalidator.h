@@ -26,6 +26,7 @@
 #include <qradiobutton.h>
 #include <QCoreApplication>
 #include "../values/imagevalues.h"
+#include "utils/qpixmapversionedutils.h"
 
 enum class CropCorner {None, TopLeft, TopRight, BottomLeft, BottomRight, Top, Bottom, Left, Right, InsideMove};
 enum class CropFormat {_Free, _1x1, _4x3, _3x2, _16x9, _Locked};

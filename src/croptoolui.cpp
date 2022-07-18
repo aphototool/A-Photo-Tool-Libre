@@ -36,7 +36,13 @@ CropToolUi::CropToolUi(QMainWindow *mainWin, Ui::MainWindow *ui, Values *values,
     QObject::connect(ui->straightenSlider, &QSlider::valueChanged, this, &CropToolUi::onStraightenSliderValueChanged);
     QObject::connect(ui->useCropCheckBox, &QCheckBox::stateChanged, this, &CropToolUi::onUseCropCheckBoxClicked);
     ui->cropFrame->installEventFilter(this);
-    QObject::connect(ui->cropFormatButtonGroup, &QButtonGroup::buttonClicked, this, &CropToolUi::useCropFormat);
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 14, 0))
+    QObject::connect(ui->cropFormatButtonGroup, &QButtonGroup::buttonClicked, this, static_cast<void (CropToolUi::*)()>(&CropToolUi::useCropFormat));
+#else
+    QObject::connect(ui->cropFormatButtonGroup, static_cast<void(QButtonGroup::*)(int)>(&QButtonGroup::buttonClicked), [=](int id) {
+            emit useCropFormat(id);
+        });
+#endif
     ui->cropFree->setChecked(true);
     ui->cropFormatButtonGroup->setId(ui->cropFree, (int)CropFormat::_Free);
     ui->cropFormatButtonGroup->setId(ui->crop1to1, (int)CropFormat::_1x1);
@@ -115,15 +121,15 @@ void CropToolUi::mousePressEvent(QMouseEvent *event)
 {
     if (!ui->cropFrame->isVisible()) return;
 
-    imageXStart = (ui->imageLabel->width() - ui->imageLabel->pixmap().width()) / 2;
-    imageXEnd = cropXStart + ui->imageLabel->pixmap().width();
-    imageYStart = (ui->imageLabel->height() - ui->imageLabel->pixmap().height()) / 2;
-    imageYEnd = cropYStart + ui->imageLabel->pixmap().height();
+    imageXStart = (ui->imageLabel->width() - getPixmapWidth(ui->imageLabel->pixmap())) / 2;
+    imageXEnd = cropXStart + getPixmapWidth(ui->imageLabel->pixmap());
+    imageYStart = (ui->imageLabel->height() - getPixmapHeight(ui->imageLabel->pixmap())) / 2;
+    imageYEnd = cropYStart + getPixmapHeight(ui->imageLabel->pixmap());
 
-    cropXStart = (ui->imageLabel->width() - ui->imageLabel->pixmap().width()) / 2 + newCropValues->x1 * ui->imageLabel->pixmap().width();
-    cropXEnd = cropXStart + (newCropValues->x2 - newCropValues->x1) * ui->imageLabel->pixmap().width();
-    cropYStart = (ui->imageLabel->height() - ui->imageLabel->pixmap().height()) / 2 + newCropValues->y1 * ui->imageLabel->pixmap().height();
-    cropYEnd = cropYStart + (newCropValues->y2 - newCropValues->y1)  * ui->imageLabel->pixmap().height();
+    cropXStart = (ui->imageLabel->width() - getPixmapWidth(ui->imageLabel->pixmap())) / 2 + newCropValues->x1 * getPixmapWidth(ui->imageLabel->pixmap());
+    cropXEnd = cropXStart + (newCropValues->x2 - newCropValues->x1) * getPixmapWidth(ui->imageLabel->pixmap());
+    cropYStart = (ui->imageLabel->height() - getPixmapHeight(ui->imageLabel->pixmap())) / 2 + newCropValues->y1 * getPixmapHeight(ui->imageLabel->pixmap());
+    cropYEnd = cropYStart + (newCropValues->y2 - newCropValues->y1)  * getPixmapHeight(ui->imageLabel->pixmap());
 
     mousePresPos = event->pos();
     int xMouse = ui->imageLabel->mapFrom(mainWin, event->pos()).x();
@@ -160,8 +166,8 @@ void CropToolUi::mouseMoveEvent(QMouseEvent *event)
     int xMouse = ui->imageLabel->mapFrom(mainWin, event->pos()).x();
     int yMouse = ui->imageLabel->mapFrom(mainWin, event->pos()).y();
 
-    double width = (double)ui->imageLabel->pixmap().width();
-    double height = (double)ui->imageLabel->pixmap().height();
+    double width = (double)getPixmapWidth(ui->imageLabel->pixmap());
+    double height = (double)getPixmapHeight(ui->imageLabel->pixmap());
 
     switch (cropCorner) {
         case CropCorner::TopLeft:
@@ -241,6 +247,11 @@ void CropToolUi::onUseCropCheckBoxClicked(int state)
     newCropValues->useCrop = (bool)state;
     ui->cropFormatGroupBox->setEnabled(newCropValues->useCrop);
     ui->imageLabel->update();
+}
+
+void CropToolUi::useCropFormat(int)
+{
+    useCropFormat();
 }
 
 void CropToolUi::useCropFormat()

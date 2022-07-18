@@ -19,24 +19,37 @@
  *
  */
 
-#ifndef IMAGELABELPAINTER_H
-#define IMAGELABELPAINTER_H
+#ifndef QPIXMAPVERSIONEDUTILS_H
+#define QPIXMAPVERSIONEDUTILS_H
 
-#include <QLabel>
-#include <QPainter>
-#include <QtDebug>
-#include "filters/cropvalues.h"
-#include "utils/qpixmapversionedutils.h"
+#include <QPixmap>
 
-class ImageLabelPainter
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 14, 0))
+
+inline int getPixmapHeight(const QPixmap pixmap)
 {
-public:
-    ImageLabelPainter();
-    ~ImageLabelPainter();
-    void paintOnLabel(QLabel *label, CropValues *cropValues);
-private:
-    void paintGrid(QPainter *painter, int sectors, int width, int height);
-    void paintCropHandles(QPainter *painter, int x1, int y1, int x2, int y2);
-};
+    return pixmap.height();
+}
 
-#endif // IMAGELABELPAINTER_H
+
+inline int getPixmapWidth(const QPixmap pixmap)
+{
+    return pixmap.width();
+}
+
+#else
+
+inline int getPixmapHeight(const QPixmap *pixmap)
+{
+    return pixmap->height();
+}
+
+
+inline int getPixmapWidth(const QPixmap *pixmap)
+{
+    return pixmap->width();
+}
+
+#endif
+
+#endif // QPIXMAPVERSIONEDUTILS_H

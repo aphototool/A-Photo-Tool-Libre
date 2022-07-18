@@ -47,6 +47,7 @@ SOURCES += \
     imagelabelpainter.cpp \
     utils/backgroundcontrol.cpp \
     utils/imagecreator.cpp \
+    utils/qpixmapversionedutils.cpp \
     utils/settingsutils.cpp \
     utils/timeutil.cpp \
     values/imagevalues.cpp \
@@ -86,6 +87,7 @@ HEADERS += \
     imagelabelpainter.h \
     utils/backgroundcontrol.h \
     utils/imagecreator.h \
+    utils/qpixmapversionedutils.h \
     utils/settingsutils.h \
     utils/timeutil.h \
     values/imagevalues.h \

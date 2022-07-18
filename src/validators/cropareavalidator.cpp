@@ -187,6 +187,6 @@ double CropAreaValidator::getCropFormatMultiplier(CropFormat cropFormat) {
 }
 
 void CropAreaValidator::refreshImagePixmapSize() {
-    imagePixmapHeight = (double)imageLabel->pixmap().height();
-    imagePixmapWidth = (double)imageLabel->pixmap().width();
+    imagePixmapHeight = (double)getPixmapHeight(imageLabel->pixmap());
+    imagePixmapWidth = (double)getPixmapWidth(imageLabel->pixmap());
 }
