@@ -15,6 +15,7 @@ chmod a+x aphototoollibre_1.0.3-2_x86_64.AppImag
 
 AppImage should run on many reasonable recent Linux systems. Some tested environments are
 
+- Fedora 36 Workstation
 - Linux Mint 21 Cinnamon
 
 
