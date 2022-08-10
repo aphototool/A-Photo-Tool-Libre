@@ -67,6 +67,9 @@ If you use Snap enter
 ```
 sudo snap remove aphototoollibre
 ```
+If you use AppImage delete .AppImage file.
+
+
 A configuration is saved in your home directory in .config folder. Use 
 ```
 cd ~/.config
