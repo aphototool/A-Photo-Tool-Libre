@@ -7,7 +7,7 @@
 2. Use file manager to change permission "Allow executing file as program" or enter command 
 
 ```
-chmod a+x aphototoollibre_1.0.3-2_x86_64.AppImag
+chmod a+x aphototoollibre_1.0.3-2_x86_64.AppImage
 ```
 3. Run the program by double clicking.
 
