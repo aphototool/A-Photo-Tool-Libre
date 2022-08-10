@@ -124,8 +124,10 @@ Pre-build .deb file was built on Debian 11.3 with Qt 5.15.2
 Snap store (at snapcraft.io) version was built with Qt 5.12.8
 
 - To be upgraded when base core22 (Ubuntu 22.04 LTS) and dependencies like kde-neon extension are released
+- To build snap use snapcraft.yaml file located in snap folder and documentation available at [snapcraft.io](https://snapcraft.io/docs/snapcraft-overview) 
 
-Pre-build AppImage was built on Ubuntu 18.04 LTS with Qt 5.15.2 and packaged with [linuxdeployqt](https://github.com/probonopd/linuxdeployqt).
+Pre-build AppImage was built on Ubuntu 18.04 LTS with Qt 5.15.2 and packaged with [linuxdeployqt](https://github.com/probonopd/linuxdeployqt)
+- To build AppImage build release with Qt Creator and follow instructions at [linuxdeployqt](https://github.com/probonopd/linuxdeployqt/blob/master/README.md)
 
 
 
