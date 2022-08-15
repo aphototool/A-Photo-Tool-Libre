@@ -127,7 +127,7 @@ Snap store (at snapcraft.io) version was built with Qt 5.12.8
 - To create snap use snapcraft.yaml file located in snap folder and documentation available at [snapcraft.io](https://snapcraft.io/docs/snapcraft-overview) 
 
 Pre-build AppImage was built on Ubuntu 18.04 LTS with Qt 5.15.2 and packaged with [linuxdeployqt](https://github.com/probonopd/linuxdeployqt)
-- To create AppImage build release with Qt Creator and follow instructions at [linuxdeployqt](https://github.com/probonopd/linuxdeployqt/blob/master/README.md)
+- To create AppImage build release with Qt Creator and follow instructions at [linuxdeployqt](https://github.com/probonopd/linuxdeployqt/blob/master/README.md). See also folder [appimage](appimage)
 
 
 
