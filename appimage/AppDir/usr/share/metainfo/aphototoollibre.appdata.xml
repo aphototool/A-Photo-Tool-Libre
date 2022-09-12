@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+        <id>aphototoollibre</id>
+        <metadata_license>FSFAP</metadata_license>
+        <project_license>GPL-3.0</project_license>
+        <name>A Photo Tool (Libre)</name>
+        <summary>Easy to use photo editing software.</summary>
+        <description>
+                <p>Change exposure, contrast and color.</p>
+                <p>Turn color photos in to black and white images with control how color is handled.</p>
+                <p>Rotate, crop, straighten and resize photos.</p>
+        </description>
+        <launchable type="desktop-id">aphototoollibre.desktop</launchable>
+        <url type="homepage">https://www.ahola.me/aphototoollibre.html</url>
+        <screenshots>
+                <screenshot type="default">
+                        <image>https://github.com/aphototool/A-Photo-Tool-Libre/blob/main/pics/APhotoTool(Libre)ScreenShot.png?raw=true</image>
+                </screenshot>
+        </screenshots>
+        <provides>
+                <id>aphototoollibre.desktop</id>
+        </provides>
+</component>
