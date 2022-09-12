@@ -52,7 +52,7 @@ void Graphics::fitImage(const QImage &imageToFit, QLabel &imageLabel) {
     QPixmap p = QPixmap::fromImage(imageToFit);
     int w = imageLabel.width();
     int h = imageLabel.height();
-    imageLabel.setPixmap(p.scaled(w,h,Qt::KeepAspectRatio));
+    imageLabel.setPixmap(p.scaled(w,h,Qt::KeepAspectRatio,Qt::SmoothTransformation));
     imageLabel.setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
 }
 
