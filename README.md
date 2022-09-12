@@ -84,7 +84,7 @@ to delete configuration.
 
 #### Technical
 - Programming language C++
-- Framework Qt 5.15.2 (see https://www.qt.io/ and https://doc.qt.io/qt-5/lgpl.html and https://www.qt.io/licensing/open-source-lgpl-obligations)
+- Framework Qt 5.15.3 (see https://www.qt.io/ and https://doc.qt.io/qt-5/lgpl.html and https://www.qt.io/licensing/open-source-lgpl-obligations)
 
 #### Prerequisites
 - Basic knowledge of C++, Qt, QMake, GitHub and Linux development.
