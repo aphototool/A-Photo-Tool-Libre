@@ -119,7 +119,7 @@ pdebuild --debbuildopts -sa
 
 #### Special note
 
-Pre-build .deb file was built on Debian 11.3 with Qt 5.15.2
+Pre-build .deb file was built on Debian 11.5 with Qt 5.15.3
 
 Snap store (at snapcraft.io) version was built with Qt 5.12.8
 
