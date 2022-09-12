@@ -1,6 +1,6 @@
 ### How to Install (.AppImage for 64 bit Intel / AMD)
 
-1. Download aphototoollibre_1.0.3-2_x86_64.AppImage (see [Releases](../../releases))
+1. Download aphototoollibre_1.0.4-1_x86_64.AppImage (see [Releases](../../releases))
 
 - Good place to download is your AppImages or local bin folder. If you don't have one then create on. 
 
