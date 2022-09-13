@@ -75,7 +75,9 @@ A configuration is saved in your home directory in .config folder. Use
 cd ~/.config
 rm -R aphototoollibre
 ```
-to delete configuration.
+to delete configuration. 
+
+If you have snap installed then the .config folder may be located somewhere deeper under ~/snap/aphototoollibre/ hierarchy. Uninstalling (removing) snap should remove configuration as well.
 
 
 ### BUILD INSTRUCTIONS
