@@ -1,6 +1,6 @@
 ### How to Install (.deb for 64 bit Intel / AMD)
 
-1. Download aphototoollibre_1.0.3-2_amd64.deb (see [Releases](../../releases))
+1. Download aphototoollibre_1.0.4-1_amd64.deb (see [Releases](../../releases))
 
 2. You may check the file integrity (*this step is not required but is good for your safety*). 
 - Enter command
