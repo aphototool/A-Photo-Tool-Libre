@@ -3,7 +3,7 @@
   <id>aphototoollibre</id>
   
   <name>A Photo Tool (Libre)</name>
-  <summary>Photo editing tool for Linux</summary>
+  <summary>Photo editor for Linux</summary>
   
   <metadata_license>FSFAP</metadata_license>
   <project_license>GPL-3.0-or-later</project_license>
@@ -11,6 +11,10 @@
   <description>
     <p>
       Easy to use photo editing software.
+    </p>
+    <p>
+      Fix and modify your jpeg photos to look even greater.
+      Supports several other imageformats also.
     </p>
     <p>
       Change exposure, contrast and color.
@@ -42,7 +46,39 @@
   <provides>
     <mediatype>image/jpeg</mediatype>
     <mediatype>image/png</mediatype>
+    <id>aphototoollibre.desktop</id>
  </provides>
   
   <launchable type="desktop-id">aphototoollibre.desktop</launchable>
+
+  <url type="homepage">https://www.ahola.me/aphototoollibre.html</url>
+
+  <screenshots>
+    <screenshot type="default">
+      <caption>A Photo Tool (Libre) on Gnome desktop</caption>
+      <image>https://raw.githubusercontent.com/aphototool/A-Photo-Tool-Libre/main/pics/APhotoTool(Libre)Debian.png</image>
+    </screenshot>
+    <screenshot>
+      <caption>Light mode</caption>
+      <image>https://raw.githubusercontent.com/aphototool/A-Photo-Tool-Libre/main/pics/APhotoTool(Libre)LightModeScreenShot.png</image>
+    </screenshot>
+    <screenshot>
+      <caption>Dark mode</caption>
+      <image>https://raw.githubusercontent.com/aphototool/A-Photo-Tool-Libre/main/pics/APhotoTool(Libre)ScreenShot.png</image>
+    </screenshot>
+  </screenshots>
+
+  <releases>
+    <release version="1.0.4-2" date="2022-09-23">
+      <description>
+        <p>Fix to changing from dark to light mode</p>
+      </description>
+    </release>
+    <release version="1.0.4-1" date="2022-09-12">
+      <description>
+        <p>PNG image preview improvement</p>
+      </description>
+    </release>
+  </releases>
+
 </component>

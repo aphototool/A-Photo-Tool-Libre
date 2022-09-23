@@ -5,8 +5,8 @@ Name=A Photo Tool (Libre)
 Comment=Photo editing tool for Linux
 Categories=Graphics;Qt;
 Icon=aphototoollibre
-Exec=/usr/bin/aphototoollibre %f
-TryExec=/usr/bin/aphototoollibre
+Exec=aphototoollibre %f
+TryExec=aphototoollibre
 MimeType=image/jpeg;image/png;
 Terminal=false
 
