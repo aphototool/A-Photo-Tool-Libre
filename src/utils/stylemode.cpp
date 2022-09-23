@@ -56,13 +56,47 @@ void StyleMode::darkMode(QApplication *app, Ui::MainWindow *ui) {
     ui->scrollAreaWidgetContents->setStyleSheet("QWidget { background-color : #232323; }");
 }
 
-void StyleMode::lightMode(QApplication *app, Ui::MainWindow *ui) {
+void StyleMode::systemDefaulttMode(QApplication *app, Ui::MainWindow *ui) {
     app->setStyle("");
     app->setPalette(QPalette());
+
     ui->redSlider->setStyleSheet(getStyleSheetForColorSlider("red", "lightGray"));
     ui->greenSlider->setStyleSheet(getStyleSheetForColorSlider("green", "lightGray"));
     ui->blueSlider->setStyleSheet(getStyleSheetForColorSlider("blue", "lightGray"));
     ui->scrollAreaWidgetContents->setStyleSheet("QWidget { background-color : lightGray; }");
+}
+
+void StyleMode::lightMode(QApplication *app, Ui::MainWindow *ui) {
+    app->setStyle("Fusion");
+    QPalette light_palette = QPalette();
+    light_palette.setColor(QPalette::Window, QColor(239, 239, 239));
+    light_palette.setColor(QPalette::WindowText, Qt::black);
+    light_palette.setColor(QPalette::Disabled, QPalette::WindowText, QColor(190, 190, 190));
+    light_palette.setColor(QPalette::Base, Qt::white);
+    light_palette.setColor(QPalette::AlternateBase, QColor(247, 247, 247));
+    light_palette.setColor(QPalette::ToolTipBase, QColor(255, 255, 220));
+    light_palette.setColor(QPalette::ToolTipText, Qt::black);
+    light_palette.setColor(QPalette::Text, Qt::black);
+    light_palette.setColor(QPalette::Disabled, QPalette::Text, QColor(190, 190, 190));
+    light_palette.setColor(QPalette::Button, QColor(239, 239, 239));
+    // dark_palette.setColor(QPalette::Disabled, QPalette::Light, QColor(239, 239, 239));
+    light_palette.setColor(QPalette::ButtonText, Qt::black);
+    light_palette.setColor(QPalette::Disabled, QPalette::ButtonText, QColor(190, 190, 190));
+    light_palette.setColor(QPalette::BrightText, Qt::white);
+    light_palette.setColor(QPalette::Link, QColor(0, 0, 255));
+    light_palette.setColor(QPalette::Highlight, QColor(48, 140, 198));
+    light_palette.setColor(QPalette::HighlightedText, Qt::white);
+    light_palette.setColor(QPalette::Active, QPalette::Button, QColor(239, 239, 239));
+    app->setPalette(light_palette);
+
+    ui->redSlider->setStyleSheet(getStyleSheetForColorSlider("red", "lightGray"));
+    ui->greenSlider->setStyleSheet(getStyleSheetForColorSlider("green", "lightGray"));
+    ui->blueSlider->setStyleSheet(getStyleSheetForColorSlider("blue", "lightGray"));
+    ui->scrollAreaWidgetContents->setStyleSheet("QWidget { background-color : lightGray; }");
+}
+
+QString StyleMode::getColors(const QColor color) {
+    return QString::number(color.red()) + " " + QString::number(color.green()) + " " + QString::number(color.blue());
 }
 
 QString StyleMode::getStyleSheetForColorSlider(const QString fgColor, const QString bgColor) {

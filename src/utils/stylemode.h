@@ -24,6 +24,7 @@
 
 #include <QApplication>
 #include <QPalette>
+#include <QStyleFactory>
 
 namespace Ui { class MainWindow; }
 
@@ -33,9 +34,11 @@ public:
     StyleMode();
     static void darkMode(QApplication *app, Ui::MainWindow *ui);
     static void lightMode(QApplication *app, Ui::MainWindow *ui);
+    static void systemDefaulttMode(QApplication *app, Ui::MainWindow *ui);
 private:
     Ui::MainWindow *ui = nullptr;
     static QString getStyleSheetForColorSlider(const QString fgColor, const QString bgColor);
+    static QString getColors(const QColor color);
 };
 
 #endif // STYLEMODE_H
