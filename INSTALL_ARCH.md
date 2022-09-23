@@ -43,9 +43,9 @@ gpg --recv-keys A970F7E40CB64F0D5B9FC516AFE56C2DF614820C
 - then enter `makepkg -src` again to rebuild.
 - if you have trouble to find reason for build failure try `makepkg -s` for less crowded console log.
 
-6. Install build application.
+6. Install build application. Change X.X.X-Y below to the version number you are installing
 ```
-sudo pacman -U aphototoollibre-1.0.4-1-x86_64.pkg.tar.zst
+sudo pacman -U aphototoollibre-X.X.X-Y-x86_64.pkg.tar.zst
 ```
 
 #### Tested environments
