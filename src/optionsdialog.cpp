@@ -54,6 +54,7 @@ void OptionsDialog::useDarkMode(bool darkMode) {
     } else {
         StyleMode::lightMode(qApp, parent->getUi());
     }
+    SettingsUtils::writeSettings(parent->getAppSettings(), parent);
 }
 
 void OptionsDialog::prepareSettingsDialog(QMainWindow *newParentClass)
