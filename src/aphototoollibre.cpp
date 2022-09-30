@@ -213,6 +213,13 @@ void APhotoToolLibre::loadImage(QString fileName, QImage tempImage) {
 
 void APhotoToolLibre::onSaveButtonClicked()
 {
+    if (values.image.height() <= 0) {
+        if (QMessageBox::Close == QMessageBox(QMessageBox::Information, tr("Nothing to save"), tr("Load new photo to edit and then save."), QMessageBox::Close, this).exec())
+        {
+            return;
+        }
+    }
+
     QApplication::setOverrideCursor(Qt::WaitCursor);
     ui->previewLabel->setText("Working...");
     QTimer::singleShot(100, this, [this]() { saveFullResImage(); } );
@@ -445,6 +452,12 @@ bool APhotoToolLibre::event(QEvent *event)
 }
 
 void APhotoToolLibre::onPrintClicked() {
+    if (values.image.height() <= 0) {
+        if (QMessageBox::Close == QMessageBox(QMessageBox::Information, tr("Nothing to print"), tr("Load new photo to edit and print."), QMessageBox::Close, this).exec())
+        {
+            return;
+        }
+    }
     Print print;
     print.print(values.image);
 }
