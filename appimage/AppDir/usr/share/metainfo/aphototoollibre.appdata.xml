@@ -68,13 +68,14 @@
     </screenshot>
   </screenshots>
 
-  <releases>
-    <release version="1.0.4" date="2022-09-23">
-      <description>
-        <p>1.0.4-2 2022-09-23: Fix to changing from dark to light mode</p>
-        <p>1.0.4-1 2022-09-12: PNG image preview improvement</p>
-      </description>
-    </release>
-  </releases>
+<releases>
+  <release version="1.0.4" date="2022-09-23">
+    <description>
+      <p>1.0.4-3 2022-09-30: Fix to apply changed dark/light mode to new windows</p>
+      <p>1.0.4-2 2022-09-23: Fix to changing from dark to light mode</p>
+      <p>1.0.4-1 2022-09-12: PNG image preview improvement</p>
+    </description>
+  </release>
+</releases>
 
 </component>

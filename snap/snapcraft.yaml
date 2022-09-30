@@ -32,4 +32,3 @@ parts:
       - libqt5widgets5 
       - libqt5core5a
       - libqt5printsupport5
-
