@@ -88,7 +88,7 @@ If you have snap installed then the .config folder may be located somewhere deep
 
 #### Technical
 - Programming language C++
-- Framework Qt 5.15.3 (see https://www.qt.io/ and https://doc.qt.io/qt-5/lgpl.html and https://www.qt.io/licensing/open-source-lgpl-obligations)
+- Framework Qt 5.15.2 (see https://www.qt.io/ and https://doc.qt.io/qt-5/lgpl.html and https://www.qt.io/licensing/open-source-lgpl-obligations)
 
 #### Prerequisites
 - Basic knowledge of C++, Qt, QMake, GitHub and Linux development.
@@ -125,7 +125,7 @@ pdebuild --debbuildopts -sa
 
 #### Special note
 
-Pre-build .deb file was built on Debian 11.5 with Qt 5.15.3
+Pre-build .deb file was built on Debian 11.5 with Qt 5.15.2
 
 Snap store (at snapcraft.io) version was built with Qt 5.12.8
 
