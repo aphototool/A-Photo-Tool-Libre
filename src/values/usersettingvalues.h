@@ -31,8 +31,12 @@ public:
     bool getDarkMode() const;
     void setDarkMode(bool newDarkMode);
 
+    bool getFirstUse() const;
+    void setFirstUse(bool newFirstUse);
+
 private:
     bool darkMode = false;
+    bool firstUse = false;
 };
 
 #endif // USERSETTINGVALUES_H

@@ -11,6 +11,7 @@ void SettingsUtils::writeSettings(UserSettingValues *appSettings, QMainWindow *w
 
     settings.beginGroup("Window");
     settings.setValue("darkMode", appSettings->getDarkMode());
+    settings.setValue("firstUse", false);
     settings.endGroup();
 
     settings.beginGroup("MainWindow");
@@ -25,6 +26,7 @@ void SettingsUtils::readSettings(UserSettingValues *appSettings, QMainWindow *wi
 
     settings.beginGroup("Window");
     appSettings->setDarkMode(settings.value("darkMode").toBool());
+    appSettings->setFirstUse(settings.value("firstUse", true).toBool());
     settings.endGroup();
 
     settings.beginGroup("MainWindow");

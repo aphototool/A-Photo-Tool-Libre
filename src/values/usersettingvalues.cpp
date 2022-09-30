@@ -35,3 +35,13 @@ void UserSettingValues::setDarkMode(bool newDarkMode)
 {
     darkMode = newDarkMode;
 }
+
+bool UserSettingValues::getFirstUse() const
+{
+    return firstUse;
+}
+
+void UserSettingValues::setFirstUse(bool newFirstUse)
+{
+    firstUse = newFirstUse;
+}

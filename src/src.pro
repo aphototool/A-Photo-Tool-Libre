@@ -106,6 +106,10 @@ FORMS += \
     aphototoollibre.ui \
     optionsdialog.ui
 
+
+RESOURCES += \
+    aphototoollibre.qrc
+
 unix: {
 
 target.path = /usr/bin/
@@ -130,3 +134,4 @@ INSTALLS += unix_metainfo
 }
 
 # END
+

@@ -85,6 +85,11 @@ APhotoToolLibre::APhotoToolLibre(QWidget *parent)
         StyleMode::lightMode(qApp, ui);
     }
 
+    if (appSettings.getFirstUse()) {
+        QImage *welcomeImage = new QImage(":/resources/Welcome.png");
+        QTimer::singleShot(250, this, [welcomeImage, this]() { showImage(*welcomeImage); } );
+    }
+
     QStringList args = qApp->arguments();
     for (int i = 0; i < args.size(); i++) {
         QString arg = args.at(i);
