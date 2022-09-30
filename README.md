@@ -73,6 +73,8 @@ If you use AppImage delete .AppImage file.
 A configuration is saved in your home directory in .config folder. Use 
 ```
 cd ~/.config
+```
+```
 rm -R aphototoollibre
 ```
 to delete configuration. 
@@ -115,6 +117,8 @@ pbuilder --create
 - Go to aphototoollibre-x.x.x folder and run
 ```
 dh_make -e your_email -f ../aphototoollibre_x.x.x.tar.xz -s -c gpl3
+```
+```
 pdebuild --debbuildopts -sa
 ```
 - **aphototoollibre_x.x.x-y_amd64.deb** file is created on **pbuilder/result** folder
