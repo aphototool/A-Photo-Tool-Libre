@@ -63,13 +63,13 @@
       <image>https://raw.githubusercontent.com/aphototool/A-Photo-Tool-Libre/main/pics/APhotoTool(Libre)LightModeScreenShot.png</image>
     </screenshot>
     <screenshot>
-      <caption>Dark mode</caption>
-      <image>https://raw.githubusercontent.com/aphototool/A-Photo-Tool-Libre/main/pics/APhotoTool(Libre)ScreenShot.png</image>
+      <caption>Crop tool</caption>
+      <image>https://raw.githubusercontent.com/aphototool/A-Photo-Tool-Libre/main/pics/APhotoTool(Libre)ToolsScreenShot.png</image>
     </screenshot>
   </screenshots>
 
   <releases>
-    <release version="1.0.4" date="2022-09-23">
+    <release version="1.0.4" date="2022-09-30">
       <description>
         <p>1.0.4-3 2022-09-30: Fix to apply changed dark/light mode to new windows</p>
         <p>1.0.4-2 2022-09-23: Fix to changing from dark to light mode</p>
