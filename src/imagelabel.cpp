@@ -22,7 +22,7 @@
 
 ImageLabel::ImageLabel(QWidget* parent) : QLabel(parent)
 {
-
+    setAcceptDrops(true);
 }
 
 void ImageLabel::paintEvent(QPaintEvent *event)
@@ -30,4 +30,32 @@ void ImageLabel::paintEvent(QPaintEvent *event)
     QLabel::paintEvent(event);
 
     if (imageLabelPainter != nullptr) imageLabelPainter->paintOnLabel(this, cropValues);
+}
+
+void ImageLabel::setLoadImageFunction(APhotoToolLibre *mainWinodw) {
+    this->mainWindow = mainWinodw;
+}
+
+void ImageLabel::dragEnterEvent(QDragEnterEvent *event)
+{
+    if (event->mimeData()->hasImage()) {
+        event->acceptProposedAction();
+    } else if (event->mimeData()->hasUrls()) {
+        event->acceptProposedAction();
+    }
+}
+
+void ImageLabel::dropEvent(QDropEvent *event)
+{
+    if (event->mimeData()->hasImage()) {
+        QImage image = event->mimeData()->imageData().value<QImage>();
+        mainWindow->onDropImage(image);
+        event->acceptProposedAction();
+    } else if (event->mimeData()->hasUrls()) {
+        QUrl url = event->mimeData()->urls().first();
+        if (url.isLocalFile()) {
+            mainWindow->loadImage(url.toLocalFile());
+            event->acceptProposedAction();
+        }
+    }
 }

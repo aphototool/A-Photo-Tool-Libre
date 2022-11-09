@@ -28,6 +28,9 @@
 #include <QSettings>
 #include <QFuture>
 #include <QtConcurrent/QtConcurrentRun>
+#include <QClipboard>
+#include <QMimeData>
+#include <QMenu>
 #include "constants.h"
 #include "fileio/openfile.h"
 #include "fileio/savefile.h"
@@ -73,9 +76,15 @@ public:
 
     bool event(QEvent *event);
 
+    void onDropImage(QImage droppedImage);
+    void loadImage(const QString filename);
+
     UserSettingValues* getAppSettings();
 
     Ui::MainWindow *getUi() const;
+
+private slots:
+    void onClipboardChange();
 
 private:
     void onLoadImageButtonClicked();
@@ -101,7 +110,11 @@ private:
     void onGreenSliderValueChanged(int value);
     void onBlueSliderValueChanged(int value);
 
-    void loadImage(const QString filename);
+    void onClippoardCopy();
+    void onClippoardPaste();
+
+    void checkForUpdates();
+
     void loadImage(QString fileName, QImage tempImage);
     void saveFullResImage();
     bool isLoadNewPhtoOk();

@@ -23,6 +23,9 @@
 #define IMAGELABEL_H
 
 #include <QLabel>
+#include <QDragEnterEvent>
+#include <QMimeData>
+#include "aphototoollibre.h"
 #include "imagelabelpainter.h"
 #include "filters/cropvalues.h"
 
@@ -33,8 +36,17 @@ public:
     ImageLabelPainter* imageLabelPainter = nullptr;
     CropValues *cropValues = nullptr;
 
+    void setLoadImageFunction(APhotoToolLibre *parent);
+    void setLoadImageFunction(void (APhotoToolLibre::*)(QImage));
+
 protected:
     void paintEvent(QPaintEvent* event);
+    void dragEnterEvent(QDragEnterEvent *event);
+    void dropEvent(QDropEvent *event);
+
+private:
+    void loadImage(QString fileName, QImage image);
+    APhotoToolLibre* mainWindow;
 };
 
 #endif // IMAGELABEL_H

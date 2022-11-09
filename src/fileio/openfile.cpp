@@ -54,7 +54,7 @@ bool OpenFile::loadFile(const QString &fileName)
     reader.setAutoTransform(true);
     const QImage newImage = reader.read();
     if (newImage.isNull()) {
-        QMessageBox::information(this, QGuiApplication::applicationDisplayName(),
+        QMessageBox::information(parentWidget(), QGuiApplication::applicationDisplayName(),
                                  tr("Cannot load %1: %2")
                                  .arg(QDir::toNativeSeparators(fileName), reader.errorString()));
         return false;

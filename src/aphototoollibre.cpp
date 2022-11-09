@@ -21,6 +21,7 @@
 
 #include "aphototoollibre.h"
 #include "./ui_aphototoollibre.h"
+#include "qobjectdefs.h"
 
 APhotoToolLibre::APhotoToolLibre(QWidget *parent)
     : QMainWindow(parent)
@@ -36,6 +37,12 @@ APhotoToolLibre::APhotoToolLibre(QWidget *parent)
     QObject::connect(ui->actionSave, &QAction::triggered, this, &APhotoToolLibre::onSaveButtonClicked);
     QObject::connect(ui->actionPrint, &QAction::triggered, this, &APhotoToolLibre::onPrintClicked);
     QObject::connect(ui->actionCloseWindow, &QAction::triggered, this, &APhotoToolLibre::onCloseWindowClicked);
+
+    connect(QApplication::clipboard(), SIGNAL(dataChanged()),
+            this, SLOT(onClipboardChange()));
+    QObject::connect(ui->actionCopy, &QAction::triggered, this, &APhotoToolLibre::onClippoardCopy);
+    QObject::connect(ui->actionPaste, &QAction::triggered, this, &APhotoToolLibre::onClippoardPaste);
+
     QObject::connect(ui->resetExposureButton, &QPushButton::clicked, this, &APhotoToolLibre::onResetExposureClicked);
     QObject::connect(ui->resetColorsButton, &QPushButton::clicked, this, &APhotoToolLibre::onResetColorsClicked);
     QObject::connect(ui->brightnessSlider, &QSlider::valueChanged, this, &APhotoToolLibre::onBrightnessSliderValueChanged);
@@ -57,6 +64,8 @@ APhotoToolLibre::APhotoToolLibre(QWidget *parent)
     QMenu *helpMenu = menuBar()->addMenu(tr("&Help"));
     helpMenu->addAction(tr("&About"), this, &APhotoToolLibre::about);
     helpMenu->addAction(tr("About &Qt"), this, &QApplication::aboutQt);
+    helpMenu->addSeparator();
+    helpMenu->addAction(tr("Check for Updates..."), this, &APhotoToolLibre::checkForUpdates);
 
 #if defined(QT_PRINTSUPPORT_LIB) && QT_CONFIG(printdialog)
     ui->actionPrint->setEnabled(true);
@@ -73,6 +82,7 @@ APhotoToolLibre::APhotoToolLibre(QWidget *parent)
     ui->imageLabel->setBackgroundRole(QPalette::Base);
     ui->imageLabel->setSizePolicy(QSizePolicy::Ignored, QSizePolicy::Ignored);
     ui->imageLabel->setScaledContents(false);
+    ui->imageLabel->setLoadImageFunction(this);
 
     ui->scrollArea->setBackgroundRole(QPalette::Dark);
 
@@ -141,6 +151,7 @@ void APhotoToolLibre::resetValues() {
     // Set imageModified to false after other settings
     // to avoid unwanted state changes by slider resets.
     values.imageModified = false;
+    onClipboardChange();
 }
 
 void APhotoToolLibre::resizeEvent(QResizeEvent* event)
@@ -209,6 +220,7 @@ void APhotoToolLibre::loadImage(QString fileName, QImage tempImage) {
     showFullResolutionImage();
     values.originaFileName = fileName;
     showFileInfo();
+    onClipboardChange();
 }
 
 void APhotoToolLibre::onSaveButtonClicked()
@@ -460,6 +472,80 @@ void APhotoToolLibre::onPrintClicked() {
     }
     Print print;
     print.print(values.image);
+}
+
+void APhotoToolLibre::onClipboardChange() {
+    const QClipboard *clipboard = QApplication::clipboard();
+    const QMimeData *mimeData = clipboard->mimeData();
+    ui->actionPaste->setEnabled(mimeData->hasImage() || mimeData->hasUrls());
+    ui->actionCopy->setEnabled(values.image.height() > 0);
+}
+
+void APhotoToolLibre::onClippoardCopy() {
+    if (values.image.height() <= 0) {
+        if (QMessageBox::Close == QMessageBox(QMessageBox::Information, tr("Nothing to copy"), tr("Load new photo to edit and copy."), QMessageBox::Close, this).exec())
+        {
+            return;
+        }
+    }
+    QClipboard *clipboard = QApplication::clipboard();
+    QPixmap pixmap = QPixmap::fromImage(values.image);
+    clipboard->setPixmap(pixmap, QClipboard::Clipboard);
+}
+
+void APhotoToolLibre::onClippoardPaste() {
+
+    const QClipboard *clipboard = QApplication::clipboard();
+    const QMimeData *mimeData = clipboard->mimeData();
+    if (mimeData->hasUrls()) {
+        QUrl url = mimeData->urls().constFirst();
+        if (url.isLocalFile()) {
+            loadImage(url.toLocalFile());
+            return;
+        }
+    }
+    if (mimeData->hasImage()) {
+        const QPixmap pixmap = qvariant_cast<QPixmap>(mimeData->imageData());
+        QImage tempImage = pixmap.toImage();
+        if (tempImage.format() == QImage::Format_Invalid) return;
+        if (isLoadNewPhtoOk()) {
+            loadImage("image_copy", tempImage);
+        }
+    }
+
+}
+
+void APhotoToolLibre::onDropImage(QImage droppedImage) {
+    if (isLoadNewPhtoOk()) {
+        if (droppedImage.format() == QImage::Format_Invalid) return;
+        loadImage("image_copy", droppedImage);
+    }
+}
+
+void APhotoToolLibre::checkForUpdates() {
+    QString path = qApp->applicationDirPath();
+    QMessageBox msgBox;
+    msgBox.setTextFormat(Qt::RichText);
+    msgBox.setWindowTitle(tr("Check for Updates"));
+    QString text = "";
+    if (path.contains("/snap/")) {
+        text.append("Looks like you are running Snap release. ");
+        text.append("Snaps are normally updated automatically.");
+        text.append("<br /><br />");
+    }
+    text.append("You are currenty running version <b>");
+    text.append(APTL_VERSION);
+    text.append("</b> of A Photo Tool (Libre).");
+    text.append("<br /><br />");
+    text.append("You can check latest released version at GitHub.");
+    text.append("<br /><br />");
+    text.append("<a href='https://github.com/aphototool/A-Photo-Tool-Libre/releases'>https://github.com/aphototool/A-Photo-Tool-Libre/releases</a>");
+    text.append("<br />");
+    msgBox.setText(text);
+    msgBox.setStandardButtons(QMessageBox::Ok);
+    if (msgBox.exec()) {
+        return;
+    }
 }
 
 void APhotoToolLibre::showSettings() {
