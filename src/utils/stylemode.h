@@ -35,8 +35,8 @@ public:
     static void darkMode(QApplication *app, Ui::MainWindow *ui);
     static void lightMode(QApplication *app, Ui::MainWindow *ui);
     static void systemDefaulttMode(QApplication *app, Ui::MainWindow *ui);
+
 private:
-    Ui::MainWindow *ui = nullptr;
     static QString getStyleSheetForColorSlider(const QString fgColor, const QString bgColor);
     static QString getColors(const QColor color);
 };
