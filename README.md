@@ -39,8 +39,8 @@ sudo snap install aphototoollibre
 
 Otherwise follow correct instructions below:
 
-- [How to Install (.deb for 64 bit Intel / AMD)](INSTALL_DEBIAN.md).
-- [How to Install (Arch User Repository (AUR) for 64 bit Intel / AMD)](INSTALL_ARCH.md).
+- [How to Install (.deb for 64 bit Intel / AMD and ARM)](INSTALL_DEBIAN.md).
+- [How to Install (Arch User Repository (AUR) for 64 bit Intel / AMD and ARM)](INSTALL_ARCH.md).
 - [How to Install (AppImage for 64 bit Intel / AMD)](INSTALL_APPIMAGE.md).
 
 

@@ -1,4 +1,4 @@
-### How to Install (Arch User Repository (AUR) for 64 bit Intel / AMD)
+### How to Install (Arch User Repository (AUR) for 64 bit Intel / AMD and ARM)
 
 A Photo Tool (Libre) is in the AUR repository https://aur.archlinux.org/packages/aphototoollibre.
 
@@ -47,9 +47,14 @@ gpg --recv-keys A970F7E40CB64F0D5B9FC516AFE56C2DF614820C
 ```
 sudo pacman -U aphototoollibre-X.X.X-Y-x86_64.pkg.tar.zst
 ```
+   or for ARM architecture
+```
+sudo pacman -U aphototoollibre-X.X.X-Y-aarch64.pkg.tar.zst
+```
 
 #### Tested environments
 - Arch Linux (KDE Plasma and Gnome)
+- Manjaro (KDE Plasma on Raspberry Pi 400)
 
 Absolutely **no** guarantee is given that this app will work on any tested or untested environment.
 
