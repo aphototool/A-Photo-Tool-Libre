@@ -4,6 +4,13 @@ A Snap version of A Photo Tool (Libre) can be installed from Snap Store.
 If you run Ubuntu or have installed Snap Store App search the app from there or goto Snap Store web page https://snapcraft.io/aphototoollibre.
 There you can find instructions for several Linux distributions.
 
+
+&nbsp;&nbsp; [![Get it from the Snap Store](https://snapcraft.io/static/images/badges/en/snap-store-white.svg)](https://snapcraft.io/aphototoollibre)
+
+
+***
+
+
 Here are simple instructions for **Raspberry Pi** running latest Raspberry Pi OS. 
 Detailed info is here https://snapcraft.io/docs/installing-snap-on-raspbian.
 
