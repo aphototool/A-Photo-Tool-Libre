@@ -35,6 +35,7 @@ snap install aphototoollibre
 
 
 
+
 Absolutely **no** guarantee is given that this app will work on any tested or untested environment.
 
 **This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of
