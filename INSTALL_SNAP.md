@@ -38,7 +38,7 @@ snap install aphototoollibre
 
 5. Logout and login to get your menu updated.
 
-6. Launch A Photo Tool (Libre) from desktop menu under gategory Graphics.
+6. Launch A Photo Tool (Libre) from desktop menu under category Graphics.
 
 
 
