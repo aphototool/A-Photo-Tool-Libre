@@ -1,7 +1,7 @@
 ### How to Install (Snap for 64 bit Intel / AMD or 64 bit ARM)
 
 A Snap version of A Photo Tool (Libre) can be installed from Snap Store. 
-If you run Ubuntu or have installed Snap Store App search the app from there or goto Snap Store web page https://snapcraft.io/aphototoollibre.
+If you run Ubuntu or have installed Snap Store App search the app from there or go to Snap Store web page https://snapcraft.io/aphototoollibre.
 There you can find instructions for several Linux distributions.
 
 
