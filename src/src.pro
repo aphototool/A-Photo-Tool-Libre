@@ -43,6 +43,7 @@ SOURCES += \
     filters/resizefilter.cpp \
     filters/rotateanyanglefilter.cpp \
     filters/saturationfilter.cpp \
+    filters/tintfilter.cpp \
     imagelabel.cpp \
     imagelabelpainter.cpp \
     utils/backgroundcontrol.cpp \
@@ -83,6 +84,7 @@ HEADERS += \
     filters/resizefilter.h \
     filters/rotateanyanglefilter.h \
     filters/saturationfilter.h \
+    filters/tintfilter.h \
     imagelabel.h \
     imagelabelpainter.h \
     utils/backgroundcontrol.h \

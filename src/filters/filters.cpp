@@ -48,6 +48,9 @@ QImage Filters::applyFilters(const QImage &imageToFilter, const FilterValues &fi
     if (filterValues.colorTemperature != 0.0) {
         tempImage = ColorTemperatureFilter().changeColorTemperature(tempImage, filterValues.colorTemperature);
     }
+    if (filterValues.tintValue != 0.0) {
+        tempImage = TintFilter().changeTint(tempImage, filterValues.tintValue);
+    }
     if (filterValues.enableBW && (filterValues.redDelta > 0.0 || filterValues.greenDelta > 0.0 || filterValues.blueDelta > 0.0)) {
         tempImage = BWFilter().toBAndW(tempImage, filterValues.redDelta, filterValues.greenDelta, filterValues.blueDelta);
     }

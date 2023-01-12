@@ -1,7 +1,7 @@
 /*
  * A Photo Tool (Libre)
  *
- * Copyright © 2021-2022 Jari Ahola
+ * Copyright © 2021-2023 Jari Ahola
  * GNU General Public License (GPLv3)
  *
  * This program is free software: you can redistribute it and/or modify
@@ -52,6 +52,7 @@ APhotoToolLibre::APhotoToolLibre(QWidget *parent)
     QObject::connect(ui->saturationSlider, &QSlider::valueChanged, this, &APhotoToolLibre::onSaturationSliderValueChanged);
     QObject::connect(ui->hueSlider, &QSlider::valueChanged, this, &APhotoToolLibre::onHueSliderValueChanged);
     QObject::connect(ui->colorTemperatureSlider, &QSlider::valueChanged, this, &APhotoToolLibre::onColorTemperatureSliderValueChanged);
+    QObject::connect(ui->tintSlider, &QSlider::valueChanged, this, &APhotoToolLibre::onTintSliderValueChanged);
     QObject::connect(ui->naturalButton, &QPushButton::clicked, this, &APhotoToolLibre::onNaturalButtonClicked);
     QObject::connect(ui->panchromaticButton, &QPushButton::clicked, this, &APhotoToolLibre::onPanchromaticButtonClicked);
     QObject::connect(ui->enableBWCheckBox, &QCheckBox::stateChanged, this, &APhotoToolLibre::onEnableBWCheckBoxStateChanged);
@@ -260,6 +261,7 @@ void APhotoToolLibre::onResetColorsClicked()
     values.filterValues.saturation = 0.0;
     values.filterValues.hue = 0.0;
     values.filterValues.colorTemperature = 0.0;
+    values.filterValues.tintValue = 0.0;
     setColorSliders();
     showPreviewImage();
 }
@@ -362,6 +364,13 @@ void APhotoToolLibre::onColorTemperatureSliderValueChanged(int value)
     showPreviewImage();
 }
 
+void APhotoToolLibre::onTintSliderValueChanged(int value)
+{
+    values.filterValues.tintValue = float(value);
+    values.imageModified = true;
+    showPreviewImage();
+}
+
 void APhotoToolLibre::setExposureSliders()
 {
     ui->brightnessSlider->setValue(values.filterValues.brightness);
@@ -375,6 +384,7 @@ void APhotoToolLibre::setColorSliders()
     ui->saturationSlider->setValue(values.filterValues.saturation);
     ui->hueSlider->setValue(values.filterValues.hue);
     ui->colorTemperatureSlider->setValue(values.filterValues.colorTemperature);
+    ui->tintSlider->setValue(values.filterValues.tintValue);
 }
 
 void APhotoToolLibre::setBWSliders() {
@@ -580,7 +590,7 @@ void APhotoToolLibre::about()
 {
     QMessageBox::about(this, tr("About A Photo Tool (Libre) version ") + APTL_VERSION,
                        tr("<p>The <b>A Photo Tool (Libre)</b> is a photo editing application.</p>"
-                          "<p>Copyright &copy; 2021-2022 Jari Ahola</p>"
+                          "<p>Copyright &copy; 2021-2023 Jari Ahola</p>"
                           "<p>Released under GNU General Public License version 3 (GPLv3)</p>"
                           "<p>See license text <a href=\"https://www.gnu.org/licenses/gpl-3.0-standalone.html\">here at gnu.org</a>.</p>"
                           "<p>The program is provided AS IS with NO WARRANTY OF ANY KIND, "

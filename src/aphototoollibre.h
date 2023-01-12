@@ -106,6 +106,7 @@ private:
     void onSaturationSliderValueChanged(int value);
     void onHueSliderValueChanged(int value);
     void onColorTemperatureSliderValueChanged(int value);
+    void onTintSliderValueChanged(int value);
     void onRedSliderValueChanged(int value);
     void onGreenSliderValueChanged(int value);
     void onBlueSliderValueChanged(int value);

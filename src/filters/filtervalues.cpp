@@ -37,6 +37,7 @@ FilterValues* FilterValues::copy()
     c->saturation = saturation;
     c->hue = hue;
     c->colorTemperature = colorTemperature;
+    c->tintValue = tintValue;
 
     c->enableBW = enableBW;
     c->redDelta = redDelta;

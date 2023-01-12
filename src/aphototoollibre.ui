@@ -105,8 +105,8 @@
              <rect>
               <x>0</x>
               <y>0</y>
-              <width>1249</width>
-              <height>889</height>
+              <width>1203</width>
+              <height>873</height>
              </rect>
             </property>
             <layout class="QVBoxLayout" name="verticalLayout_8">
@@ -376,6 +376,23 @@
                 </item>
                 <item>
                  <widget class="QSlider" name="colorTemperatureSlider">
+                  <property name="minimum">
+                   <number>-99</number>
+                  </property>
+                  <property name="orientation">
+                   <enum>Qt::Horizontal</enum>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QLabel" name="label_17">
+                  <property name="text">
+                   <string>Tint</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QSlider" name="tintSlider">
                   <property name="minimum">
                    <number>-99</number>
                   </property>
@@ -1147,7 +1164,7 @@
      <x>0</x>
      <y>0</y>
      <width>1706</width>
-     <height>22</height>
+     <height>24</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">

@@ -32,6 +32,7 @@
 #include "saturationfilter.h"
 #include "huefilter.h"
 #include "colortemperaturefilter.h"
+#include "tintfilter.h"
 #include "rotateanyanglefilter.h"
 #include "cropfilter.h"
 #include "resizefilter.h"

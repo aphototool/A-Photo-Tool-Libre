@@ -39,6 +39,7 @@ public:
     float saturation = 0.0;
     float hue = 0.0;
     float colorTemperature = 0.0;
+    float tintValue = 0.0;
 
     bool enableBW = false;
     float redDelta = 30.0;
