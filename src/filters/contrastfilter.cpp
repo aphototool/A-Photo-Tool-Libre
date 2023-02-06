@@ -19,7 +19,6 @@
  *
  */
 
-
 #include "contrastfilter.h"
 
 ContrastFilter::ContrastFilter()

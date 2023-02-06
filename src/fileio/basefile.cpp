@@ -19,7 +19,6 @@
  *
  */
 
-
 #include "basefile.h"
 
 BaseFile::BaseFile(QWidget *parent) : QWidget(parent)
