@@ -29,7 +29,6 @@ class BWFilter
 {
 public:
     BWFilter();
-    QImage toBAndW(const QImage &image);
     QImage toBAndW(const QImage &image, float rd, float gd, float bd);
 };
 

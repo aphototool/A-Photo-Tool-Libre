@@ -26,18 +26,6 @@ BWFilter::BWFilter()
 
 }
 
-QImage BWFilter::toBAndW(const QImage &image) {
-    QImage newImage = image.copy();
-    for(int y = 0; y<newImage.height(); y++){
-        QRgb * line = (QRgb *)image.scanLine(y);
-        for(int x = 0; x<newImage.width(); x++){
-            int average = (qRed(line[x]) + qGreen(line[x]) + qBlue(line[x]))/3;
-            newImage.setPixel(x,y, qRgb(average, average, average));
-        }
-    }
-    return newImage;
-}
-
 QImage BWFilter::toBAndW(const QImage &image, float rd, float gd, float bd) {
     QImage newImage = image.copy();
     float total = rd + gd + bd;
