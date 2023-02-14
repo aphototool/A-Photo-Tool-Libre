@@ -14,11 +14,6 @@ CONFIG += warn_on
 # TRANSLATIONS = i18n/aphototoollibre_en_US.ts
 # RESOURCES = i18n/aphototoollibre_en_US.qm
 
-DESTDIR = ../bin
-MOC_DIR = ../build/moc
-RCC_DIR = ../build/rcc
-UI_DIR = ../build/ui
-
 target.path = $$[PREFIX] 
 
 # You can make your code fail to compile if it uses deprecated APIs.
