@@ -112,7 +112,7 @@ FORMS += \
 RESOURCES += \
     aphototoollibre.qrc
 
-!rootIsApp {
+!rootIsApp: {
 unix: {
 
 target.path = /usr/bin/
