@@ -69,8 +69,9 @@
   </screenshots>
 
 <releases>
-  <release version="1.0.5" date="2023-01-12">
+  <release version="1.0.5" date="2023-02-15">
     <description>
+      <p>1.0.5-3 2023-02-15: Maintenance release</p>
       <p>1.0.5-1 2023-01-12: New Tint tool</p>
     </description>
   </release>

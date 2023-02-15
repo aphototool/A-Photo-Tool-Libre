@@ -1,16 +1,23 @@
+aphototoollibre (1.0.5-3) UNRELEASED; urgency=low
+
+  [ Jari Ahola ]
+  * Maintenance release
+
+ -- aphototool <aphototool@ahola.me>  Thu, 15 Feb 2023 1:05:03 +0200
+
 aphototoollibre (1.0.5-1) UNRELEASED; urgency=low
 
   [ Jari Ahola ]
   * New Tint tool
 
- -- aphototool <aphototool@ahola.me>  Thu, 19 Jan 2023 1:04:01 +0200
+ -- aphototool <aphototool@ahola.me>  Thu, 19 Jan 2023 1:05:01 +0200
 
 aphototoollibre (1.0.4-4) UNRELEASED; urgency=low
 
   [ Jari Ahola ]
   * New copy and paste and drop features
 
- -- aphototool <aphototool@ahola.me>  Mon, 9 Nov 2022 1:04:03 +0200
+ -- aphototool <aphototool@ahola.me>  Mon, 9 Nov 2022 1:04:04 +0200
 
 aphototoollibre (1.0.4-3) UNRELEASED; urgency=low
 
