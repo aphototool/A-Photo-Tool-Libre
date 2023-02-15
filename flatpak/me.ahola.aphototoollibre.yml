@@ -1,0 +1,27 @@
+app-id: me.ahola.aphototoollibre
+runtime: org.kde.Platform
+runtime-version: '5.15-22.08'
+sdk: org.kde.Sdk
+command: aphototoollibre
+finish-args:
+  - --share=ipc
+  - --socket=x11
+  - --socket=wayland
+  - --env=XDG_SESSION_TYPE=x11
+  - --filesystem=host
+  - --device=dri
+modules:
+  - name: aphototoollibre
+    buildsystem: simple
+    sources:
+      - type: archive
+        url: https://github.com/aphototool/A-Photo-Tool-Libre/archive/refs/tags/v1.0.5-2.tar.gz
+        sha256: 2e28215351d0ad76e16898bf8259db2103b8cd98b3f8128418e3d14b517ac69f
+    build-commands:
+      - qmake
+      - make
+      - install -Dm755 /run/build/aphototoollibre/bin/aphototoollibre /app/bin/aphototoollibre
+      - install -Dm644 /run/build/aphototoollibre/flatpak/desktop/me.ahola.aphototoollibre.desktop /app/share/applications/me.ahola.aphototoollibre.desktop
+      - install -Dm644 /run/build/aphototoollibre/flatpak/desktop/me.ahola.aphototoollibre.svg /app/share/icons/hicolor/scalable/apps/me.ahola.aphototoollibre.svg
+      - install -Dm644 /run/build/aphototoollibre/flatpak/desktop/me.ahola.aphototoollibre.appdata.xml /app/share/metainfo/me.ahola.aphototoollibre.appdata.xml
+
