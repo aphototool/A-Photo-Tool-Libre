@@ -10,7 +10,7 @@ Change exposure, contrast and color of your jpeg photos.
 Turn color photos in to black and white images with control how color is handled.
 Rotate, crop, straighten and resize photos.
 
-Copyright © 2021-2022 [Jari Ahola](https://www.ahola.me/)
+Copyright © 2021-2023 [Jari Ahola](https://www.ahola.me/)
 
 A Photo Tool (Libre[^1] version) is free image editor published under GNU Public License version 3 (GPLv3).
 
@@ -42,6 +42,7 @@ Otherwise follow correct instructions below:
 - [How to Install (.deb for 64 bit Intel / AMD and ARM)](INSTALL_DEBIAN.md).
 - [How to Install (Arch User Repository (AUR) for 64 bit Intel / AMD and ARM)](INSTALL_ARCH.md).
 - [How to Install (AppImage for 64 bit Intel / AMD)](INSTALL_APPIMAGE.md).
+- [How to Install (Flatpak for 64 bit Intel / AMD)](INSTALL_FLATPAK.md).
 
 
 
