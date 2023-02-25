@@ -42,7 +42,7 @@ Otherwise follow correct instructions below:
 - [How to Install (.deb for 64 bit Intel / AMD and ARM)](INSTALL_DEBIAN.md).
 - [How to Install (Arch User Repository (AUR) for 64 bit Intel / AMD and ARM)](INSTALL_ARCH.md).
 - [How to Install (AppImage for 64 bit Intel / AMD)](INSTALL_APPIMAGE.md).
-- [How to Install (Flatpak for 64 bit Intel / AMD)](INSTALL_FLATPAK.md).
+- [How to Install (Flatpak for 64 bit Intel / AMD and ARM)](INSTALL_FLATPAK.md).
 
 
 
