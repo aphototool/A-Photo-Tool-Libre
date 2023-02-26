@@ -52,6 +52,8 @@
   <launchable type="desktop-id">me.ahola.aphototoollibre.desktop</launchable>
 
   <url type="homepage">https://www.ahola.me/aphototoollibre.html</url>
+  
+  <developer_name>Jari Ahola</developer_name>
 
   <screenshots>
     <screenshot type="default">
