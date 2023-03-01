@@ -33,7 +33,7 @@ public:
 
     QFutureWatcher<QImage> filterWatcher;
     QMutex filterMutex;
-    long lastFullResTimestamp = 0;
+    long lastWorkTimestamp = 0;
     bool backgroundWorking = false;
 };
 

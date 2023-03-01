@@ -44,6 +44,7 @@
 #include "utils/stylemode.h"
 #include "utils/settingsutils.h"
 #include "utils/imagecreator.h"
+#include "utils/histogram.h"
 #include "optionsdialog.h"
 #include "values/usersettingvalues.h"
 #include "utils/timeutil.h"
@@ -150,6 +151,9 @@ private:
 
     void createFullResolutionInBackground();
     void backgroundFilterReady();
-    WorkValues workValues;
+    WorkValues fullResolutionWorkValues;
+    void createHistogramInBackground();
+    void backgroundHistogramReady();
+    WorkValues histogramWorkValues;
 };
 #endif // APHOTOTOOLLIBRE_H

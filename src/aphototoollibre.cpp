@@ -60,7 +60,8 @@ APhotoToolLibre::APhotoToolLibre(QWidget *parent)
     QObject::connect(ui->greenSlider, &QSlider::valueChanged, this, &APhotoToolLibre::onGreenSliderValueChanged);
     QObject::connect(ui->blueSlider, &QSlider::valueChanged, this, &APhotoToolLibre::onBlueSliderValueChanged);
     QObject::connect(ui->actionOptions, &QAction::triggered, this, &APhotoToolLibre::showSettings);
-    QObject::connect(&workValues.filterWatcher, &QFutureWatcherBase::finished, this, &APhotoToolLibre::backgroundFilterReady);
+    QObject::connect(&fullResolutionWorkValues.filterWatcher, &QFutureWatcherBase::finished, this, &APhotoToolLibre::backgroundFilterReady);
+    QObject::connect(&histogramWorkValues.filterWatcher, &QFutureWatcherBase::finished, this, &APhotoToolLibre::backgroundHistogramReady);
 
     QMenu *helpMenu = menuBar()->addMenu(tr("&Help"));
     helpMenu->addAction(tr("&About"), this, &APhotoToolLibre::about);
@@ -74,8 +75,8 @@ APhotoToolLibre::APhotoToolLibre(QWidget *parent)
     ui->actionPrint->setEnabled(false);
 #endif
 
-    rotateToolUi = new RotateToolUi(this, ui, &values, &workValues);
-    cropToolUi = new CropToolUi(this, ui, &values, &workValues);
+    rotateToolUi = new RotateToolUi(this, ui, &values, &fullResolutionWorkValues);
+    cropToolUi = new CropToolUi(this, ui, &values, &fullResolutionWorkValues);
     resizeToolUi = new ResizeToolUi(this, ui, &values);
 
     ui->mainToolsWidget->setCurrentIndex(0);
@@ -153,6 +154,8 @@ void APhotoToolLibre::resetValues() {
     // to avoid unwanted state changes by slider resets.
     values.imageModified = false;
     onClipboardChange();
+    ui->histogramTextLabel->setText(tr("Histogram *"));
+    histogramWorkValues.lastWorkTimestamp = 0;
 }
 
 void APhotoToolLibre::resizeEvent(QResizeEvent* event)
@@ -414,10 +417,11 @@ void APhotoToolLibre::showPreviewImage()
     values.filterValues.resizeType = ResizeCalcType::None;
     showImage(tempImage);
     values.filterValues.resizeType = resizeCalcTypeSaved;
-    workValues.filterMutex.lock();
+    fullResolutionWorkValues.filterMutex.lock();
     values.filteredTime = TimeUtil::getTimestamp();
-    workValues.filterMutex.unlock();
+    fullResolutionWorkValues.filterMutex.unlock();
     ui->previewLabel->setText(tr("View: Low Res"));
+    ui->histogramTextLabel->setText(tr("Histogram *"));
 }
 
 void APhotoToolLibre::showFullResolutionImage()
@@ -427,10 +431,11 @@ void APhotoToolLibre::showFullResolutionImage()
     values.filteredImageWidth = values.image.width();
     values.filteredImageHeight = values.image.height();
     showFileInfo();
-    workValues.filterMutex.lock();
-    workValues.lastFullResTimestamp = TimeUtil::getTimestamp();
-    workValues.filterMutex.unlock();
+    fullResolutionWorkValues.filterMutex.lock();
+    fullResolutionWorkValues.lastWorkTimestamp = TimeUtil::getTimestamp();
+    fullResolutionWorkValues.filterMutex.unlock();
     ui->previewLabel->setText(tr("View: Full Res"));
+    createHistogramInBackground();
 }
 
 
@@ -451,15 +456,30 @@ void APhotoToolLibre::showImage(const QImage &imageToShow) {
 
 void APhotoToolLibre::createFullResolutionInBackground() {
     if (values.imageOriginal.height() == 0) return;
-    workValues.filterMutex.lock();
-    ImageCreator::createFullResolutionInBackground(&workValues, &values);
-    workValues.filterMutex.unlock();
+    fullResolutionWorkValues.filterMutex.lock();
+    ImageCreator::createFullResolutionInBackground(&fullResolutionWorkValues, &values);
+    fullResolutionWorkValues.filterMutex.unlock();
 }
 
 void APhotoToolLibre::backgroundFilterReady() {
-    workValues.filterMutex.lock();
-    ImageCreator::backgroundFilterReady(&workValues, &values, ui);
-    workValues.filterMutex.unlock();
+    fullResolutionWorkValues.filterMutex.lock();
+    ImageCreator::backgroundFilterReady(&fullResolutionWorkValues, &values, ui);
+    fullResolutionWorkValues.filterMutex.unlock();
+    createHistogramInBackground();
+}
+
+void APhotoToolLibre::createHistogramInBackground() {
+    if (values.imageOriginal.height() == 0) return;
+    histogramWorkValues.filterMutex.lock();
+    Histogram::createHistogramInBackground(&histogramWorkValues, &values);
+    histogramWorkValues.filterMutex.unlock();
+}
+
+void APhotoToolLibre::backgroundHistogramReady() {
+    histogramWorkValues.filterMutex.lock();
+    Histogram::backgroundHistogramReady(&histogramWorkValues, &values, ui);
+    ui->histogramTextLabel->setText(tr("Histogram"));
+    histogramWorkValues.filterMutex.unlock();
 }
 
 bool APhotoToolLibre::event(QEvent *event)

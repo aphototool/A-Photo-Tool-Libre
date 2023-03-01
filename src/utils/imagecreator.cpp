@@ -46,12 +46,12 @@ void ImageCreator::createPreviewImage(const QImage &tempImage, Values &values) {
 
 void ImageCreator::createFullResolutionInBackground(WorkValues *workValues, Values *values) {
     // Handle locking in caller (workValues.filterMutex.lock())
-    bool needsToDoWork = values->filteredTime > workValues->lastFullResTimestamp;
+    bool needsToDoWork = values->filteredTime > workValues->lastWorkTimestamp;
     if (needsToDoWork && !workValues->backgroundWorking && values->filteredTime < BackgroundControl::backgroundWorkStopped) {
         FilterValues* tempFilterValues = values->filterValues.copy();
         QFuture<QImage> future = QtConcurrent::run(&ImageCreator::backgroundApplyFilter, values->imageOriginal, tempFilterValues);
         workValues->filterWatcher.setFuture(future);
-        workValues->lastFullResTimestamp = TimeUtil::getTimestamp();
+        workValues->lastWorkTimestamp = TimeUtil::getTimestamp();
         workValues->backgroundWorking = true;
     }
 }
@@ -65,7 +65,7 @@ QImage ImageCreator::backgroundApplyFilter(QImage fullOriginal, FilterValues* fi
 void ImageCreator::backgroundFilterReady(WorkValues *workValues, Values *values,  Ui::MainWindow *ui) {
     // Handle locking in caller (workValues.filterMutex.lock())
     workValues->backgroundWorking = false;
-    if (workValues->lastFullResTimestamp >= values->filteredTime) {
+    if (workValues->lastWorkTimestamp >= values->filteredTime) {
         QImage tempImage = workValues->filterWatcher.future().result();
         values->image = tempImage;
         ui->scrollArea->setWidgetResizable(true);
