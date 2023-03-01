@@ -80,13 +80,11 @@ QImage Histogram::drawHistogram(const QImage &image)
             yValue = 0.0;
             pen.setColor(colorRed);
             painter.setPen(pen);
-            qDebug("Punainen");
         } else {
             pen.setColor(color);
             painter.setPen(pen);
             yValue += yMargin;
         }
-        qDebug("%1f", yValue);
         painter.drawLine(x * penWidht, hy, x * penWidht, yValue);
     }
     delete[] values;
