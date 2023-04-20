@@ -36,6 +36,16 @@ void UserSettingValues::setDarkMode(bool newDarkMode)
     darkMode = newDarkMode;
 }
 
+bool UserSettingValues::getShowHistogram() const
+{
+    return showHistogram;
+}
+
+void UserSettingValues::setShowHistogram(bool newShowHistogram)
+{
+    showHistogram = newShowHistogram;
+}
+
 bool UserSettingValues::getFirstUse() const
 {
     return firstUse;

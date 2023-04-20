@@ -43,6 +43,7 @@ public:
 private:
     void lightMode();
     void darkMode();
+    void showHistogram();
     void useDarkMode(bool darkMode);
 
     QMainWindow *parentClass;

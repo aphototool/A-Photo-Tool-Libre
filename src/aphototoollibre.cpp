@@ -97,6 +97,8 @@ APhotoToolLibre::APhotoToolLibre(QWidget *parent)
         StyleMode::lightMode(qApp, ui);
     }
 
+    showHistogram(appSettings.getShowHistogram());
+
     if (appSettings.getFirstUse()) {
         QImage *welcomeImage = new QImage(":/resources/Welcome.png");
         QTimer::singleShot(250, this, [welcomeImage, this]() { showImage(*welcomeImage); } );
@@ -480,6 +482,11 @@ void APhotoToolLibre::backgroundHistogramReady() {
     Histogram::backgroundHistogramReady(&histogramWorkValues, &values, ui);
     ui->histogramTextLabel->setText(tr("Histogram"));
     histogramWorkValues.filterMutex.unlock();
+}
+
+void APhotoToolLibre::showHistogram(bool show) {
+    ui->histogramLabel->setHidden(!show);
+    ui->histogramTextLabel->setHidden(!show);
 }
 
 bool APhotoToolLibre::event(QEvent *event)

@@ -84,6 +84,8 @@ public:
 
     Ui::MainWindow *getUi() const;
 
+    void showHistogram(bool show);
+
 private slots:
     void onClipboardChange();
 

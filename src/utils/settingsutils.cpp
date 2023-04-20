@@ -32,6 +32,7 @@ void SettingsUtils::writeSettings(UserSettingValues *appSettings, QMainWindow *w
 
     settings.beginGroup("Window");
     settings.setValue("darkMode", appSettings->getDarkMode());
+    settings.setValue("showHistogram", appSettings->getShowHistogram());
     settings.setValue("firstUse", false);
     settings.endGroup();
 
@@ -47,6 +48,7 @@ void SettingsUtils::readSettings(UserSettingValues *appSettings, QMainWindow *wi
 
     settings.beginGroup("Window");
     appSettings->setDarkMode(settings.value("darkMode").toBool());
+    appSettings->setShowHistogram(settings.value("showHistogram").toBool());
     appSettings->setFirstUse(settings.value("firstUse", true).toBool());
     settings.endGroup();
 

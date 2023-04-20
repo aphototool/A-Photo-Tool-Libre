@@ -31,6 +31,9 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
 
     QObject::connect(ui->lightModeRadioButton, &QRadioButton::clicked, this, &OptionsDialog::lightMode);
     QObject::connect(ui->darkModeRadioButton, &QRadioButton::clicked, this, &OptionsDialog::darkMode);
+    QObject::connect(ui->histogramCheckBox, &QCheckBox::clicked, this, &OptionsDialog::showHistogram);
+
+    ui->tabWidget->setCurrentIndex(0);
 }
 
 OptionsDialog::~OptionsDialog()
@@ -45,6 +48,15 @@ void OptionsDialog::lightMode() {
 void OptionsDialog::darkMode() {
     useDarkMode(true);
 }
+
+void OptionsDialog::showHistogram() {
+    APhotoToolLibre *parent = (APhotoToolLibre*)parentClass;
+    bool show = ui->histogramCheckBox->isChecked();
+    parent->getAppSettings()->setShowHistogram(show);
+    parent->showHistogram(show);
+    SettingsUtils::writeSettings(parent->getAppSettings(), parent);
+}
+
 
 void OptionsDialog::useDarkMode(bool darkMode) {
     APhotoToolLibre *parent = (APhotoToolLibre*)parentClass;
@@ -64,5 +76,6 @@ void OptionsDialog::prepareSettingsDialog(QMainWindow *newParentClass)
     bool darkMode = ((APhotoToolLibre*)parentClass)->getAppSettings()->getDarkMode();
     ui->lightModeRadioButton->setChecked(!darkMode);
     ui->darkModeRadioButton->setChecked(darkMode);
+    ui->histogramCheckBox->setChecked(((APhotoToolLibre*)parentClass)->getAppSettings()->getShowHistogram());
 }
 
