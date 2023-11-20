@@ -1,6 +1,6 @@
 name: aphototoollibre
-base: core20
-version: '1.0.5-3'
+base: core22
+version: '1.0.6-1'
 summary: Photo editor for Linux
 description: |
   A Photo Tool (Libre) is an easy to use basic photo editor.
@@ -23,8 +23,10 @@ apps:
 
 parts:
   aphototoollibre:
-    source: https://github.com/aphototool/A-Photo-Tool-Libre/archive/refs/tags/v1.0.5-3.tar.gz
-    plugin: qmake
+    source: https://github.com/aphototool/A-Photo-Tool-Libre/archive/refs/tags/v1.0.6-1.tar.gz
+    plugin: cmake
+    cmake-parameters:
+      - -DCMAKE_INSTALL_PREFIX=/usr
     build-packages:
       - qtbase5-dev
     stage-packages:
