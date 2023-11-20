@@ -20,7 +20,7 @@
  */
 
 #include "stylemode.h"
-#include "./ui_aphototoollibre.h"
+#include "../ui_aphototoollibre.h"
 
 StyleMode::StyleMode()
 {

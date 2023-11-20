@@ -20,7 +20,7 @@
  */
 
 #include "histogram.h"
-#include "ui_aphototoollibre.h"
+#include "../ui_aphototoollibre.h"
 
 Histogram::Histogram()
 {

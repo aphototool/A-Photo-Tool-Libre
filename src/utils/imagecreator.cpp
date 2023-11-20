@@ -20,7 +20,7 @@
  */
 
 #include "imagecreator.h"
-#include "ui_aphototoollibre.h"
+#include "../ui_aphototoollibre.h"
 
 ImageCreator::ImageCreator()
 {
