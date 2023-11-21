@@ -112,7 +112,16 @@ add_executable(${CMAKE_PROJECT_NAME} ${SRCS})
 
 target_link_libraries(${CMAKE_PROJECT_NAME} PRIVATE Qt5::Core Qt5::Gui Qt5::Widgets)
 
+
 install(TARGETS aphototoollibre
     BUNDLE DESTINATION .
-    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR})
+    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+)
+
+install(
+    FILES debian/aphototoollibre.1.gz DESTINATION share/man/man1
+    FILES desktop/aphototoollibre.desktop DESTINATION share/applications
+    FILES desktop/aphototoollibre.svg DESTINATION share/icons/hicolor/scalable/apps
+    FILES desktop/aphototoollibre.metainfo.xml DESTINATION share/metainfo
+)
 
