@@ -7,20 +7,13 @@ finish-args:
   - --share=ipc
   - --socket=fallback-x11
   - --socket=wayland
-  - --filesystem=home
+  - --filesystem=host
   - --device=dri
 modules:
   - name: aphototoollibre
-    buildsystem: simple
+    buildsystem: cmake
     sources:
       - type: archive
-        url: https://github.com/aphototool/A-Photo-Tool-Libre/archive/refs/tags/v1.0.5-3.tar.gz
-        sha256: f28201302d36c510e542e7d11653afddba0a2df4a829bc5e810f7ed5c365b5d3
-    build-commands:
-      - qmake
-      - make
-      - install -Dm755 ./bin/aphototoollibre /app/bin/aphototoollibre
-      - install -Dm644 ./flatpak/desktop/me.ahola.aphototoollibre.desktop /app/share/applications/me.ahola.aphototoollibre.desktop
-      - install -Dm644 ./flatpak/desktop/me.ahola.aphototoollibre.svg /app/share/icons/hicolor/scalable/apps/me.ahola.aphototoollibre.svg
-      - install -Dm644 ./flatpak/desktop/me.ahola.aphototoollibre.appdata.xml /app/share/metainfo/me.ahola.aphototoollibre.appdata.xml
+        url: https://github.com/aphototool/A-Photo-Tool-Libre/archive/refs/tags/v1.0.6-1.tar.gz
+        sha256: 46a55bf39d6fe9059bd01f4476637ee48a3997cb2ed56c6be8d6517605718e61
 
