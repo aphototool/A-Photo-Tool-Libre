@@ -122,12 +122,12 @@ install(
     FILES debian/aphototoollibre.1.gz DESTINATION share/man/man1
 )
 install(
-    FILES desktop/aphototoollibre.desktop DESTINATION share/applications
+    FILES desktop-std/me.ahola.aphototoollibre.desktop DESTINATION share/applications
 )
 install(
-    FILES desktop/aphototoollibre.svg DESTINATION share/icons/hicolor/scalable/apps
+    FILES desktop-std/me.ahola.aphototoollibre.svg DESTINATION share/icons/hicolor/scalable/apps
 )
 install(
-    FILES desktop/aphototoollibre.metainfo.xml DESTINATION share/metainfo
+    FILES desktop-std/me.ahola.aphototoollibre.metainfo.xml DESTINATION share/metainfo
 )
 

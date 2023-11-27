@@ -1,0 +1,12 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=A Photo Tool (Libre)
+Comment=Photo editing tool for Linux
+Categories=Graphics;Qt;
+Icon=me.ahola.aphototoollibre
+Exec=aphototoollibre %f
+TryExec=aphototoollibre
+MimeType=image/jpeg;image/png;
+Terminal=false
+
