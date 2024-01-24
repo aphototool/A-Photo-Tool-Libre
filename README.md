@@ -10,7 +10,7 @@ Change exposure, contrast and color of your jpeg photos.
 Turn color photos in to black and white images with control how color is handled.
 Rotate, crop, straighten and resize photos.
 
-Copyright © 2021-2023 [Jari Ahola](https://www.ahola.me/)
+Copyright © 2021-2024 [Jari Ahola](https://www.ahola.me/)
 
 A Photo Tool (Libre[^1] version) is free image editor published under GNU Public License version 3 (GPLv3).
 
