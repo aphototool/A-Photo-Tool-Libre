@@ -465,7 +465,12 @@ void APhotoToolLibre::createFullResolutionInBackground() {
 
 void APhotoToolLibre::backgroundFilterReady() {
     fullResolutionWorkValues.filterMutex.lock();
-    ImageCreator::backgroundFilterReady(&fullResolutionWorkValues, &values, ui);
+    bool ready = ImageCreator::backgroundFilterReady(&fullResolutionWorkValues, &values);
+    if (ready) {
+        ui->scrollArea->setWidgetResizable(true);
+        Graphics::fitImage(values.image, *ui->imageLabel);
+        ui->previewLabel->setText(QCoreApplication::translate("APhotoToolLibre", "View: Full Res"));
+    }
     fullResolutionWorkValues.filterMutex.unlock();
     createHistogramInBackground();
 }
@@ -479,7 +484,10 @@ void APhotoToolLibre::createHistogramInBackground() {
 
 void APhotoToolLibre::backgroundHistogramReady() {
     histogramWorkValues.filterMutex.lock();
-    Histogram::backgroundHistogramReady(&histogramWorkValues, &values, ui);
+    QImage newImage = Histogram::backgroundHistogramReady(&histogramWorkValues, &values);
+    if (!newImage.isNull()) {
+        Graphics::fitImage(newImage, *ui->histogramLabel);
+    }
     ui->histogramTextLabel->setText(tr("Histogram"));
     histogramWorkValues.filterMutex.unlock();
 }

@@ -34,14 +34,13 @@
 #include "../values/imagevalues.h"
 #include "../values/workvalues.h"
 
-namespace Ui { class MainWindow; }
-
 class Histogram
 {
 public:
     Histogram();
     static  void createHistogramInBackground(WorkValues *workValues, Values *values);
-    static void backgroundHistogramReady(WorkValues *workValues, Values *values, Ui::MainWindow *ui);
+    // static void backgroundHistogramReady(WorkValues *workValues, Values *values, Ui::MainWindow *ui);
+    static QImage backgroundHistogramReady(WorkValues *workValues, Values *values);
 
 private:
     static int getMaxValue(unsigned long values[]);

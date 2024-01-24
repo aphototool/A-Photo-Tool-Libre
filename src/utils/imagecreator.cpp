@@ -20,7 +20,6 @@
  */
 
 #include "imagecreator.h"
-#include "../ui_aphototoollibre.h"
 
 ImageCreator::ImageCreator()
 {
@@ -62,14 +61,13 @@ QImage ImageCreator::backgroundApplyFilter(QImage fullOriginal, FilterValues* fi
     return result;
 }
 
-void ImageCreator::backgroundFilterReady(WorkValues *workValues, Values *values,  Ui::MainWindow *ui) {
+bool ImageCreator::backgroundFilterReady(WorkValues *workValues, Values *values) {
     // Handle locking in caller (workValues.filterMutex.lock())
     workValues->backgroundWorking = false;
     if (workValues->lastWorkTimestamp >= values->filteredTime) {
         QImage tempImage = workValues->filterWatcher.future().result();
         values->image = tempImage;
-        ui->scrollArea->setWidgetResizable(true);
-        Graphics::fitImage(values->image, *ui->imageLabel);
-        ui->previewLabel->setText(QCoreApplication::translate("APhotoToolLibre", "View: Full Res"));
+        return true;
     }
+    return false;
 }

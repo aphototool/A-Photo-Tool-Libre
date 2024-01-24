@@ -35,15 +35,13 @@
 #include "../utils/timeutil.h"
 #include "../constants.h"
 
-namespace Ui { class MainWindow; }
-
 class ImageCreator {
 
 public:
     ImageCreator();
     static void createPreviewImage(const QImage &tempImage, Values &values);
     static QImage backgroundApplyFilter(QImage fullOriginal, FilterValues *filterValues);
-    static void backgroundFilterReady(WorkValues *workValues, Values *values, Ui::MainWindow *ui);
+    static bool backgroundFilterReady(WorkValues *workValues, Values *values);
     static void createFullResolutionInBackground(WorkValues *workValues, Values *values);
 };
 

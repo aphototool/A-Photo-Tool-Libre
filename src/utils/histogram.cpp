@@ -20,7 +20,6 @@
  */
 
 #include "histogram.h"
-#include "../ui_aphototoollibre.h"
 
 Histogram::Histogram()
 {
@@ -43,13 +42,15 @@ QImage Histogram::backgroundApplyFilter(QImage image) {
     return result;
 }
 
-void Histogram::backgroundHistogramReady(WorkValues *workValues, Values *values,  Ui::MainWindow *ui) {
+QImage Histogram::backgroundHistogramReady(WorkValues *workValues, Values *values) {
     // Handle locking in caller (workValues.filterMutex.lock())
     workValues->backgroundWorking = false;
     if (workValues->lastWorkTimestamp >= values->filteredTime) {
-        QImage tempImage = workValues->filterWatcher.future().result();
-        Graphics::fitImage(tempImage, *ui->histogramLabel);
+        QImage histogramImage = workValues->filterWatcher.future().result();
+        return histogramImage;
+        // Graphics::fitImage(tempImage, *ui->histogramLabel);
     }
+    return QImage();
 }
 
 
