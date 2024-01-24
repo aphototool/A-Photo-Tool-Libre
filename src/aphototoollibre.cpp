@@ -92,9 +92,17 @@ APhotoToolLibre::APhotoToolLibre(QWidget *parent)
 
     readSettings();
     if (appSettings.getDarkMode()) {
-        StyleMode::darkMode(qApp, ui);
+        StyleMode::darkMode(qApp);
+        ui->redSlider->setStyleSheet(StyleMode::getStyleSheetForColorSlider("red", "#232323"));
+        ui->greenSlider->setStyleSheet(StyleMode::getStyleSheetForColorSlider("green", "#232323"));
+        ui->blueSlider->setStyleSheet(StyleMode::getStyleSheetForColorSlider("blue", "#232323"));
+        ui->scrollAreaWidgetContents->setStyleSheet("QWidget { background-color : #232323; }");
     } else {
-        StyleMode::lightMode(qApp, ui);
+        StyleMode::lightMode(qApp);
+        ui->redSlider->setStyleSheet(StyleMode::getStyleSheetForColorSlider("red", "lightGray"));
+        ui->greenSlider->setStyleSheet(StyleMode::getStyleSheetForColorSlider("green", "lightGray"));
+        ui->blueSlider->setStyleSheet(StyleMode::getStyleSheetForColorSlider("blue", "lightGray"));
+        ui->scrollAreaWidgetContents->setStyleSheet("QWidget { background-color : lightGray; }");
     }
 
     showHistogram(appSettings.getShowHistogram());
@@ -158,6 +166,23 @@ void APhotoToolLibre::resetValues() {
     onClipboardChange();
     ui->histogramTextLabel->setText(tr("Histogram *"));
     histogramWorkValues.lastWorkTimestamp = 0;
+}
+
+void APhotoToolLibre::useDarkMode(bool darkMode) {
+    if (darkMode) {
+        StyleMode::darkMode(qApp);
+        ui->redSlider->setStyleSheet(StyleMode::getStyleSheetForColorSlider("red", "#232323"));
+        ui->greenSlider->setStyleSheet(StyleMode::getStyleSheetForColorSlider("green", "#232323"));
+        ui->blueSlider->setStyleSheet(StyleMode::getStyleSheetForColorSlider("blue", "#232323"));
+        ui->scrollAreaWidgetContents->setStyleSheet("QWidget { background-color : #232323; }");
+    } else {
+        StyleMode::lightMode(qApp);
+        ui->redSlider->setStyleSheet(StyleMode::getStyleSheetForColorSlider("red", "lightGray"));
+        ui->greenSlider->setStyleSheet(StyleMode::getStyleSheetForColorSlider("green", "lightGray"));
+        ui->blueSlider->setStyleSheet(StyleMode::getStyleSheetForColorSlider("blue", "lightGray"));
+        ui->scrollAreaWidgetContents->setStyleSheet("QWidget { background-color : lightGray; }");
+    }
+
 }
 
 void APhotoToolLibre::resizeEvent(QResizeEvent* event)

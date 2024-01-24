@@ -1,7 +1,7 @@
 /*
  * A Photo Tool (Libre)
  *
- * Copyright © 2021-2022 Jari Ahola
+ * Copyright © 2021-2024 Jari Ahola
  * GNU General Public License (GPLv3)
  *
  * This program is free software: you can redistribute it and/or modify
@@ -20,14 +20,13 @@
  */
 
 #include "stylemode.h"
-#include "../ui_aphototoollibre.h"
 
 StyleMode::StyleMode()
 {
 
 }
 
-void StyleMode::darkMode(QApplication *app, Ui::MainWindow *ui) {
+void StyleMode::darkMode(QApplication *app) {
     app->setStyle("Fusion");
     QPalette dark_palette = QPalette();
     dark_palette.setColor(QPalette::Window, QColor(55, 55, 55));
@@ -49,24 +48,21 @@ void StyleMode::darkMode(QApplication *app, Ui::MainWindow *ui) {
     dark_palette.setColor(QPalette::HighlightedText, QColor(35, 35, 35));
     dark_palette.setColor(QPalette::Active, QPalette::Button, QColor(55, 55, 55));
     app->setPalette(dark_palette);
-
-    ui->redSlider->setStyleSheet(getStyleSheetForColorSlider("red", "#232323"));
-    ui->greenSlider->setStyleSheet(getStyleSheetForColorSlider("green", "#232323"));
-    ui->blueSlider->setStyleSheet(getStyleSheetForColorSlider("blue", "#232323"));
-    ui->scrollAreaWidgetContents->setStyleSheet("QWidget { background-color : #232323; }");
 }
 
-void StyleMode::systemDefaulttMode(QApplication *app, Ui::MainWindow *ui) {
+
+void StyleMode::systemDefaulttMode(QApplication *app) {
     app->setStyle("");
     app->setPalette(QPalette());
-
+/*
     ui->redSlider->setStyleSheet(getStyleSheetForColorSlider("red", "lightGray"));
     ui->greenSlider->setStyleSheet(getStyleSheetForColorSlider("green", "lightGray"));
     ui->blueSlider->setStyleSheet(getStyleSheetForColorSlider("blue", "lightGray"));
     ui->scrollAreaWidgetContents->setStyleSheet("QWidget { background-color : lightGray; }");
+*/
 }
 
-void StyleMode::lightMode(QApplication *app, Ui::MainWindow *ui) {
+void StyleMode::lightMode(QApplication *app) {
     app->setStyle("Fusion");
     QPalette light_palette = QPalette();
     light_palette.setColor(QPalette::Window, QColor(239, 239, 239));
@@ -88,11 +84,6 @@ void StyleMode::lightMode(QApplication *app, Ui::MainWindow *ui) {
     light_palette.setColor(QPalette::HighlightedText, Qt::white);
     light_palette.setColor(QPalette::Active, QPalette::Button, QColor(239, 239, 239));
     app->setPalette(light_palette);
-
-    ui->redSlider->setStyleSheet(getStyleSheetForColorSlider("red", "lightGray"));
-    ui->greenSlider->setStyleSheet(getStyleSheetForColorSlider("green", "lightGray"));
-    ui->blueSlider->setStyleSheet(getStyleSheetForColorSlider("blue", "lightGray"));
-    ui->scrollAreaWidgetContents->setStyleSheet("QWidget { background-color : lightGray; }");
 }
 
 QString StyleMode::getColors(const QColor color) {

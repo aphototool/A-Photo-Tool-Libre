@@ -81,6 +81,7 @@ public:
     void loadImage(const QString filename);
 
     UserSettingValues* getAppSettings();
+    void useDarkMode(bool darkMode);
 
     Ui::MainWindow *getUi() const;
 

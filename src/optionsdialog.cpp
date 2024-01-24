@@ -61,11 +61,7 @@ void OptionsDialog::showHistogram() {
 void OptionsDialog::useDarkMode(bool darkMode) {
     APhotoToolLibre *parent = (APhotoToolLibre*)parentClass;
     parent->getAppSettings()->setDarkMode(darkMode);
-    if (darkMode) {
-        StyleMode::darkMode(qApp, parent->getUi());
-    } else {
-        StyleMode::lightMode(qApp, parent->getUi());
-    }
+    parent->useDarkMode(darkMode);
     SettingsUtils::writeSettings(parent->getAppSettings(), parent);
 }
 

@@ -1,7 +1,7 @@
 /*
  * A Photo Tool (Libre)
  *
- * Copyright © 2021-2022 Jari Ahola
+ * Copyright © 2021-2024 Jari Ahola
  * GNU General Public License (GPLv3)
  *
  * This program is free software: you can redistribute it and/or modify
@@ -26,18 +26,16 @@
 #include <QPalette>
 #include <QStyleFactory>
 
-namespace Ui { class MainWindow; }
-
 class StyleMode
 {
 public:
     StyleMode();
-    static void darkMode(QApplication *app, Ui::MainWindow *ui);
-    static void lightMode(QApplication *app, Ui::MainWindow *ui);
-    static void systemDefaulttMode(QApplication *app, Ui::MainWindow *ui);
+    static void darkMode(QApplication *app);
+    static void lightMode(QApplication *app);
+    static void systemDefaulttMode(QApplication *app);
+    static QString getStyleSheetForColorSlider(const QString fgColor, const QString bgColor);
 
 private:
-    static QString getStyleSheetForColorSlider(const QString fgColor, const QString bgColor);
     static QString getColors(const QColor color);
 };
 
