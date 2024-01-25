@@ -34,7 +34,9 @@
   </categories>
   
   <icon type="local">/usr/share/icons/hicolor/scalable/apps/aphototoollibre.svg</icon>
-  
+
+  <content_rating type="oars-1.0" />
+
   <keywords>
     <keyword>photography</keyword>
     <keyword>photo</keyword>
