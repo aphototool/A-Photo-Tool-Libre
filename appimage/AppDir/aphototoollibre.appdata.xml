@@ -33,6 +33,8 @@
     <category>Graphics</category>
   </categories>
 
+  <content_rating type="oars-1.0" />
+
   <icon type="local">/usr/share/icons/hicolor/scalable/apps/aphototoollibre.svg</icon>
 
   <keywords>
