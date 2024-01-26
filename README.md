@@ -114,6 +114,7 @@ pbuilder --create
 ```
 - Get project from GitHub into aphototoollibre-x.x.x folder (x.x.x is current version number)
   - Use released source package (see [Releases](../../releases)), main branch may contain untested new features
+  - For version 1.0.6-1 (and later) manually delete CMakeLists.txt file before continuing
 - Compress aphototoollibre-x.x.x folder to aphototoollibre_x.x.x.tar.xz (filemanager Compress... works usually)
 - Go to aphototoollibre-x.x.x folder and run
 ```
@@ -126,14 +127,13 @@ pdebuild --debbuildopts -sa
 
 #### Special note
 
-Pre-build .deb file was built on Debian 11.5 with Qt 5.15.2
+Pre-build .deb file was built on Debian 11.8 with Qt 5.15.2
 
-Snap store (at snapcraft.io) version was built with Qt 5.12.8
+Snap store (at snapcraft.io) version was built with Qt 5.15.3
 
-- To be upgraded when base core22 (Ubuntu 22.04 LTS) and dependencies like kde-neon extension are released
 - To create snap use snapcraft.yaml file located in snap folder and documentation available at [snapcraft.io](https://snapcraft.io/docs/snapcraft-overview) 
 
-Pre-build AppImage was built on Ubuntu 18.04 LTS with Qt 5.15.2 and packaged with [linuxdeployqt](https://github.com/probonopd/linuxdeployqt)
+Pre-build AppImage was built on Ubuntu 20.04 LTS with Qt 5.15.2 and packaged with [linuxdeployqt](https://github.com/probonopd/linuxdeployqt)
 - To create AppImage build release with Qt Creator and follow instructions at [linuxdeployqt](https://github.com/probonopd/linuxdeployqt/blob/master/README.md). See also folder [appimage](appimage)
 
 
