@@ -42,6 +42,7 @@ gpg --recv-keys A970F7E40CB64F0D5B9FC516AFE56C2DF614820C
 ```
 - then enter `makepkg -src` again to rebuild.
 - if you have trouble to find reason for build failure try `makepkg -s` for less crowded console log.
+- if you still have troubles, check that there are no spaces in the folder names
 
 6. Install build application. Change X.X.X-Y below to the version number you are installing
 ```
