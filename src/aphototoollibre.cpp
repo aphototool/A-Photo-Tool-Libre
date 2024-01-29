@@ -124,7 +124,13 @@ APhotoToolLibre::APhotoToolLibre(QWidget *parent)
         }
     }
 
-    qApp->setWindowIcon(QIcon(":/resources/me.ahola.aphototoollibre.png"));
+    if (getenv("APPIMAGE")) {
+        int size = 64; // Nearly good taskbar icon and just acceptable window icon
+        QPixmap pixmap = QPixmap(":/resources/aphototoollibre.svg")
+                .scaledToHeight(size, Qt::SmoothTransformation)
+                .scaledToWidth(size, Qt::SmoothTransformation);
+        qApp->setWindowIcon(QIcon(pixmap));
+    }
 
     QTimer *backgroundFilterTimer = new QTimer(this);
     connect(backgroundFilterTimer, &QTimer::timeout, this, [this]() { createFullResolutionInBackground(); } );
