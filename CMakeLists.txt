@@ -59,6 +59,7 @@ set (SRCS
     src/filters/tintfilter.h
     src/resources/Welcome.png
     src/resources/me.ahola.aphototoollibre.png
+    src/resources/aphototoollibre.svg
     src/utils/backgroundcontrol.cpp
     src/utils/backgroundcontrol.h
     src/utils/graphics.cpp
@@ -109,7 +110,7 @@ set (SRCS
 
 
 
-add_executable(${CMAKE_PROJECT_NAME} ${SRCS})
+add_executable(${CMAKE_PROJECT_NAME} ${SRCS} src/aphototoollibre.qrc)
 
 target_link_libraries(${CMAKE_PROJECT_NAME} PRIVATE Qt5::Core Qt5::Gui Qt5::Widgets)
 

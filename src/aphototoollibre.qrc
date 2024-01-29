@@ -1,5 +1,7 @@
 <RCC>
     <qresource prefix="/">
         <file>resources/Welcome.png</file>
+        <file>resources/me.ahola.aphototoollibre.png</file>
+        <file>resources/aphototoollibre.svg</file>
     </qresource>
 </RCC>
