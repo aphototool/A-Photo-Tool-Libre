@@ -58,6 +58,7 @@ set (SRCS
     src/filters/tintfilter.cpp
     src/filters/tintfilter.h
     src/resources/Welcome.png
+    src/resources/me.ahola.aphototoollibre.png
     src/utils/backgroundcontrol.cpp
     src/utils/backgroundcontrol.h
     src/utils/graphics.cpp

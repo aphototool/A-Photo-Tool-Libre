@@ -124,6 +124,8 @@ APhotoToolLibre::APhotoToolLibre(QWidget *parent)
         }
     }
 
+    qApp->setWindowIcon(QIcon(":/resources/me.ahola.aphototoollibre.png"));
+
     QTimer *backgroundFilterTimer = new QTimer(this);
     connect(backgroundFilterTimer, &QTimer::timeout, this, [this]() { createFullResolutionInBackground(); } );
     backgroundFilterTimer->start(2000);
