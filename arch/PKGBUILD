@@ -1,6 +1,6 @@
 # Maintainer: Jari Ahola <aphototool@ahola.me>
 pkgname=aphototoollibre
-pkgver=1.0.6
+pkgver=1.0.7
 pkgrel=1
 pkgdesc="Photo editor for Linux"
 arch=('x86_64' 'aarch64')

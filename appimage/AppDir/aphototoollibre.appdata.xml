@@ -22,7 +22,7 @@
       Rotate, crop, straighten and resize photos.
     </p>
     <p>
-       Copyright (C) 2022-2024 Jari Ahola
+       Copyright (C) 2022-2025 Jari Ahola
     </p>
     <p>
        Lisensed under GNU GPLv3. Full source code available at https://github.com/aphototool/A-Photo-Tool-Libre
@@ -71,9 +71,9 @@
   </screenshots>
 
 <releases>
-  <release version="1.0.6" date="2024-01-24">
+  <release version="1.0.7" date="2025-01-24">
     <description>
-      <p>1.0.6-1 2024-01-24: Option to show histogram</p>
+      <p>1.0.7-1 2025-01-24: Crop tool improvements</p>
     </description>
   </release>
 </releases>

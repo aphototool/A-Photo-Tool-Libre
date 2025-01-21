@@ -1,7 +1,7 @@
 /*
  * A Photo Tool (Libre)
  *
- * Copyright © 2021-2024 Jari Ahola
+ * Copyright © 2021-2025 Jari Ahola
  * GNU General Public License (GPLv3)
  *
  * This program is free software: you can redistribute it and/or modify
@@ -610,6 +610,14 @@ void APhotoToolLibre::checkForUpdates() {
         text.append("Looks like you are running Snap release. ");
         text.append("Snaps are normally updated automatically.");
         text.append("<br /><br />");
+    } else if (getenv("APPIMAGE")) {
+        text.append("Looks like you are running AppImage release.");
+        text.append("New versions are released on GitHub.");
+        text.append("<br /><br />");
+    } else if (getenv("container")) {
+        text.append("Looks like you are running FlatPak release.");
+        text.append("Use your normal App Store or FaltPak tool to update.");
+        text.append("<br /><br />");
     }
     text.append("You are currenty running version <b>");
     text.append(APTL_VERSION);
@@ -658,7 +666,7 @@ void APhotoToolLibre::about()
 {
     QMessageBox::about(this, tr("About A Photo Tool (Libre) version ") + APTL_VERSION,
                        tr("<p>The <b>A Photo Tool (Libre)</b> is a photo editing application.</p>"
-                          "<p>Copyright &copy; 2021-2024 Jari Ahola</p>"
+                          "<p>Copyright &copy; 2021-2025 Jari Ahola</p>"
                           "<p>Released under GNU General Public License version 3 (GPLv3)</p>"
                           "<p>See license text <a href=\"https://www.gnu.org/licenses/gpl-3.0-standalone.html\">here at gnu.org</a>.</p>"
                           "<p>The program is provided AS IS with NO WARRANTY OF ANY KIND, "

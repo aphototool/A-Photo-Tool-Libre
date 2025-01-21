@@ -1,7 +1,7 @@
 /*
  * A Photo Tool (Libre)
  *
- * Copyright © 2021-2022 Jari Ahola
+ * Copyright © 2021-2025 Jari Ahola
  * GNU General Public License (GPLv3)
  *
  * This program is free software: you can redistribute it and/or modify
@@ -22,7 +22,7 @@
 #ifndef CONSTANTS_H
 #define CONSTANTS_H
 
-#define APTL_VERSION "1.0.6-1"
+#define APTL_VERSION "1.0.7-1"
 
 // Set max length of longer side of image to make
 // preview image processing faster

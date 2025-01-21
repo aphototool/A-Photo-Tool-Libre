@@ -3,11 +3,11 @@ Upstream-Name: aphototoollibre
 Source: https://www.ahola.me
 
 Files: *
-Copyright: 2022-2024 Jari Ahola <aphototool@ahola.me>
+Copyright: 2022-2025 Jari Ahola <aphototool@ahola.me>
 License: GPL-3.0+
 
 Files: debian/*
-Copyright: 2022-2024 Jari Ahola <aphototool@ahola.me>
+Copyright: 2022-2025 Jari Ahola <aphototool@ahola.me>
 License: GPL-3.0+
 
 License: GPL-3.0+

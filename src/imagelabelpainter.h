@@ -1,7 +1,7 @@
 /*
  * A Photo Tool (Libre)
  *
- * Copyright © 2021-2022 Jari Ahola
+ * Copyright © 2021-2025 Jari Ahola
  * GNU General Public License (GPLv3)
  *
  * This program is free software: you can redistribute it and/or modify
@@ -28,6 +28,8 @@
 #include "filters/cropvalues.h"
 #include "utils/qpixmapversionedutils.h"
 
+enum class GridFormat {Grid3x3, Golden};
+
 class ImageLabelPainter
 {
 public:
@@ -36,6 +38,7 @@ public:
     void paintOnLabel(QLabel *label, CropValues *cropValues);
 private:
     void paintGrid(QPainter *painter, int sectors, int width, int height);
+    void paintGrid(QPainter *painter, GridFormat sectors, int x1, int y1, int x2, int y2);
     void paintCropHandles(QPainter *painter, int x1, int y1, int x2, int y2);
 };
 

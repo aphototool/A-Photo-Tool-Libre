@@ -1,7 +1,7 @@
 /*
  * A Photo Tool (Libre)
  *
- * Copyright © 2021-2022 Jari Ahola
+ * Copyright © 2021-2025 Jari Ahola
  * GNU General Public License (GPLv3)
  *
  * This program is free software: you can redistribute it and/or modify
@@ -40,13 +40,19 @@ void ImageLabelPainter::paintOnLabel(QLabel *label, CropValues *cropValues) {
     int sectors = 5;
 
     QPainter *painter = new QPainter(label);
-    paintGrid(painter, sectors, w, h);
     if (cropValues != nullptr && cropValues->useCrop) {
+        paintGrid(painter, GridFormat::Grid3x3,
+                  (w - imageW) / 2 + cropValues->x1 * imageW,
+                  (h - imageH) / 2 + cropValues->y1 * imageH,
+                  (w - imageW) / 2 + cropValues->x2 * imageW,
+                  (h - imageH) / 2 + cropValues->y2 * imageH);
         paintCropHandles(painter,
                          (w - imageW) / 2 + cropValues->x1 * imageW,
                          (h - imageH) / 2 + cropValues->y1 * imageH,
                          (w - imageW) / 2 + cropValues->x2 * imageW,
                          (h - imageH) / 2 + cropValues->y2 * imageH);
+    } else {
+        paintGrid(painter, sectors, w, h);
     }
     delete painter;
 }
@@ -64,6 +70,29 @@ void ImageLabelPainter::paintGrid(QPainter *painter, int sectors, int width, int
     {
         painter->drawLine(0, i * dH, width, i * dH);
         painter->drawLine(i * dW, 0, i * dW, height);
+    }
+}
+
+void ImageLabelPainter::paintGrid(QPainter *painter, GridFormat grid, int x1, int y1, int x2, int y2)
+{
+    painter->setBrush(Qt::NoBrush);
+    QColor color(255, 255, 255, 125);
+    QPen pen(color);
+    pen.setWidth(2);
+    painter->setPen(pen);
+    switch (grid) {
+    case GridFormat::Grid3x3:
+    {
+        int dX = (x2 - x1) / 3;
+        int dY = (y2 - y1) / 3;
+        painter->drawLine(x1, y1 + dY, x2, y1 + dY);
+        painter->drawLine(x1, y1 + dY * 2, x2, y1 + dY * 2);
+        painter->drawLine(x1 + dX, y1, x1 + dX, y2);
+        painter->drawLine(x1 + dX * 2, y1, x1 + dX * 2, y2);
+    }
+        break;
+    default:
+        break;
     }
 }
 
