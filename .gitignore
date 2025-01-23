@@ -37,3 +37,6 @@
 
 # Other
 *.DS_Store
+
+# Qt Creator default build folder
+build/

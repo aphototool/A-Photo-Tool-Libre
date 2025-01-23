@@ -55,7 +55,7 @@ APhotoToolLibre::APhotoToolLibre(QWidget *parent)
     QObject::connect(ui->tintSlider, &QSlider::valueChanged, this, &APhotoToolLibre::onTintSliderValueChanged);
     QObject::connect(ui->naturalButton, &QPushButton::clicked, this, &APhotoToolLibre::onNaturalButtonClicked);
     QObject::connect(ui->panchromaticButton, &QPushButton::clicked, this, &APhotoToolLibre::onPanchromaticButtonClicked);
-    QObject::connect(ui->enableBWCheckBox, &QCheckBox::stateChanged, this, &APhotoToolLibre::onEnableBWCheckBoxStateChanged);
+    QObject::connect(ui->enableBWCheckBox, &QCheckBox::checkStateChanged, this, &APhotoToolLibre::onEnableBWCheckBoxStateChanged);
     QObject::connect(ui->redSlider, &QSlider::valueChanged, this, &APhotoToolLibre::onRedSliderValueChanged);
     QObject::connect(ui->greenSlider, &QSlider::valueChanged, this, &APhotoToolLibre::onGreenSliderValueChanged);
     QObject::connect(ui->blueSlider, &QSlider::valueChanged, this, &APhotoToolLibre::onBlueSliderValueChanged);
@@ -664,9 +664,11 @@ Ui::MainWindow *APhotoToolLibre::getUi() const
 
 void APhotoToolLibre::about()
 {
-    QMessageBox::about(this, tr("About A Photo Tool (Libre) version ") + APTL_VERSION,
+    QMessageBox::about(this, tr("About A Photo Tool (Libre)"),
                        tr("<p>The <b>A Photo Tool (Libre)</b> is a photo editing application.</p>"
-                          "<p>Copyright &copy; 2021-2025 Jari Ahola</p>"
+                          "<p>Version "
+                          APTL_VERSION
+                          "</p>"                          "<p>Copyright &copy; 2021-2025 Jari Ahola</p>"
                           "<p>Released under GNU General Public License version 3 (GPLv3)</p>"
                           "<p>See license text <a href=\"https://www.gnu.org/licenses/gpl-3.0-standalone.html\">here at gnu.org</a>.</p>"
                           "<p>The program is provided AS IS with NO WARRANTY OF ANY KIND, "

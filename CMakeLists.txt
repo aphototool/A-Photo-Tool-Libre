@@ -9,7 +9,8 @@ set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
-find_package(Qt5 COMPONENTS Core Gui Widgets REQUIRED)
+add_definitions (-DQT_DISABLE_DEPRECATED_BEFORE=0x060000)
+find_package(Qt6 COMPONENTS Core Gui Widgets REQUIRED)
 
 include_directories(
     src
@@ -112,7 +113,7 @@ set (SRCS
 
 add_executable(${CMAKE_PROJECT_NAME} ${SRCS} src/aphototoollibre.qrc)
 
-target_link_libraries(${CMAKE_PROJECT_NAME} PRIVATE Qt5::Core Qt5::Gui Qt5::Widgets)
+target_link_libraries(${CMAKE_PROJECT_NAME} PRIVATE Qt6::Core Qt6::Gui Qt6::Widgets)
 
 
 install(TARGETS aphototoollibre

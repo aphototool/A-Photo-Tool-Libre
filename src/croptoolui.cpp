@@ -34,7 +34,7 @@ CropToolUi::CropToolUi(QMainWindow *mainWin, Ui::MainWindow *ui, Values *values,
     QObject::connect(ui->cropOkButton, &QPushButton::clicked, this, &CropToolUi::onCropOkButtonClicked);
     QObject::connect(ui->cropCancelButton, &QPushButton::clicked, this, &CropToolUi::onCropCancelButtonClicked);
     QObject::connect(ui->straightenSlider, &QSlider::valueChanged, this, &CropToolUi::onStraightenSliderValueChanged);
-    QObject::connect(ui->useCropCheckBox, &QCheckBox::stateChanged, this, &CropToolUi::onUseCropCheckBoxClicked);
+    QObject::connect(ui->useCropCheckBox, &QCheckBox::checkStateChanged, this, &CropToolUi::onUseCropCheckBoxClicked);
     ui->cropFrame->installEventFilter(this);
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 14, 0))
     QObject::connect(ui->cropFormatButtonGroup, &QButtonGroup::idClicked, this, static_cast<void (CropToolUi::*)()>(&CropToolUi::useCropFormat));
