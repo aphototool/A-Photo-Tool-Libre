@@ -611,11 +611,11 @@ void APhotoToolLibre::checkForUpdates() {
         text.append("Snaps are normally updated automatically.");
         text.append("<br /><br />");
     } else if (getenv("APPIMAGE")) {
-        text.append("Looks like you are running AppImage release.");
+        text.append("Looks like you are running AppImage release. ");
         text.append("New versions are released on GitHub.");
         text.append("<br /><br />");
     } else if (getenv("container")) {
-        text.append("Looks like you are running FlatPak release.");
+        text.append("Looks like you are running FlatPak release. ");
         text.append("Use your normal App Store or FaltPak tool to update.");
         text.append("<br /><br />");
     }
@@ -668,7 +668,8 @@ void APhotoToolLibre::about()
                        tr("<p>The <b>A Photo Tool (Libre)</b> is a photo editing application.</p>"
                           "<p>Version "
                           APTL_VERSION
-                          "</p>"                          "<p>Copyright &copy; 2021-2025 Jari Ahola</p>"
+                          "</p>"
+                          "<p>Copyright &copy; 2021-2025 Jari Ahola</p>"
                           "<p>Released under GNU General Public License version 3 (GPLv3)</p>"
                           "<p>See license text <a href=\"https://www.gnu.org/licenses/gpl-3.0-standalone.html\">here at gnu.org</a>.</p>"
                           "<p>The program is provided AS IS with NO WARRANTY OF ANY KIND, "
