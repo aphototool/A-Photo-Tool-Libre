@@ -2,7 +2,7 @@ Source: aphototoollibre
 Section: graphics
 Priority: optional
 Maintainer: Jari Ahola <aphototool@ahola.me>
-Build-Depends: debhelper (>= 9), qtbase5-dev (>= 5.15.2), qtbase5-dev-tools (>= 5.15.2), qt5-qmake (>= 5.15.2)
+Build-Depends: debhelper (>= 9), qtbase6-dev (>= 6.4.2), qtbase6-dev-tools (>= 6.4.2), qt6-qmake (>= 6.4.2)
 Standards-Version: 4.6.0
 Homepage: https://www.github.com/aphototool/A-Photo-Tool-Libre
 
@@ -10,7 +10,7 @@ Package: aphototoollibre
 Architecture: any
 Section: graphics
 Priority: optional
-Depends: libqt5gui5 (>= 5.15.2), libqt5widgets5 (>= 5.15.2), libqt5core5a (>= 5.15.2), ${misc:Depends}, ${shlibs:Depends}
+Depends: libqt6gui6 (>= 6.4.2), libqt6widgets6 (>= 6.4.2), libqt6core6a (>= 6.4.2), ${misc:Depends}, ${shlibs:Depends}
 Description: A Photo Tool (Libre)
  Photo editing tool for Linux
  .
@@ -21,8 +21,7 @@ Description: A Photo Tool (Libre)
  how color is handled. Rotate, crop, straighten and
  resize photos.
  .
- Copyright (C) 2022 Jari Ahola
+ Copyright (C) 2022-2025 Jari Ahola
  .
  Lisensed under GNU GPLv3. Full source code available
  at github.com/aphototool/A-Photo-Tool-Libre
-
