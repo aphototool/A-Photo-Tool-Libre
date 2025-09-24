@@ -6,16 +6,16 @@ pkgdesc="Photo editor for Linux"
 arch=('x86_64' 'aarch64')
 url="https://www.ahola.me/aphototoollibre.html"
 license=('GPL-3.0-or-later')
-depends=('qt6-base>=6.8.2' 'hicolor-icon-theme')
+depends=('qt6-base>=6.8.2' 'hicolor-icon-theme' 'gcc-libs' 'glibc')
 makedepends=()
 source=("$pkgname-$pkgver-$pkgrel-src.tar.gz::https://github.com/aphototool/A-Photo-Tool-Libre/archive/refs/tags/v$pkgver-$pkgrel.tar.gz"
 	"$pkgname-$pkgver-$pkgrel-src.tar.gz.asc::https://github.com/aphototool/A-Photo-Tool-Libre/releases/download/v$pkgver-$pkgrel/v$pkgver-$pkgrel.tar.gz.asc")
-sha256sums=('c2d694523b12b09e7c622181445f34a12c493f728a33baaecbbda7645be8aa94' 'SKIP')
+sha256sums=('9bbb90991ca2c2104ece60106012974daf5b053dc309e5fe6e1a39dbc5153fda' 'SKIP')
 validpgpkeys=('A970F7E40CB64F0D5B9FC516AFE56C2DF614820C')
 
 build() {
 	cd "$srcdir/A-Photo-Tool-Libre-$pkgver-$pkgrel"
-	qmake
+	/usr/lib/qt6/bin/qmake
 	make
 }
 
