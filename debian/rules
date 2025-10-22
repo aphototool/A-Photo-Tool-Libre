@@ -3,3 +3,12 @@ export QT_SELECT := qt6
 
 %:
 	dh $@
+	
+override_dh_auto_configure:
+	ln -s /usr/bin/qmake6 ./qmake
+	PATH=`pwd`:$(PATH) dh_auto_configure
+
+override_dh_auto_clean:
+	$(RM) qmake
+	dh_auto_clean
+
