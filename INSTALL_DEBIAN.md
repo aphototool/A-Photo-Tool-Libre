@@ -18,8 +18,10 @@ sudo apt install ./aphototoollibre_X.X.X-Y_amd64.deb
    - You may see error message at the end of otherwise successful installation about permission denied and performing as root. That is ok.
    - Package managers may show license as "proprietary". The license is actually GPLv3.
 
-#### Tested environments
-- Debian 11.3 (Gnome / KDE Plasma)
+#### Tested environments (version 1.0.7)
+- Debian 13.1 (Gnome)
+
+#### Old versions vere tested on (does not apply to 1.0.7 or later)
 - Ubuntu Desktop 21.10
 - Kubuntu 21.10
 - Ubuntu MATE 21.10
