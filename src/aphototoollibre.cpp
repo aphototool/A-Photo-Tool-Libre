@@ -616,7 +616,7 @@ void APhotoToolLibre::checkForUpdates() {
         text.append("<br /><br />");
     } else if (getenv("container")) {
         text.append("Looks like you are running FlatPak release. ");
-        text.append("Use your normal App Store or FaltPak tool to update.");
+        text.append("Use your normal App Store or FlatPak tool to update.");
         text.append("<br /><br />");
     }
     text.append("You are currenty running version <b>");
