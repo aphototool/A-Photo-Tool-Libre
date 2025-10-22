@@ -89,7 +89,7 @@ If you have snap installed then the .config folder may be located somewhere deep
 
 #### Technical
 - Programming language C++
-- Framework Qt 5.15.2 (see https://www.qt.io/ and https://doc.qt.io/qt-5/lgpl.html and https://www.qt.io/licensing/open-source-lgpl-obligations)
+- Framework Qt 6 (see https://www.qt.io/ and https://doc.qt.io/qt-5/lgpl.html and https://www.qt.io/licensing/open-source-lgpl-obligations)
 
 #### Prerequisites
 - Basic knowledge of C++, Qt, QMake, GitHub and Linux development.
@@ -110,7 +110,7 @@ DEBBUILDOPTS="-sa"
 ```
 - Run
 ```
-pbuilder --create
+pbuilder create --architecture amd64 --distribution trixie
 ```
 - Get project from GitHub into aphototoollibre-x.x.x folder (x.x.x is current version number)
   - Use released source package (see [Releases](../../releases)), main branch may contain untested new features
@@ -127,13 +127,13 @@ pdebuild --debbuildopts -sa
 
 #### Special note
 
-Pre-build .deb file was built on Debian 11.8 with Qt 5.15.2
+Pre-build .deb file was built on Debian 13.1 with Qt 6.8.2
 
-Snap store (at snapcraft.io) version was built with Qt 5.15.3
+Snap store (at snapcraft.io) version was built with Qt 6
 
 - To create snap use snapcraft.yaml file located in snap folder and documentation available at [snapcraft.io](https://snapcraft.io/docs/snapcraft-overview) 
 
-Pre-build AppImage was built on Ubuntu 20.04 LTS with Qt 5.15.2 and packaged with [linuxdeployqt](https://github.com/probonopd/linuxdeployqt)
+Pre-build AppImage was built on Ubuntu 2x.0x LTS with Qt 6.x.x and packaged with [linuxdeployqt](https://github.com/probonopd/linuxdeployqt)
 - To create AppImage build release with Qt Creator and follow instructions at [linuxdeployqt](https://github.com/probonopd/linuxdeployqt/blob/master/README.md). See also folder [appimage](appimage)
 
 
