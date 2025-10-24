@@ -23,7 +23,7 @@ apps:
 
 parts:
   aphototoollibre:
-    source: https://github.com/aphototool/A-Photo-Tool-Libre/archive/refs/tags/v1.0.7-1-Qt6.tar.gz
+    source: https://github.com/aphototool/A-Photo-Tool-Libre/archive/refs/tags/v1.0.7-1.tar.gz
     plugin: cmake
     cmake-parameters:
       - -DCMAKE_INSTALL_PREFIX=/usr
