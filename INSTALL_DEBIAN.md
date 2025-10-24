@@ -50,12 +50,9 @@ sudo apt install ./aphototoollibre_X.X.X-Y_arm64.deb
    - You may see error message at the end of otherwise successful installation about permission denied and performing as root. That is ok.
    - Package managers may show license as "proprietary". The license is actually GPLv3.
 
-#### Tested environments
-- Ubuntu Desktop 22.10 running on Raspberry Pi 400
-
-Does **not** work on
-- Raspberry Pi OS ("bullseye")
-
+#### Tested environments (version 1.0.7)
+- Ubuntu Desktop 25.04 running on Raspberry Pi 400
+- Raspberry Pi OS ("port of Debian Trixie")
 
 
 Absolutely **no** guarantee is given that this app will work on any tested or untested environment.
