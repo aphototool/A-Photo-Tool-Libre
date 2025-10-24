@@ -113,6 +113,10 @@ DEBBUILDOPTS="-sa"
 ```
 pbuilder create --architecture amd64 --distribution trixie
 ```
+ARM build on Ubuntu might require /etc/pbuilderrc to have mirror site definition http://ports.ubuntu.com/ubuntu-ports and
+```
+pbuilder create --architecture arm64 --distribution plucky
+```
 - Get project from GitHub into aphototoollibre-x.x.x folder (x.x.x is current version number)
   - Use released source package (see [Releases](../../releases)), main branch may contain untested new features
   - For version 1.0.6-1 (and later) manually delete CMakeLists.txt file before continuing
