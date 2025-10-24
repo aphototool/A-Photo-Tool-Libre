@@ -5,7 +5,7 @@ summary: Photo editor for Linux
 description: |
   A Photo Tool (Libre) is an easy to use basic photo editor.
   Fix and modify your jpeg photos to look even greater.
-  Supports several other imageformats also.
+  Supports several other image formats also.
 
 grade: stable
 confinement: strict
