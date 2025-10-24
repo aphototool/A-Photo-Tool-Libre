@@ -97,7 +97,7 @@ If you have snap installed then the .config folder may be located somewhere deep
 
 #### Steps to build
 - Install necessary Debian developer tools
-  - You may need to install build-essential pbuilder dh-make qt6-base-dev-tools qmake6
+  - You may need to install build-essential pbuilder dh-make qt6-base-dev qt6-base-dev-tools qmake6
 - Create and configure .pbuilderrc
 ```
 BASETGZ=$HOME/pbuilder/base.tgz
@@ -116,6 +116,7 @@ pbuilder create --architecture amd64 --distribution trixie
 - Get project from GitHub into aphototoollibre-x.x.x folder (x.x.x is current version number)
   - Use released source package (see [Releases](../../releases)), main branch may contain untested new features
   - For version 1.0.6-1 (and later) manually delete CMakeLists.txt file before continuing
+  - Give debian/rules execution permission if so required
 - Compress aphototoollibre-x.x.x folder to aphototoollibre_x.x.x.tar.xz (filemanager Compress... works usually)
 - Go to aphototoollibre-x.x.x folder and run
 ```
