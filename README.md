@@ -36,6 +36,7 @@ or with command
 ```
 sudo snap install aphototoollibre
 ```
+*Please note that first installation of any snap may take some time. Snap downloads common components that can be shared between different applications. If A Photo Tool (Libre) is first on your system requiring a specific component it is automatically downloaded from Snap Store by the Snap system. Thus (first) download may be more than just the A Photo Tool (Libre) package.*
 
 Otherwise follow correct instructions below:
 
@@ -44,7 +45,7 @@ Otherwise follow correct instructions below:
 - [How to Install (AppImage for 64 bit Intel / AMD)](INSTALL_APPIMAGE.md).
 - [How to Install (Flatpak for 64 bit Intel / AMD and ARM)](INSTALL_FLATPAK.md).
 
-
+**Please note** that if when installing A Photo Tool (Libre) some dependies can not be satisfied it is higly recommended **not to** force update any dependency. Try your systems normal update and if that does not help try some other installation method. If .dep fails try AppImage.
 
 ### How to Run
 
