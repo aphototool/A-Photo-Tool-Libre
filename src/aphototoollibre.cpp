@@ -669,7 +669,7 @@ void APhotoToolLibre::about()
                           "<p>Version "
                           APTL_VERSION
                           "</p>"
-                          "<p>Copyright &copy; 2021-2025 Jari Ahola</p>"
+                          "<p>Copyright &copy; 2021-2026 Jari Ahola</p>"
                           "<p>Released under GNU General Public License version 3 (GPLv3)</p>"
                           "<p>See license text <a href=\"https://www.gnu.org/licenses/gpl-3.0-standalone.html\">here at gnu.org</a>.</p>"
                           "<p>The program is provided AS IS with NO WARRANTY OF ANY KIND, "
