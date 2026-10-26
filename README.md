@@ -38,6 +38,8 @@ sudo snap install aphototoollibre
 ```
 *Please note that first installation of any snap may take some time. Snap downloads common components that can be shared between different applications. If A Photo Tool (Libre) is first on your system requiring a specific component it is automatically downloaded from Snap Store by the Snap system. Thus (first) download may be more than just the A Photo Tool (Libre) package.*
 
+*If you need to have access to external drives then see more information here: [Removable Media Access](RemovableMedia.md).*
+
 Otherwise follow correct instructions below:
 
 - [How to Install (.deb for 64 bit Intel / AMD and ARM)](INSTALL_DEBIAN.md).
