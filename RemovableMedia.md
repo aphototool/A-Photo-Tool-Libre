@@ -12,4 +12,4 @@ Then the user must allow the A Photo Tool (Libre) to have access to this folder.
 
 ***Flatpak***
 
-``flatpak override --user --filesystem=/mnt --filesystem=/media dev.ahola.aphototoollibre``
+``flatpak override --user --filesystem=/media dev.ahola.aphototoollibre``
