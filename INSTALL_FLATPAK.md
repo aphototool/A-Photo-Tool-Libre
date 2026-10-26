@@ -16,7 +16,9 @@ Yes, A Photo Tool (Libre) is safe if downloaded from reputable source. Some pack
 
 &nbsp;&nbsp; <img width='200' alt="Is safe" src="pics/flatpak-e1.jpg" /> 
 
-A Photo Tool (Libre) does not access any of your files on its own. 
+A Photo Tool (Libre) does not access any of your files on its own.
+
+If you need to have access to external drives then see more information here: [Removable Media Access](RemovableMedia.md).
 
 
 #### Why A Photo Tool (Libre) runs in the background?
