@@ -20,13 +20,13 @@ Create a folder for photos under the Pictures folder
 
 ``mkdir -p ~/Pictures/external-system-folder``
 
-- *external-system-folder* is what ever name you want to use
+- **external-system-folder** is what ever name you want to use
 
 Mount your pictures from your source to this location
 
 ``sudo mount --bind /var/data/images ~/Pictures/external-system-folder``
 
-- */var/data/images* is an example of your photos actual location
+- **/var/data/images** is an example of your photos actual location
 - all changes made in external-system-folder are immediately made to original source files also (they are the same files) 
 - this is a temporary mounting and will not survive reboot
 
