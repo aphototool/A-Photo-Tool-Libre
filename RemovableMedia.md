@@ -27,7 +27,7 @@ Mount your pictures from your source to this location
 ``sudo mount --bind /var/data/images ~/Pictures/external-system-folder``
 
 - */var/data/images* is an example of your photos actual location
-- all changes made in external-system-folder are immediately made to original source files also (the are the same files) 
+- all changes made in external-system-folder are immediately made to original source files also (they are the same files) 
 - this is a temporary mounting and will not survive reboot
 
 If you want to unmount
