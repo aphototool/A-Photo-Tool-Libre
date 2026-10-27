@@ -1,4 +1,4 @@
-**Removable Media Access**
+**Removable Media Access and Other Not Home Locations**
 
 A Photo Tool (Libre) has normally full system wide disk access. But containerized versions of the app have limited access, restricted by the container to the home folder.
 
@@ -13,3 +13,21 @@ Then the user must allow the A Photo Tool (Libre) to have access to this folder.
 ***Flatpak***
 
 ``flatpak override --user --filesystem=/media me.ahola.aphototoollibre``
+
+***General workaround***
+
+Create a folder for photos under the Pictures folder
+
+``mkdir -p ~/Pictures/external-system-folder``
+
+- *external-system-folder* is what ever name you want to use
+
+Mount your pictures from your source to this location
+
+``sudo mount --bind /var/data/images ~/Pictures/external-system-folder``
+
+- */var/data/images* is an example of your photos actual location
+
+If you want to unmount
+
+``sudo umount ~/Pictures/external-system-folder``
