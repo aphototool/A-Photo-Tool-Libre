@@ -55,7 +55,7 @@ APhotoToolLibre::APhotoToolLibre(QWidget *parent)
     QObject::connect(ui->tintSlider, &QSlider::valueChanged, this, &APhotoToolLibre::onTintSliderValueChanged);
     QObject::connect(ui->naturalButton, &QPushButton::clicked, this, &APhotoToolLibre::onNaturalButtonClicked);
     QObject::connect(ui->panchromaticButton, &QPushButton::clicked, this, &APhotoToolLibre::onPanchromaticButtonClicked);
-    QObject::connect(ui->enableBWCheckBox, &QCheckBox::checkStateChanged, this, &APhotoToolLibre::onEnableBWCheckBoxStateChanged);
+    QObject::connect(ui->enableBWCheckBox, &QCheckBox::stateChanged, this, &APhotoToolLibre::onEnableBWCheckBoxStateChanged);
     QObject::connect(ui->redSlider, &QSlider::valueChanged, this, &APhotoToolLibre::onRedSliderValueChanged);
     QObject::connect(ui->greenSlider, &QSlider::valueChanged, this, &APhotoToolLibre::onGreenSliderValueChanged);
     QObject::connect(ui->blueSlider, &QSlider::valueChanged, this, &APhotoToolLibre::onBlueSliderValueChanged);
